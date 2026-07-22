@@ -331,6 +331,7 @@
         let activeRoundTime = '';
         let activeSubTab = 'matchs';
         let liveMinute = 0;
+        let lastRoundTime = '';
 
         const matchesData = [
             { home: "Ouganda", away: "Égypte", hFlag: "🇺🇬", aFlag: "🇪🇬", score: "1-1", pct: "37%", c1: "2.10", cX: "3.20", c2: "2.90", ov: "1.67", un: "1.97", bYes: "1.88", bNo: "1.81", d1X: "1.30", d12: "1.35", dX2: "1.45", cs1: "1-1", cs2: "1-0", cs1Odds: "6.00", cs2Odds: "7.50", hG: 1, aG: 1 },
@@ -345,11 +346,29 @@
             { home: "Maroc", away: "Cameroun", hFlag: "🇲🇦", aFlag: "🇨🇲", score: "2-0", pct: "41%", c1: "1.70", cX: "3.50", c2: "4.80", ov: "1.85", un: "1.80", bYes: "1.90", bNo: "1.75", d1X: "1.15", d12: "1.25", dX2: "2.00", cs1: "2-0", cs2: "1-0", cs1Odds: "5.80", cs2Odds: "5.50", hG: 2, aG: 0 }
         ];
 
+        let currentRoundMatches = [...matchesData];
+
         const classementData = [
             { pos: 1, name: "Maroc", j: 14, g: 9, n: 3, p: 2, pts: 30 }, { pos: 2, name: "Côte d'Ivoire", j: 14, g: 8, n: 4, p: 2, pts: 28 }, { pos: 3, name: "Algérie", j: 14, g: 8, n: 3, p: 3, pts: 27 }, { pos: 4, name: "Tunisie", j: 14, g: 7, n: 5, p: 2, pts: 26 }, { pos: 5, name: "Égypte", j: 14, g: 7, n: 4, p: 3, pts: 25 }, { pos: 6, name: "Nigeria", j: 14, g: 6, n: 5, p: 3, pts: 23 }, { pos: 7, name: "Mali", j: 14, g: 6, n: 4, p: 4, pts: 22 }, { pos: 8, name: "Cameroun", j: 14, g: 5, n: 6, p: 3, pts: 21 }, { pos: 9, name: "RD Congo", j: 14, g: 5, n: 5, p: 4, pts: 20 }, { pos: 10, name: "Afrique du Sud", j: 14, g: 5, n: 4, p: 5, pts: 19 }, { pos: 11, name: "Burkina Faso", j: 14, g: 4, n: 6, p: 4, pts: 18 }, { pos: 12, name: "Gabon", j: 14, g: 4, n: 5, p: 5, pts: 17 }, { pos: 13, name: "Guinée Éq.", j: 14, g: 4, n: 4, p: 6, pts: 16 }, { pos: 14, name: "Ouganda", j: 14, g: 3, n: 6, p: 5, pts: 15 }, { pos: 15, name: "Angola", j: 14, g: 3, n: 5, p: 6, pts: 14 }, { pos: 16, name: "Zambie", j: 14, g: 3, n: 4, p: 7, pts: 13 }, { pos: 17, name: "Mozambique", j: 14, g: 2, n: 6, p: 6, pts: 12 }, { pos: 18, name: "Botswana", j: 14, g: 2, n: 5, p: 7, pts: 11 }, { pos: 19, name: "Zimbabwe", j: 14, g: 1, n: 5, p: 8, pts: 8 }, { pos: 20, name: "Comores", j: 14, g: 1, n: 3, p: 10, pts: 6 }
         ];
 
-        // LOJIKA MIKASIKA NY FOTOANA SY NY LIVE
+        // ALGORITHM SHUFFLE MAMPIOVA IREO EKIPA ISAKY NY RUNDA VAOVAO
+        function shuffleMatchesByTime(timeString) {
+            let seed = 0;
+            for (let i = 0; i < timeString.length; i++) {
+                seed += timeString.charCodeAt(i);
+            }
+            
+            let shuffled = [...matchesData];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                let j = (seed * (i + 1)) % (i + 1);
+                let temp = shuffled[i];
+                shuffled[i] = shuffled[j];
+                shuffled[j] = temp;
+            }
+            return shuffled;
+        }
+
         function getGeneratedTimes() {
             let current = new Date();
             let min = current.getMinutes();
@@ -377,6 +396,12 @@
 
             if (!activeRoundTime) {
                 activeRoundTime = currentRound;
+            }
+
+            // Raha misy runda vaovao miova (dila ny 2 minitra) dia miova ny ekipa mifandona
+            if (activeRoundTime !== lastRoundTime) {
+                currentRoundMatches = shuffleMatchesByTime(activeRoundTime);
+                lastRoundTime = activeRoundTime;
             }
 
             if (document.getElementById('page-prediction').classList.contains('hidden') === false) {
@@ -437,7 +462,12 @@
             times.forEach(t => {
                 let btn = document.createElement('button');
                 btn.className = (t === activeRoundTime) ? "bg-red-600 text-white px-2.5 py-1 rounded-md shadow-xs" : "bg-white border border-gray-200 px-2.5 py-1 rounded-md text-gray-500";
-                btn.innerText = t; btn.onclick = () => { activeRoundTime = t; renderRoundsBar(); switchSubTab(activeSubTab); };
+                btn.innerText = t; btn.onclick = () => { 
+                    activeRoundTime = t; 
+                    currentRoundMatches = shuffleMatchesByTime(t);
+                    renderRoundsBar(); 
+                    switchSubTab(activeSubTab); 
+                };
                 bar.appendChild(btn);
             });
         }
@@ -463,7 +493,7 @@
             let isPast = times.indexOf(activeRoundTime) < times.indexOf(currentRound);
             let isFuture = times.indexOf(activeRoundTime) > times.indexOf(currentRound);
 
-            matchesData.forEach(m => {
+            currentRoundMatches.forEach(m => {
                 let row = document.createElement('div');
                 row.className = "grid grid-cols-12 p-2.5 items-center text-center text-[10px] font-bold border-b border-gray-100 hover:bg-slate-50 cursor-pointer";
                 row.onclick = () => openStatsModal(m);
@@ -612,4 +642,4 @@
         switchPage('home');
     </script>
 </body>
-</html>
+                        </html>
