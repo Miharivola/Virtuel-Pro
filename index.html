@@ -12,9 +12,9 @@
         .animate-spin-custom { animation: spin 1s linear infinite; }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen font-sans text-gray-900 select-none pb-24">
+<body class="bg-[#f4f6f8] min-h-screen font-sans text-gray-800 select-none pb-24">
 
-    <!-- Header ambony (Efa madio tsara araka ny sary) -->
+    <!-- HEADER AMBONY -->
     <header class="bg-white p-4 flex items-center justify-between border-b border-gray-200 sticky top-0 z-40 shadow-xs">
         <div class="flex items-center gap-2">
             <span class="text-xl">⚙️</span>
@@ -28,8 +28,9 @@
         </div>
     </header>
 
-    <!-- ================= PAGE 1: DASHBOARD (HOME) ================= -->
+    <!-- ================= PAGE 1: HOME (DASHBOARD) ================= -->
     <div id="page-home" class="p-4 max-w-md mx-auto space-y-4">
+        <!-- Passer à Premium -->
         <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 flex items-center justify-between cursor-pointer shadow-xs">
             <div class="flex items-center gap-3">
                 <span class="text-xl text-amber-500">⭐</span>
@@ -38,6 +39,7 @@
             <span class="text-amber-500 font-bold">›</span>
         </div>
 
+        <!-- Analyse Premium -->
         <div onclick="switchPage('premium')" class="bg-slate-900 text-white rounded-2xl p-4 flex items-center justify-between cursor-pointer shadow-md hover:bg-slate-800 transition">
             <div class="flex items-center gap-3">
                 <span class="text-xl text-indigo-400">📊</span>
@@ -49,168 +51,232 @@
             <span class="text-indigo-400 font-bold">›</span>
         </div>
 
-        <!-- Section: TIPS -->
+        <!-- SECTION: TIPS -->
         <div>
             <div class="flex items-center gap-1.5 text-xs font-bold text-orange-600 mb-2 uppercase tracking-wider">
                 <span>🔥</span> <span>Tips</span>
             </div>
             <div class="grid grid-cols-2 gap-3">
-                <div onclick="switchPage('prediction')" class="bg-white p-3 rounded-2xl border border-gray-200 flex items-center justify-between cursor-pointer hover:bg-gray-50 shadow-2xs">
-                    <div class="flex items-center gap-2.5"><span class="text-lg bg-gray-100 p-1.5 rounded-xl">📅</span><span class="text-xs font-bold text-gray-700">Free Tips</span></div>
+                <div onclick="switchPage('prediction')" class="bg-white p-3 rounded-2xl border border-gray-200 flex items-center justify-between cursor-pointer shadow-2xs">
+                    <div class="flex items-center gap-2.5"><span class="text-lg bg-gray-100 p-1 rounded-xl">📅</span><span class="text-xs font-bold text-gray-700">Free Tips</span></div>
                     <span class="text-gray-400 font-bold">›</span>
                 </div>
-                <div class="bg-white p-3 rounded-2xl border border-gray-200 flex items-center justify-between cursor-pointer hover:bg-gray-50 shadow-2xs">
-                    <div class="flex items-center gap-2.5"><span class="text-lg bg-gray-100 p-1.5 rounded-xl">⭐</span><span class="text-xs font-bold text-gray-700">Best Tips</span></div>
+                <div class="bg-white p-3 rounded-2xl border border-gray-200 flex items-center justify-between cursor-pointer shadow-2xs">
+                    <div class="flex items-center gap-2.5"><span class="text-lg bg-gray-100 p-1 rounded-xl">⭐</span><span class="text-xs font-bold text-gray-700">Best Tips</span></div>
+                    <span class="text-gray-400 font-bold">›</span>
+                </div>
+                <div class="bg-white p-3 rounded-2xl border border-gray-200 flex items-center justify-between cursor-pointer shadow-2xs">
+                    <div class="flex items-center gap-2.5"><span class="text-lg bg-gray-100 p-1 rounded-xl">👑</span><span class="text-xs font-bold text-gray-700">VIP Tips</span></div>
+                    <span class="text-gray-400 font-bold">›</span>
+                </div>
+                <div class="bg-white p-3 rounded-2xl border border-gray-200 flex items-center justify-between cursor-pointer shadow-2xs">
+                    <div class="flex items-center gap-2.5"><span class="text-lg bg-gray-100 p-1 rounded-xl">🎯</span><span class="text-xs font-bold text-gray-700">Single Tips</span></div>
+                    <span class="text-gray-400 font-bold">›</span>
+                </div>
+                <div class="bg-white p-3 rounded-2xl border border-gray-200 flex items-center justify-between cursor-pointer shadow-2xs">
+                    <div class="flex items-center gap-2.5"><span class="text-lg bg-gray-100 p-1 rounded-xl">⏱️</span><span class="text-xs font-bold text-gray-700">HT/FT</span></div>
+                    <span class="text-gray-400 font-bold">›</span>
+                </div>
+                <div class="bg-white p-3 rounded-2xl border border-gray-200 flex items-center justify-between cursor-pointer shadow-2xs">
+                    <div class="flex items-center gap-2.5"><span class="text-lg bg-gray-100 p-1 rounded-xl">📈</span><span class="text-xs font-bold text-gray-700">Over/Under</span></div>
+                    <span class="text-gray-400 font-bold">›</span>
+                </div>
+                <div class="bg-white p-3 rounded-2xl border border-gray-200 flex items-center justify-between cursor-pointer shadow-2xs">
+                    <div class="flex items-center gap-2.5"><span class="text-lg bg-gray-100 p-1 rounded-xl">🔄</span><span class="text-xs font-bold text-gray-700">BTTS</span></div>
                     <span class="text-gray-400 font-bold">›</span>
                 </div>
             </div>
         </div>
+
+        <!-- SECTION: LIVE -->
+        <div>
+            <div class="flex items-center gap-1.5 text-xs font-bold text-emerald-600 mb-2 uppercase tracking-wider">
+                <span>⚡</span> <span>Live</span>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-white p-3 rounded-2xl border border-gray-200 flex items-center justify-between cursor-pointer shadow-2xs">
+                    <div class="flex items-center gap-2.5"><span class="text-lg bg-gray-100 p-1 rounded-xl">🌩️</span><span class="text-xs font-bold text-gray-700">Live Tips</span></div>
+                    <span class="text-gray-400 font-bold">›</span>
+                </div>
+                <div class="bg-white p-3 rounded-2xl border border-gray-200 flex items-center justify-between cursor-pointer shadow-2xs">
+                    <div class="flex items-center gap-2.5"><span class="text-lg bg-gray-100 p-1 rounded-xl">🎮</span><span class="text-xs font-bold text-gray-700">Live Scores</span></div>
+                    <span class="text-gray-400 font-bold">›</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION: SETTINGS -->
+        <div class="bg-white rounded-2xl border border-gray-200 divide-y divide-gray-100 text-xs font-bold text-gray-700 shadow-2xs">
+            <div class="p-3 flex items-center justify-between cursor-pointer"><span>📩 Suggestions/Demandes</span><span class="text-gray-400">›</span></div>
+            <div class="p-3 flex items-center justify-between cursor-pointer"><span>📜 Conditions d'utilisation</span><span class="text-gray-400">›</span></div>
+            <div class="p-3 flex items-center justify-between cursor-pointer"><span>🔒 Politique de confidentialité</span><span class="text-gray-400">›</span></div>
+            <div class="p-3 flex items-center justify-between cursor-pointer"><span>🔄 Reset onboarding</span><span class="text-gray-400">›</span></div>
+            <div class="p-3 flex items-center justify-between text-red-500 cursor-pointer"><span>🚪 Se déconnecter</span><span>›</span></div>
+        </div>
     </div>
 
-    <!-- ================= PAGE 2: PREDICTION ================= -->
-    <div id="page-prediction" class="hidden p-4 max-w-md mx-auto space-y-4">
-        <main class="space-y-3">
-            <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-200">
-                <div class="flex items-center justify-between mb-3">
-                    <div class="flex items-center gap-2"><span class="text-xl">🏆</span><h2 class="text-md font-bold text-gray-800 tracking-wide">COUPE D'AFRIQUE</h2></div>
-                    <span class="text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded">20 MATCHS</span>
+
+    <!-- ================= PAGE 2: PRONOSTICS (MAIN INTERFACE) ================= -->
+    <div id="page-prediction" class="hidden p-2 max-w-md mx-auto space-y-3">
+        
+        <!-- Laharana ambony momba ny fanazavana -->
+        <div class="bg-white p-3 rounded-xl border border-gray-200 text-center shadow-2xs">
+            <h4 class="text-xs font-black text-gray-800 uppercase tracking-wide">STRUCTURE POUR TOUTES LES COMPÉTITIONS</h4>
+            <p class="text-[10px] text-gray-500 mt-1">Le même design et la même structure sont utilisés pour toutes les compétitions. La seule différence est le nom de la compétition.</p>
+        </div>
+
+        <!-- HORIZONTAL LIGUES SELECTOR -->
+        <div class="flex gap-2 overflow-x-auto no-scrollbar py-1 text-[11px] font-bold">
+            <button id="l-all" onclick="selectLeague('all')" class="bg-emerald-700 text-white px-3 py-1.5 rounded-full shadow-2xs whitespace-nowrap">⚽ Toutes les Ligues</button>
+            <button id="l-caf" onclick="selectLeague('caf')" class="bg-white text-gray-700 border border-gray-200 px-3 py-1.5 rounded-full whitespace-nowrap">🏆 Coupe d'Afrique</button>
+            <button id="l-cl" onclick="selectLeague('cl')" class="bg-white text-gray-700 border border-gray-200 px-3 py-1.5 rounded-full whitespace-nowrap">🇪🇺 Ligue des Champions</button>
+            <button id="l-pl" onclick="selectLeague('pl')" class="bg-white text-gray-700 border border-gray-200 px-3 py-1.5 rounded-full whitespace-nowrap">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</button>
+        </div>
+
+        <!-- MAIN CONTAINER TABLE LIKE FACEBOOK REELS -->
+        <div class="bg-white rounded-xl border border-emerald-800 overflow-hidden shadow-sm">
+            <!-- Green Banner -->
+            <div class="bg-emerald-800 p-3 text-white flex items-center justify-between">
+                <div class="flex items-center gap-2 text-xs font-black uppercase tracking-wider">
+                    <span>🏆</span> <span id="current-league-title">Coupe d'Afrique</span>
                 </div>
-                <div class="flex items-center gap-1.5 overflow-x-auto text-[11px] font-bold text-gray-600 no-scrollbar" id="time-slots"></div>
+                <span class="text-[9px] font-bold bg-emerald-900/60 px-2 py-0.5 rounded">12 MATCHS</span>
             </div>
-            <div class="bg-white rounded-xl border border-gray-200 p-4 text-center text-xs text-gray-400">
-                Miverina any amin'ny Home raha hijery ny dingana Premium.
+
+            <!-- Tab Navigation: RÉSULTATS | MATCHS | CLASSEMENT -->
+            <div class="grid grid-cols-3 text-center border-b border-gray-200 text-[10px] font-bold bg-gray-50 text-gray-500">
+                <div class="py-2.5 cursor-pointer">RÉSULTATS</div>
+                <div class="py-2.5 cursor-pointer text-emerald-700 border-b-2 border-emerald-700 bg-white">MATCHS</div>
+                <div class="py-2.5 cursor-pointer">CLASSEMENT</div>
             </div>
-        </main>
+
+            <!-- MATCH HOURS SELECTOR (Dynamic 2mn rounds) -->
+            <div class="flex items-center justify-between gap-1 p-2 bg-gray-50 overflow-x-auto no-scrollbar border-b border-gray-100 text-[10px] font-bold text-gray-600" id="match-rounds-bar">
+                <!-- Hofenoina amin'ny js -->
+            </div>
+
+            <!-- FILTERS SIVANA (1X2, Double Chance, Over/Under, etc) -->
+            <div class="flex gap-1.5 overflow-x-auto no-scrollbar p-2 bg-white text-[9px] font-black text-gray-500 border-b border-gray-100">
+                <button onclick="changeFilter('1x2', this)" class="filter-btn bg-emerald-700 text-white px-2.5 py-1 rounded-md">1X2</button>
+                <button onclick="changeFilter('double', this)" class="filter-btn bg-gray-100 px-2.5 py-1 rounded-md">DOUBLE CHANCE</button>
+                <button onclick="changeFilter('ou', this)" class="filter-btn bg-gray-100 px-2.5 py-1 rounded-md">OVER/UNDER</button>
+                <button onclick="changeFilter('btts', this)" class="filter-btn bg-gray-100 px-2.5 py-1 rounded-md">BTTS</button>
+                <button onclick="changeFilter('correct', this)" class="filter-btn bg-gray-100 px-2.5 py-1 rounded-md">CORRECT SCORE</button>
+            </div>
+
+            <!-- TABLE HEADERS -->
+            <div class="grid grid-cols-12 p-2 bg-gray-50/50 text-[8px] font-black text-gray-400 uppercase text-center border-b border-gray-100">
+                <div class="col-span-4 text-left">Matchs du jour</div>
+                <div class="col-span-6 grid grid-cols-3" id="dynamic-table-header">
+                    <span>1</span><span>X</span><span>2</span>
+                </div>
+                <div class="col-span-2 text-right">Score Prédit</div>
+            </div>
+
+            <!-- LIST OF MATCHES GAMES -->
+            <div class="divide-y divide-gray-100" id="matches-list-container">
+                <!-- Hofenoina avy amin'ny JS ny lalao rehetra -->
+            </div>
+        </div>
     </div>
 
     <!-- ================= PAGE 3: ANALYSE PREMIUM ================= -->
     <div id="page-premium" class="hidden p-4 max-w-md mx-auto space-y-4">
-        
-        <!-- MODULE LOADING EXTRACTION (Dingana 1) -->
-        <div id="extraction-loading-box" class="hidden bg-[#161f33] text-white p-5 rounded-2xl border border-slate-700 shadow-md space-y-4">
-            <div class="flex flex-col items-center text-center space-y-2">
-                <div id="loading-spinner" class="w-8 h-8 border-4 border-indigo-400 border-t-transparent rounded-full animate-spin-custom"></div>
-                <h3 class="text-sm font-black tracking-wider uppercase">EXTRACTION HISTORIQUE</h3>
-                <p class="text-[10px] text-gray-400">Veuillez patienter pendant que le moteur d'analyse statistique compile vos documents...</p>
-            </div>
-            <div class="w-full bg-[#111827] h-2 rounded-full overflow-hidden">
-                <div id="extraction-progress" class="bg-gradient-to-r from-indigo-500 to-green-400 h-full w-0 transition-all duration-300"></div>
-            </div>
-            <div class="text-[11px] space-y-2 font-semibold pt-2">
-                <div class="flex items-center justify-between text-gray-500" id="step-1"><span>Lecture des fichiers</span><span class="status-icon">⚪</span></div>
-                <div class="flex items-center justify-between text-gray-500" id="step-2"><span>Extraction des historiques</span><span class="status-icon">⚪</span></div>
-                <div class="flex items-center justify-between text-gray-500" id="step-3"><span>Extraction des scores</span><span class="status-icon">⚪</span></div>
-                <div class="flex items-center justify-between text-gray-500" id="step-4"><span>Reconstruction des journées</span><span class="status-icon">⚪</span></div>
-                <div class="flex items-center justify-between text-gray-500" id="step-5"><span>Analyse offensive</span><span class="status-icon">⚪</span></div>
-                <div class="flex items-center justify-between text-gray-500" id="step-6"><span>Analyse défensive</span><span class="status-icon">⚪</span></div>
-                <div class="flex items-center justify-between text-gray-500" id="step-7"><span>Détection des cycles</span><span class="status-icon">⚪</span></div>
-            </div>
-        </div>
-
-        <!-- MODULE LOADING MATCH PRONOSTIC (Dingana 2) -->
-        <div id="match-loading-box" class="hidden bg-[#161f33] text-white p-5 rounded-2xl border border-slate-700 shadow-md space-y-4">
-            <div class="flex flex-col items-center text-center space-y-2">
-                <div id="match-spinner" class="w-8 h-8 border-4 border-amber-400 border-t-transparent rounded-full animate-spin-custom"></div>
-                <h3 class="text-sm font-black tracking-wider uppercase text-amber-400">ANALYSE PREMIUM EN COURS</h3>
-                <p class="text-[10px] text-gray-400">Calcul des probabilités du score exact selon les modèles d'analyse...</p>
-            </div>
-            <div class="w-full bg-[#111827] h-2 rounded-full overflow-hidden">
-                <div id="match-progress" class="bg-gradient-to-r from-amber-500 to-orange-400 h-full w-0 transition-all duration-300"></div>
-            </div>
-            <div class="text-[11px] space-y-2 font-semibold pt-2">
-                <div class="flex items-center justify-between text-gray-500" id="mstep-1"><span>Lecture de la liste des matchs</span><span class="mstatus-icon">⚪</span></div>
-                <div class="flex items-center justify-between text-gray-500" id="mstep-2"><span>Application des matrices offensives</span><span class="mstatus-icon">⚪</span></div>
-                <div class="flex items-center justify-between text-gray-500" id="mstep-3"><span>Calcul des cotes prédictives</span><span class="mstatus-icon">⚪</span></div>
-                <div class="flex items-center justify-between text-gray-500" id="mstep-4"><span>Simulation Monte Carlo (10k itérations)</span><span class="mstatus-icon">⚪</span></div>
-                <div class="flex items-center justify-between text-gray-500" id="mstep-5"><span>Génération des scores exacts</span><span class="mstatus-icon">⚪</span></div>
-            </div>
-        </div>
-
-        <!-- TABS SELECTOR -->
+        <!-- TABS SELECTOR FOR PREMIUM -->
         <div class="bg-gray-200 p-1 rounded-xl grid grid-cols-2 gap-1 text-center text-xs font-bold">
             <button id="btn-step1" onclick="switchPremiumStep(1)" class="py-2 rounded-lg bg-indigo-600 text-white shadow-xs">1. BASE HISTORIQUE</button>
             <button id="btn-step2" onclick="switchPremiumStep(2)" class="py-2 rounded-lg text-gray-600">2. MATCHS & PRONOSTICS</button>
         </div>
 
-        <!-- STAGE 1: CHARGER LA BASE HISTORIQUE -->
-        <div id="premium-step-1" class="space-y-4">
-            <div class="bg-[#161f33] text-white p-5 rounded-2xl border border-slate-700 shadow-md">
-                <div class="flex items-start gap-3 mb-4">
-                    <span class="text-xl text-indigo-400 mt-0.5">⏱️</span>
-                    <div>
-                        <h3 class="text-sm font-black tracking-wide uppercase text-gray-200">CHARGER LA BASE HISTORIQUE</h3>
-                        <p class="text-[11px] text-gray-400 mt-1 leading-relaxed">Déposez les données historiques de championnats récents (images, pdf, txt) pour calibrer le moteur statistique de la session.</p>
-                    </div>
-                </div>
-                <div class="border-2 border-dashed border-slate-600 rounded-xl p-6 text-center bg-[#111827] cursor-pointer relative">
-                    <input type="file" id="file-history" class="absolute inset-0 opacity-0 cursor-pointer" multiple accept=".png,.jpg,.jpeg,.webp,.pdf,.txt" onchange="handleFileSelection(this, 'history')">
-                    <div class="text-2xl mb-2">📥</div>
-                    <p class="text-xs font-bold text-gray-300">Cliquez ou glissez-déposez vos fichiers ici</p>
-                </div>
-                <!-- Files list for history -->
-                <div id="history-files-container" class="hidden mt-4 pt-3 border-t border-slate-800 space-y-2">
-                    <div class="flex items-center justify-between text-[10px] font-bold text-gray-400">
-                        <span class="uppercase tracking-wider text-indigo-300">FICHERS CHARGÉS (<span id="history-file-count">0</span>)</span>
-                        <button onclick="clearFiles('history')" class="text-red-400 hover:underline">Tout effacer</button>
-                    </div>
-                    <div id="history-files-list" class="space-y-1.5 max-h-40 overflow-y-auto pr-1 no-scrollbar"></div>
-                </div>
-                <button onclick="startExtractionSimulation()" class="w-full mt-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center tracking-wide shadow-sm">
-                    ✨ ANALYSER L'HISTORIQUE
-                </button>
+        <!-- STEP 1: UPLOAD BASE -->
+        <div id="premium-step-1" class="bg-[#161f33] text-white p-4 rounded-2xl border border-slate-700 space-y-3">
+            <h3 class="text-xs font-black tracking-wide uppercase">CHARGER LA BASE HISTORIQUE</h3>
+            <p class="text-[10px] text-gray-400">Glissez-déposez vos fichiers pour calibrer l'intelligence artificielle.</p>
+            <div class="border-2 border-dashed border-slate-600 rounded-xl p-6 text-center bg-[#111827] text-xs font-bold text-gray-400">
+                Glissez vos fichiers historiques (.txt, .pdf, images)
             </div>
+            <button class="w-full py-2.5 bg-emerald-600 rounded-xl text-xs font-bold uppercase tracking-wide">Analyser la base</button>
         </div>
 
-        <!-- STAGE 2: CHARGER LES MATCHS & RÉSULTATS -->
-        <div id="premium-step-2" class="hidden space-y-4">
-            <div class="bg-[#161f33] text-white p-5 rounded-2xl border border-slate-700 shadow-md">
-                <div class="flex items-start gap-3 mb-4">
-                    <span class="text-xl text-indigo-400 mt-0.5">🌌</span>
-                    <div>
-                        <h3 class="text-sm font-black tracking-wide uppercase text-gray-200">CHARGER LES MATCHS</h3>
-                        <p class="text-[11px] text-gray-400 mt-1 leading-relaxed">Déposez les matchs du jour à pronostiquer. Le moteur calculera automatiquement les scores exacts.</p>
-                    </div>
-                </div>
-                <div class="border-2 border-dashed border-slate-600 rounded-xl p-6 text-center bg-[#111827] cursor-pointer relative">
-                    <input type="file" id="file-matches" class="absolute inset-0 opacity-0 cursor-pointer" multiple accept=".png,.jpg,.jpeg,.webp,.pdf,.txt" onchange="handleFileSelection(this, 'matches')">
-                    <div class="text-2xl mb-2">📥</div>
-                    <p class="text-xs font-bold text-gray-300">Glissez-déposez les fichiers de match ici</p>
-                </div>
-                
-                <!-- Lisitry ny Fichiers Match -->
-                <div id="matches-files-container" class="hidden mt-4 pt-3 border-t border-slate-800 space-y-2">
-                    <div class="flex items-center justify-between text-[10px] font-bold text-gray-400">
-                        <span class="uppercase tracking-wider text-amber-400">FICHERS MATCH (<span id="matches-file-count">0</span>)</span>
-                        <button onclick="clearFiles('matches')" class="text-red-400 hover:underline">Tout effacer</button>
-                    </div>
-                    <div id="matches-files-list" class="space-y-1.5 max-h-40 overflow-y-auto pr-1 no-scrollbar"></div>
-                </div>
+        <!-- STEP 2: UPLOAD DAILY MATCHES -->
+        <div id="premium-step-2" class="hidden bg-[#161f33] text-white p-4 rounded-2xl border border-slate-700 space-y-3">
+            <h3 class="text-xs font-black tracking-wide uppercase">CHARGER LES MATCHS DU JOUR</h3>
+            <div class="border-2 border-dashed border-slate-600 rounded-xl p-6 text-center bg-[#111827] text-xs font-bold text-gray-400">
+                Glissez le screenshot des matchs à prédire
+            </div>
+            <button class="w-full py-2.5 bg-amber-500 text-slate-900 rounded-xl text-xs font-black uppercase tracking-wide">Calculer les Pronostics Exacts</button>
+        </div>
+    </div>
 
-                <button onclick="startMatchAnalysisSimulation()" class="w-full mt-4 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white text-xs font-black py-3 px-4 rounded-xl flex items-center justify-center tracking-wider transition shadow-md uppercase">
-                    ✨ LANCER ANALYSE PREMIUM
-                </button>
+    <!-- ================= MODAL DIALOG: AI DETAILED STATISTICS ================= -->
+    <div id="stats-modal" class="hidden fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
+        <div class="bg-[#161f33] text-white w-full max-w-xs rounded-2xl border border-slate-700 overflow-hidden shadow-2xl relative">
+            
+            <!-- Modal Header -->
+            <div class="p-3 border-b border-slate-800 bg-[#1e293b] flex items-center justify-between">
+                <div>
+                    <h3 class="text-[10px] font-black tracking-wider text-indigo-400 uppercase">Analyse Prédictive IA Simulation</h3>
+                    <h2 class="text-xs font-black uppercase mt-0.5" id="modal-league-title">COUPE D'AFRIQUE</h2>
+                </div>
+                <button onclick="closeStatsModal()" class="text-gray-400 hover:text-white font-bold text-sm bg-slate-800/60 w-6 h-6 rounded-full flex items-center justify-center">✕</button>
             </div>
 
-            <!-- TABILAO VALINY: RÉSULTATS D'ANALYSE PREMIUM -->
-            <div id="premium-results-box" class="hidden bg-[#161f33] border border-slate-700 rounded-2xl p-4 shadow-lg">
-                <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-800">
-                    <div class="flex items-center gap-1.5 text-xs font-black text-amber-400 uppercase tracking-wider">
-                        <span>🏆</span> <span>Résultats d'Analyse Premium</span>
+            <!-- Modal Content (Sary faha-7) -->
+            <div class="p-4 space-y-4">
+                <!-- Teams header -->
+                <div class="flex items-center justify-between text-center">
+                    <div class="w-5/12 flex flex-col items-center">
+                        <span class="text-2xl" id="modal-home-flag">🇿🇼</span>
+                        <span class="text-[10px] font-black uppercase mt-1 tracking-wide truncate w-full" id="modal-home-name">Zimbabwe</span>
+                        <span class="text-[8px] text-gray-400 font-medium">Domicile</span>
                     </div>
-                    <button onclick="clearPremiumResults()" class="text-[10px] text-gray-400 hover:text-red-400 font-bold">Effacer</button>
+                    <div class="w-2/12 font-black text-xs text-indigo-400 bg-indigo-950/50 px-1.5 py-0.5 rounded border border-indigo-900/40">VS</div>
+                    <div class="w-5/12 flex flex-col items-center">
+                        <span class="text-2xl" id="modal-away-flag">🇸🇳</span>
+                        <span class="text-[10px] font-black uppercase mt-1 tracking-wide truncate w-full" id="modal-away-name">Sénégal</span>
+                        <span class="text-[8px] text-gray-400 font-medium">Extérieur</span>
+                    </div>
                 </div>
-                <div id="premium-results-list" class="space-y-1 bg-[#111827] rounded-xl p-2 divide-y divide-slate-800/40 text-xs font-bold text-gray-200">
-                    <!-- Dinamika ny vokatra -->
+
+                <!-- Probabilités bars -->
+                <div class="space-y-1.5">
+                    <div class="flex items-center justify-between text-[8px] font-black uppercase text-gray-400">
+                        <span>Probabilités de victoire (1X2)</span>
+                        <span class="text-emerald-400 font-bold" id="modal-precision-pct">Précision: 94%</span>
+                    </div>
+                    <!-- Three way progress bar -->
+                    <div class="w-full h-4 rounded-md overflow-hidden flex text-[9px] font-black text-center text-white">
+                        <div id="modal-prob-1" class="bg-emerald-600 flex items-center justify-center transition-all">1 (55%)</div>
+                        <div id="modal-prob-x" class="bg-amber-600 flex items-center justify-center transition-all">X (26%)</div>
+                        <div id="modal-prob-2" class="bg-red-600 flex items-center justify-center transition-all">2 (19%)</div>
+                    </div>
+                    <p class="text-[8px] text-gray-400 text-center italic mt-1">Notre modèle IA estime l'issue en faveur de l'ÉQUIPE DOMICILE.</p>
+                </div>
+
+                <!-- Confidence indicator -->
+                <div class="bg-slate-900/60 p-2 rounded-xl border border-slate-800 flex items-center justify-between text-[10px] font-bold">
+                    <span class="text-gray-400">CONFIANCE IA</span>
+                    <span class="text-emerald-400 font-black text-sm" id="modal-confidence-value">37%</span>
+                </div>
+
+                <!-- Stats details lists -->
+                <div class="space-y-2 text-[10px] border-t border-slate-800/60 pt-3">
+                    <div class="flex justify-between font-bold text-gray-400"><span class="uppercase">Statistiques de match prévues</span><span class="text-white">SPORTS</span></div>
+                    <div class="flex justify-between text-gray-300"><span>Buts attendus (xG)</span><span class="font-mono font-bold" id="modal-xg-val">1.92 - 0.74</span></div>
+                    <div class="flex justify-between text-gray-300"><span>Tirs cadrés</span><span class="font-mono font-bold">7 - 3</span></div>
+                    <div class="flex justify-between text-gray-300"><span>Météo & Arbitre</span><span class="text-gray-400 truncate max-w-[60%]" id="modal-weather-val">Ensoleillé, 28°C | B. Gassama</span></div>
                 </div>
             </div>
 
-            <div class="bg-gray-200 rounded-xl p-4 text-[11px] text-gray-500 text-center border border-gray-300">
-                Analyse Premium est un moteur d'analyse statistique multimodal sécurisé. Toutes les données extraites restent stockées temporairement pendant la session de l'utilisateur.
+            <!-- Bottom Note -->
+            <div class="p-2 bg-slate-950/40 text-[7px] text-center text-gray-500 border-t border-slate-900/40">
+                Les predictions et cotes ont des bases statistiques et peuvent changer. Jouez de manière responsable.
             </div>
         </div>
     </div>
 
-    <!-- ================= BOTTOM NAVIGATION BAR ================= -->
+
+    <!-- ================= NAVIGATION BAR AMBONY AVY HATRANY ================= -->
     <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-2 flex justify-around items-center z-50 shadow-lg max-w-md mx-auto">
         <button id="nav-home" onclick="switchPage('home')" class="flex flex-col items-center gap-0.5 text-xs font-bold text-green-600">
             <span class="text-xl">🏠</span><span>Accueil</span>
@@ -220,26 +286,25 @@
         </button>
     </div>
 
-    <script>
-        let historicalFilesList = [];
-        let matchesFilesList = [];
 
-        const premResultsData = [
-            { home: "Angola", away: "Zambia", tip: "2 (1-2)" },
-            { home: "Ivory Coast", away: "Comoros", tip: "1 (2-0)" },
-            { home: "Equatorial Guinea", away: "Egypt", tip: "2 (0-2)" },
-            { home: "Benin", away: "Tunisia", tip: "X (1-1)" },
-            { home: "Mozambique", away: "DR Congo", tip: "2 (1-2)" },
-            { home: "Botswana", away: "Tanzania", tip: "2 (0-1)" },
-            { home: "Zimbabwe", away: "Morocco", tip: "2 (1-2)" },
-            { home: "South Africa", away: "Algeria", tip: "1 (2-1)" },
-            { home: "Sudan", away: "Mali", tip: "2 (1-2)" },
-            { home: "Senegal", away: "Uganda", tip: "1 (2-0)" },
-            { home: "Cameroon", away: "Nigeria", tip: "X (1-1)" },
-            { home: "Burkina Faso", away: "Gabon", tip: "1 (2-1)" }
+    <!-- ================= JAVASCRIPT LOGIC DYNAMIC AND FULL ================= -->
+    <script>
+        let currentFilter = '1x2';
+        let activeRoundTime = '16:00';
+
+        // Bank data momba ny firenena sy ny sainam-pirenena
+        const matchesData = [
+            { home: "Ouganda", away: "Égypte", hFlag: "🇺🇬", aFlag: "🇪🇬", score: "1-1", pct: "37%", hG: 1, aG: 1, c1: "2.10", cX: "3.20", c2: "2.90", ov: "1.67", un: "1.97", bYes: "1.88", bNo: "1.81", d1X: "1.30", d12: "1.35", dX2: "1.45", cs1: "1-1", cs2: "1-0", cs1Odds: "6.00", cs2Odds: "7.50", xG: "1.42 - 1.10", w: "Nuageux, 24°C" },
+            { home: "Mozambique", away: "Gabon", hFlag: "🇲🇿", aFlag: "🇬🇦", score: "0-0", pct: "23%", hG: 1, aG: 1, c1: "2.30", cX: "3.10", c2: "3.20", ov: "1.47", un: "1.73", bYes: "1.68", bNo: "1.98", d1X: "1.28", d12: "1.33", dX2: "1.50", cs1: "0-0", cs2: "1-1", cs1Odds: "5.50", cs2Odds: "6.20", xG: "0.85 - 0.90", w: "Pluvieux, 21°C" },
+            { home: "Tunisie", away: "Guinée Équatoriale", hFlag: "🇹🇳", aFlag: "🇬🇶", score: "1-1", pct: "28%", hG: 2, aG: 0, c1: "1.95", cX: "3.40", c2: "3.95", ov: "1.80", un: "1.53", bYes: "1.95", bNo: "1.66", d1X: "1.20", d12: "1.28", dX2: "1.75", cs1: "2-0", cs2: "1-0", cs1Odds: "8.00", cs2Odds: "5.80", xG: "2.10 - 0.65", w: "Ensoleillé, 30°C" },
+            { home: "Algérie", away: "Zambie", hFlag: "🇩🇿", aFlag: "🇿🇲", score: "1-0", pct: "25%", hG: 1, aG: 0, c1: "1.65", cX: "3.60", c2: "5.10", ov: "1.95", un: "1.45", bYes: "2.05", bNo: "1.55", d1X: "1.12", d12: "1.22", dX2: "2.10", cs1: "1-0", cs2: "2-0", cs1Odds: "5.20", cs2Odds: "6.80", xG: "1.75 - 0.50", w: "Clair, 22°C" },
+            { home: "Botswana", away: "RD Congo", hFlag: "🇧🇼", aFlag: "🇨🇩", score: "1-1", pct: "30%", hG: 2, aG: 2, c1: "3.40", cX: "3.10", c2: "2.20", ov: "1.65", un: "2.00", bYes: "1.90", bNo: "1.70", d1X: "1.60", d12: "1.33", dX2: "1.25", cs1: "2-2", cs2: "1-2", cs1Odds: "12.0", cs2Odds: "8.50", xG: "1.20 - 1.95", w: "Venteux, 18°C" },
+            { home: "Zimbabwe", away: "Nigeria", hFlag: "🇿🇼", aFlag: "🇳🇬", score: "0-0", pct: "22%", hG: 0, aG: 0, c1: "4.50", cX: "3.30", c2: "1.80", ov: "1.55", un: "2.15", bYes: "2.10", bNo: "1.50", d1X: "1.90", d12: "1.28", dX2: "1.15", cs1: "0-0", cs2: "0-1", cs1Odds: "7.00", cs2Odds: "5.00", xG: "0.60 - 1.65", w: "Humide, 26°C" },
+            { home: "Côte d'Ivoire", away: "Comores", hFlag: "🇨🇮", aFlag: "🇰🇲", score: "1-1", pct: "32%", hG: 3, aG: 1, c1: "1.40", cX: "4.20", c2: "7.50", ov: "2.10", un: "1.40", bYes: "2.30", bNo: "1.45", d1X: "1.05", d12: "1.18", dX2: "2.70", cs1: "2-0", cs2: "3-1", cs1Odds: "5.50", cs2Odds: "11.0", xG: "2.50 - 0.40", w: "Beau temps, 29°C" },
+            { home: "Burkina Faso", away: "Mali", hFlag: "🇧🇫", aFlag: "🇲🇱", score: "0-1", pct: "24%", hG: 0, aG: 1, c1: "2.80", cX: "3.00", c2: "2.60", ov: "1.50", un: "2.20", bYes: "1.95", bNo: "1.66", d1X: "1.42", d12: "1.33", dX2: "1.38", cs1: "0-1", cs2: "1-1", cs1Odds: "6.50", cs2Odds: "5.80", xG: "0.95 - 1.25", w: "Couvert, 23°C" }
         ];
 
-        // Lojika fifindran'ny pejy feno
+        // Lojika ho an'ny fifindran'ny pejy telo fototra
         function switchPage(page) {
             document.getElementById('page-home').classList.add('hidden');
             document.getElementById('page-prediction').classList.add('hidden');
@@ -254,6 +319,8 @@
             } else if (page === 'prediction') {
                 document.getElementById('page-prediction').classList.remove('hidden');
                 document.getElementById('nav-prediction').className = "flex flex-col items-center gap-0.5 text-xs font-bold text-green-600";
+                renderRoundsBar();
+                renderMatchesTable();
             } else if (page === 'premium') {
                 document.getElementById('page-premium').classList.remove('hidden');
             }
@@ -273,137 +340,158 @@
             }
         }
 
-        function handleFileSelection(input, type) {
-            if (!input.files) return;
-            let targetList = (type === 'history') ? historicalFilesList : matchesFilesList;
-            for (let i = 0; i < input.files.length; i++) {
-                let file = input.files[i];
-                let sizeStr = (file.size / (1024 * 1024)).toFixed(2) + " Mo";
-                targetList.push({ name: file.name, size: sizeStr });
-            }
-            renderFilesList(type);
-        }
-
-        function removeFile(idx, type) {
-            let targetList = (type === 'history') ? historicalFilesList : matchesFilesList;
-            targetList.splice(idx, 1);
-            renderFilesList(type);
-        }
-
-        function clearFiles(type) {
-            if(type === 'history') historicalFilesList = [];
-            else matchesFilesList = [];
-            renderFilesList(type);
-        }
-
-        function renderFilesList(type) {
-            const container = document.getElementById(`${type}-files-container`);
-            const list = document.getElementById(`${type}-files-list`);
-            const countBadge = document.getElementById(`${type}-file-count`);
-            let targetList = (type === 'history') ? historicalFilesList : matchesFilesList;
+        // Fampisehoana ny ligue voafidy ambony
+        function selectLeague(id) {
+            const btnIds = ['all', 'caf', 'cl', 'pl'];
+            btnIds.forEach(b => {
+                document.getElementById(`l-${b}`).className = "bg-white text-gray-700 border border-gray-200 px-3 py-1.5 rounded-full whitespace-nowrap";
+            });
+            document.getElementById(`l-${id}`).className = "bg-emerald-700 text-white px-3 py-1.5 rounded-full shadow-2xs whitespace-nowrap";
             
-            if (targetList.length === 0) {
-                container.classList.add('hidden');
-                return;
-            }
-            
-            container.classList.remove('hidden');
-            countBadge.innerText = targetList.length;
-            list.innerHTML = '';
+            const titles = { all: "Toutes les Ligues", caf: "Coupe d'Afrique", cl: "Ligue des Champions", pl: "Premier League" };
+            document.getElementById('current-league-title').innerText = titles[id];
+        }
 
-            targetList.forEach((file, idx) => {
-                let item = document.createElement('div');
-                item.className = "bg-[#111827] border border-slate-800 p-2 rounded-xl flex items-center justify-between text-[11px] text-gray-300";
-                item.innerHTML = `
-                    <div class="flex items-center gap-2 truncate max-w-[85%]">
-                        <span class="text-indigo-400">📄</span>
-                        <span class="truncate tracking-wide">${file.name}</span>
-                        <span class="text-[9px] text-gray-500">(${file.size})</span>
+        // Famoronana ny Matchday Rounds isaky ny 2 minitra (Sary faha-1)
+        function renderRoundsBar() {
+            const bar = document.getElementById('match-rounds-bar');
+            bar.innerHTML = '';
+            const times = ["15:50", "15:52", "15:54", "15:56", "15:58", "16:00", "16:02", "16:04", "16:06", "16:08", "16:10"];
+            
+            times.forEach(t => {
+                let btn = document.createElement('button');
+                if (t === activeRoundTime) {
+                    btn.className = "bg-red-600 text-white px-2.5 py-1 rounded-md shadow-xs transition-all";
+                } else {
+                    btn.className = "bg-white border border-gray-200 px-2.5 py-1 rounded-md text-gray-500 hover:bg-gray-100";
+                }
+                btn.innerText = t;
+                btn.onclick = () => {
+                    activeRoundTime = t;
+                    renderRoundsBar();
+                    renderMatchesTable();
+                };
+                bar.appendChild(btn);
+            });
+        }
+
+        // Fanovana ny sivana sivana
+        function changeFilter(filterType, element) {
+            currentFilter = filterType;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.className = "filter-btn bg-gray-100 text-gray-500 px-2.5 py-1 rounded-md font-black";
+            });
+            element.className = "filter-btn bg-emerald-700 text-white px-2.5 py-1 rounded-md font-black";
+
+            // Fanovana ny lohatenin'ny tsanganana afovoany
+            const head = document.getElementById('dynamic-table-header');
+            if (filterType === '1x2') head.innerHTML = '<span>1</span><span>X</span><span>2</span>';
+            else if (filterType === 'double') head.innerHTML = '<span>1X</span><span>12</span><span>X2</span>';
+            else if (filterType === 'ou') head.innerHTML = '<span>OVER 2.5</span><span>UNDER 2.5</span><span></span>';
+            else if (filterType === 'btts') head.innerHTML = '<span>OUI</span><span>NON</span><span></span>';
+            else if (filterType === 'correct') head.innerHTML = '<span>PREDI</span><span>ALT</span><span></span>';
+
+            renderMatchesTable();
+        }
+
+        // Famenoana ny tabilao lalao manontolo miaraka amin'ny lock icons sy ny odds rehetra (Sary 1, 2, 3, 4, 5)
+        function renderMatchesTable() {
+            const container = document.getElementById('matches-list-container');
+            container.innerHTML = '';
+
+            matchesData.forEach((m, index) => {
+                let row = document.createElement('div');
+                row.className = "grid grid-cols-12 p-2.5 items-center text-center text-[10px] font-bold border-b border-gray-100 hover:bg-slate-50 transition cursor-pointer";
+                row.onclick = () => openStatsModal(m);
+
+                // Ekipa 1 sy 2 miaraka amin'ny saina sy soratra kely live 90'
+                let teamHtml = `
+                    <div class="col-span-4 text-left space-y-0.5 truncate pr-1">
+                        <div class="flex items-center gap-1 truncate"><span class="text-xs">${m.hFlag}</span> <span class="truncate text-gray-700">${m.home}</span> <span class="text-[9px] text-emerald-600 font-extrabold ml-auto">${m.hG}</span></div>
+                        <div class="flex items-center gap-1 truncate"><span class="text-xs">${m.aFlag}</span> <span class="truncate text-gray-700">${m.away}</span> <span class="text-[9px] text-emerald-600 font-extrabold ml-auto">${m.aG}</span></div>
+                        <div class="text-[7px] text-gray-400 font-medium flex items-center gap-1">🕒 ${activeRoundTime} • <span class="text-red-500 font-bold animate-pulse">● LIVE 90'</span></div>
                     </div>
-                    <button onclick="removeFile(${idx}, '${type}')" class="text-gray-500 hover:text-red-400 px-1">🗑️</button>
                 `;
-                list.appendChild(item);
+
+                // Dinamika momba ny sivana voafidy eo afovoany
+                let oddsHtml = '';
+                if (currentFilter === '1x2') {
+                    oddsHtml = `
+                        <div class="col-span-6 grid grid-cols-3 gap-1 px-1 text-[9px]">
+                            <div class="bg-gray-50 border border-gray-200 py-2 rounded-md flex flex-col items-center justify-center text-gray-400 font-semibold gap-0.5">${m.c1} <span class="text-[7px]">🔒</span></div>
+                            <div class="bg-gray-50 border border-gray-200 py-2 rounded-md flex flex-col items-center justify-center text-gray-400 font-semibold gap-0.5">${m.cX} <span class="text-[7px]">🔒</span></div>
+                            <div class="bg-gray-50 border border-gray-200 py-2 rounded-md flex flex-col items-center justify-center text-gray-400 font-semibold gap-0.5">${m.c2} <span class="text-[7px]">🔒</span></div>
+                        </div>
+                    `;
+                } else if (currentFilter === 'double') {
+                    oddsHtml = `
+                        <div class="col-span-6 grid grid-cols-3 gap-1 px-1 text-[9px]">
+                            <div class="bg-gray-50 border border-gray-200 py-2 rounded-md flex flex-col items-center justify-center text-gray-400 font-semibold gap-0.5">${m.d1X} <span class="text-[7px]">🔒</span></div>
+                            <div class="bg-gray-50 border border-gray-200 py-2 rounded-md flex flex-col items-center justify-center text-gray-400 font-semibold gap-0.5">${m.d12} <span class="text-[7px]">🔒</span></div>
+                            <div class="bg-gray-50 border border-gray-200 py-2 rounded-md flex flex-col items-center justify-center text-gray-400 font-semibold gap-0.5">${m.dX2} <span class="text-[7px]">🔒</span></div>
+                        </div>
+                    `;
+                } else if (currentFilter === 'ou') {
+                    oddsHtml = `
+                        <div class="col-span-6 grid grid-cols-12 gap-1 px-1 text-[9px]">
+                            <div class="col-span-6 bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-500 font-mono font-bold">${m.ov}</div>
+                            <div class="col-span-6 bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-500 font-mono font-bold">${m.un}</div>
+                        </div>
+                    `;
+                } else if (currentFilter === 'btts') {
+                    oddsHtml = `
+                        <div class="col-span-6 grid grid-cols-12 gap-1 px-1 text-[9px]">
+                            <div class="col-span-6 bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-500 font-mono font-bold">${m.bYes}</div>
+                            <div class="col-span-6 bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-500 font-mono font-bold">${m.bNo}</div>
+                        </div>
+                    `;
+                } else if (currentFilter === 'correct') {
+                    oddsHtml = `
+                        <div class="col-span-6 grid grid-cols-12 gap-1 px-1 text-[9px]">
+                            <div class="col-span-6 bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-500 font-mono font-bold">${m.cs1} <span class="text-[7px] text-gray-400 block font-sans">${m.cs1Odds}</span></div>
+                            <div class="col-span-6 bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-500 font-mono font-bold">${m.cs2} <span class="text-[7px] text-gray-400 block font-sans">${m.cs2Odds}</span></div>
+                        </div>
+                    `;
+                }
+
+                // Vokatra farany amin'ny score prediction
+                let predictionHtml = `
+                    <div class="col-span-2 text-right flex flex-col items-end justify-center">
+                        <span class="bg-gray-100 text-gray-700 border border-gray-200 px-1.5 py-1 rounded text-[9px] font-mono font-extrabold shadow-3xs">${m.score}</span>
+                        <span class="text-[7px] text-gray-400 mt-0.5 block font-medium">(${m.pct})</span>
+                    </div>
+                `;
+
+                row.innerHTML = teamHtml + oddsHtml + predictionHtml;
+                container.appendChild(row);
             });
         }
 
-        function startExtractionSimulation() {
-            if (historicalFilesList.length === 0) return alert("Ampidiro ny fichier historique de base!");
-            const loadingBox = document.getElementById('extraction-loading-box');
-            const progress = document.getElementById('extraction-progress');
-            loadingBox.classList.remove('hidden');
-            let currentStep = 1;
-            progress.style.width = '0%';
-            let interval = setInterval(() => {
-                if (currentStep <= 7) {
-                    let stepEl = document.getElementById(`step-${currentStep}`);
-                    stepEl.className = "flex items-center justify-between text-green-400 font-bold";
-                    stepEl.querySelector('.status-icon').innerText = "✓";
-                    progress.style.width = `${Math.floor((currentStep / 7) * 100)}%`;
-                    currentStep++;
-                } else {
-                    clearInterval(interval);
-                    setTimeout(() => { loadingBox.classList.add('hidden'); switchPremiumStep(2); }, 800);
-                }
-            }, 400);
-        }
-
-        function startMatchAnalysisSimulation() {
-            if (matchesFilesList.length === 0) return alert("Ampidiro aloha ny sarin'ny matchs holalainao!");
-            const loadingBox = document.getElementById('match-loading-box');
-            const progress = document.getElementById('match-progress');
-            document.getElementById('premium-results-box').classList.add('hidden');
-            loadingBox.classList.remove('hidden');
+        // Lojika amin'ny fanokafana ny popup momba ny simulation AI (Sary faha-7)
+        function openStatsModal(match) {
+            document.getElementById('modal-home-flag').innerText = match.hFlag;
+            document.getElementById('modal-home-name').innerText = match.home;
+            document.getElementById('modal-away-flag').innerText = match.aFlag;
+            document.getElementById('modal-away-name').innerText = match.away;
             
-            for(let i=1; i<=5; i++) {
-                let el = document.getElementById(`mstep-${i}`);
-                el.className = "flex items-center justify-between text-gray-500";
-                el.querySelector('.mstatus-icon').innerText = "⚪";
-            }
+            // Generate pseudo random distributions for illustration
+            document.getElementById('modal-prob-1').innerText = `1 (55%)`;
+            document.getElementById('modal-prob-x').innerText = `X (26%)`;
+            document.getElementById('modal-prob-2').innerText = `2 (19%)`;
+            
+            document.getElementById('modal-xg-val').innerText = match.xG;
+            document.getElementById('modal-weather-val').innerText = match.w;
+            document.getElementById('modal-confidence-value').innerText = match.pct;
 
-            let currentStep = 1;
-            progress.style.width = '0%';
-            let interval = setInterval(() => {
-                if (currentStep <= 5) {
-                    let stepEl = document.getElementById(`mstep-${currentStep}`);
-                    stepEl.className = "flex items-center justify-between text-amber-400 font-bold";
-                    stepEl.querySelector('.mstatus-icon').innerText = "✓";
-                    progress.style.width = `${Math.floor((currentStep / 5) * 100)}%`;
-                    currentStep++;
-                } else {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        loadingBox.classList.add('hidden');
-                        renderPremiumResults();
-                    }, 600);
-                }
-            }, 500);
+            document.getElementById('stats-modal').classList.remove('hidden');
         }
 
-        function renderPremiumResults() {
-            const box = document.getElementById('premium-results-box');
-            const list = document.getElementById('premium-results-list');
-            list.innerHTML = '';
-            box.classList.remove('hidden');
-
-            premResultsData.forEach(res => {
-                let div = document.createElement('div');
-                div.className = "flex items-center justify-between p-2.5 hover:bg-slate-800/30 transition text-gray-300";
-                div.innerHTML = `
-                    <div class="tracking-wide text-[11px] font-semibold">${res.home} vs ${res.away}</div>
-                    <div class="bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] px-2.5 py-1 rounded font-black tracking-wider">${res.tip}</div>
-                `;
-                list.appendChild(div);
-            });
-            box.scrollIntoView({ behavior: 'smooth' });
+        function closeStatsModal() {
+            document.getElementById('stats-modal').classList.add('hidden');
         }
 
-        function clearPremiumResults() {
-            document.getElementById('premium-results-box').classList.add('hidden');
-        }
-
-        // MIATOMBOKA EO AMIN'NY HOME AVY HATRANY ARRAKA NY SARY FAHAROA
+        // Mampiseho avy hatrany ny pejy fandraisana (Accueil)
         switchPage('home');
-        switchPremiumStep(1);
     </script>
 </body>
-</html>
+    </html>
