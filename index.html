@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pronostic Vital</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Rohy Tailwind CSS stable kokoa -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.0.0-alpha.5"></script>
     <style>
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -342,12 +343,14 @@
             currentSection = section;
             ['RÉSULTATS', 'MATCHS', 'CLASSEMENT'].forEach(sec => {
                 const btn = document.getElementById(`sec-${sec}`);
-                btn.className = (sec === section) ? "py-1 text-green-600 border-b-2 border-green-600" : "py-1 text-gray-400";
+                if(btn) btn.className = (sec === section) ? "py-1 text-green-600 border-b-2 border-green-600" : "py-1 text-gray-400";
             });
 
             const subtabs = document.getElementById('subtabs-container');
-            if (section === 'CLASSEMENT') subtabs.className = "hidden";
-            else subtabs.className = "block";
+            if(subtabs) {
+                if (section === 'CLASSEMENT') subtabs.className = "hidden";
+                else subtabs.className = "block";
+            }
 
             renderContent();
         }
@@ -356,7 +359,7 @@
             currentTab = tab;
             ['1X2', 'DC', 'OU', 'BTTS', 'CS'].forEach(t => {
                 const btn = document.getElementById(`btn-${t}`);
-                btn.className = (t === tab) ? "px-3 py-1.5 rounded bg-green-600 text-white shadow-xs" : "px-3 py-1.5 rounded bg-gray-200 text-gray-700";
+                if(btn) btn.className = (t === tab) ? "px-3 py-1.5 rounded bg-green-600 text-white shadow-xs" : "px-3 py-1.5 rounded bg-gray-200 text-gray-700";
             });
             renderContent();
         }
@@ -445,7 +448,6 @@
                 currentMatchesData.forEach(match => {
                     let row = document.createElement('div');
                     row.className = "grid grid-cols-4 items-center gap-1.5 p-2.5 text-xs font-semibold cursor-pointer active:bg-gray-50 rounded-lg transition-colors";
-                    // Fampifandraisana rehefa tsindrina ilay andalana lalao
                     row.onclick = () => openModal(match.id);
 
                     let tabOdds = match.odds[currentTab];
@@ -476,14 +478,19 @@
             }
         }
 
-        const now = new Date();
-        let currentMinutes = now.getMinutes();
-        let startMinute = currentMinutes - (currentMinutes % 2);
-        let initHours = String(now.getHours()).padStart(2, '0');
-        let initMins = String(startMinute).padStart(2, '0');
+        // Fampandehanana ny zava-drehetra amin'ny fanombohana (Initialization)
+        const d = new Date();
+        let cMin = d.getMinutes();
+        let sMin = cMin - (cMin % 2);
+        let iH = String(d.getHours()).padStart(2, '0');
+        let iM = String(sMin).padStart(2, '0');
         
         initStandings();
-        currentMatchesData = generateMatchData(`${initHours}:${initMins}`);
+        currentMatchesData = generateMatchData(`${iH}:${iM}`);
+
+        // Alefa avy hatrany mba tsy hiandry 1s
+        updateTimelineAndTimer();
+        renderContent();
 
         setInterval(() => {
             updateTimelineAndTimer();
@@ -496,9 +503,6 @@
                 renderContent();
             }
         }, 1000);
-
-        updateTimelineAndTimer();
-        renderContent();
     </script>
 </body>
-</html>
+                                                                                                             </html>
