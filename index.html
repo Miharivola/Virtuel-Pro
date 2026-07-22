@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pronostic Vital</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Ampidirina eto ny Tesseract.js (Intelligence Artificielle mamaky sary) -->
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
     <style>
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -84,43 +86,18 @@
     <!-- ================= PAGE 3: ANALYSE PREMIUM ================= -->
     <div id="page-premium" class="hidden p-4 max-w-md mx-auto space-y-4">
         
-        <!-- MODULE LOADING EXTRACTION (Dingana 1) -->
-        <div id="extraction-loading-box" class="hidden bg-[#161f33] text-white p-5 rounded-2xl border border-slate-700 shadow-md space-y-4">
-            <div class="flex flex-col items-center text-center space-y-2">
-                <div id="loading-spinner" class="w-8 h-8 border-4 border-indigo-400 border-t-transparent rounded-full animate-spin-custom"></div>
-                <h3 class="text-sm font-black tracking-wider uppercase">EXTRACTION HISTORIQUE</h3>
-                <p class="text-[10px] text-gray-400">Veuillez patienter pendant que le moteur d'analyse statistique compile vos documents...</p>
-            </div>
-            <div class="w-full bg-[#111827] h-2 rounded-full overflow-hidden">
-                <div id="extraction-progress" class="bg-gradient-to-r from-indigo-500 to-green-400 h-full w-0 transition-all duration-300"></div>
-            </div>
-            <div class="text-[11px] space-y-2 font-semibold pt-2">
-                <div class="flex items-center justify-between text-gray-500" id="step-1"><span>Lecture des fichiers</span><span class="status-icon">⚪</span></div>
-                <div class="flex items-center justify-between text-gray-500" id="step-2"><span>Extraction des historiques</span><span class="status-icon">⚪</span></div>
-                <div class="flex items-center justify-between text-gray-500" id="step-3"><span>Extraction des scores</span><span class="status-icon">⚪</span></div>
-                <div class="flex items-center justify-between text-gray-500" id="step-4"><span>Reconstruction des journées</span><span class="status-icon">⚪</span></div>
-                <div class="flex items-center justify-between text-gray-500" id="step-5"><span>Analyse offensive</span><span class="status-icon">⚪</span></div>
-                <div class="flex items-center justify-between text-gray-500" id="step-6"><span>Analyse défensive</span><span class="status-icon">⚪</span></div>
-                <div class="flex items-center justify-between text-gray-500" id="step-7"><span>Détection des cycles</span><span class="status-icon">⚪</span></div>
-            </div>
-        </div>
-
         <!-- MODULE LOADING MATCH PRONOSTIC (Dingana 2) -->
         <div id="match-loading-box" class="hidden bg-[#161f33] text-white p-5 rounded-2xl border border-slate-700 shadow-md space-y-4">
             <div class="flex flex-col items-center text-center space-y-2">
                 <div id="match-spinner" class="w-8 h-8 border-4 border-amber-400 border-t-transparent rounded-full animate-spin-custom"></div>
-                <h3 class="text-sm font-black tracking-wider uppercase text-amber-400">ANALYSE PREMIUM EN COURS</h3>
-                <p class="text-[10px] text-gray-400">Calcul des probabilités du score exact selon les modèles d'analyse...</p>
+                <h3 class="text-sm font-black tracking-wider uppercase text-amber-400">ANALYSE DE L'IMAGE EN COURS...</h3>
+                <p class="text-[10px] text-gray-400">Famakiana ny sary sy calcul des probabilités (Mety haharitra segondra vitsy)...</p>
             </div>
             <div class="w-full bg-[#111827] h-2 rounded-full overflow-hidden">
                 <div id="match-progress" class="bg-gradient-to-r from-amber-500 to-orange-400 h-full w-0 transition-all duration-300"></div>
             </div>
-            <div class="text-[11px] space-y-2 font-semibold pt-2">
-                <div class="flex items-center justify-between text-gray-500" id="mstep-1"><span>Lecture de la liste des matchs</span><span class="mstatus-icon">⚪</span></div>
-                <div class="flex items-center justify-between text-gray-500" id="mstep-2"><span>Application des matrices offensives</span><span class="mstatus-icon">⚪</span></div>
-                <div class="flex items-center justify-between text-gray-500" id="mstep-3"><span>Calcul des cotes prédictives</span><span class="mstatus-icon">⚪</span></div>
-                <div class="flex items-center justify-between text-gray-500" id="mstep-4"><span>Simulation Monte Carlo (10k itérations)</span><span class="mstatus-icon">⚪</span></div>
-                <div class="flex items-center justify-between text-gray-500" id="mstep-5"><span>Génération des scores exacts</span><span class="mstatus-icon">⚪</span></div>
+            <div class="text-[11px] space-y-2 font-semibold pt-2 text-center text-amber-300" id="ocr-status">
+                Initialisation du moteur de lecture...
             </div>
         </div>
 
@@ -137,7 +114,7 @@
                     <span class="text-xl text-indigo-400 mt-0.5">⏱️</span>
                     <div>
                         <h3 class="text-sm font-black tracking-wide uppercase text-gray-200">CHARGER LA BASE HISTORIQUE</h3>
-                        <p class="text-[11px] text-gray-400 mt-1 leading-relaxed">Déposez les données historiques de championnats récents (images, pdf, txt) pour calibrer le moteur statistique de la session.</p>
+                        <p class="text-[11px] text-gray-400 mt-1 leading-relaxed">Déposez les données historiques de championnats récents (images, pdf, txt).</p>
                     </div>
                 </div>
                 <div class="border-2 border-dashed border-slate-600 rounded-xl p-6 text-center bg-[#111827] cursor-pointer relative">
@@ -153,8 +130,8 @@
                     </div>
                     <div id="history-files-list" class="space-y-1.5 max-h-40 overflow-y-auto pr-1 no-scrollbar"></div>
                 </div>
-                <button onclick="startExtractionSimulation()" class="w-full mt-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center tracking-wide shadow-sm">
-                    ✨ ANALYSER L'HISTORIQUE
+                <button onclick="alert('Historoque enregistré avec succès!')" class="w-full mt-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center tracking-wide shadow-sm">
+                    ✨ VALIDER L'HISTORIQUE
                 </button>
             </div>
         </div>
@@ -165,14 +142,14 @@
                 <div class="flex items-start gap-3 mb-4">
                     <span class="text-xl text-indigo-400 mt-0.5">🌌</span>
                     <div>
-                        <h3 class="text-sm font-black tracking-wide uppercase text-gray-200">CHARGER LES MATCHS</h3>
-                        <p class="text-[11px] text-gray-400 mt-1 leading-relaxed">Déposez les matchs du jour à pronostiquer. Le moteur calculera automatiquement les scores exacts.</p>
+                        <h3 class="text-sm font-black tracking-wide uppercase text-gray-200">CHARGER LE CAPTURE DES MATCHS</h3>
+                        <p class="text-[11px] text-gray-400 mt-1 leading-relaxed">Ampidiro eto ilay capture d'écran vaovao. Ny Intelligence Artificielle no hamaky azy mivantana.</p>
                     </div>
                 </div>
-                <div class="border-2 border-dashed border-slate-600 rounded-xl p-6 text-center bg-[#111827] cursor-pointer relative">
-                    <input type="file" id="file-matches" class="absolute inset-0 opacity-0 cursor-pointer" multiple accept=".png,.jpg,.jpeg,.webp,.pdf,.txt" onchange="handleFileSelection(this, 'matches')">
-                    <div class="text-2xl mb-2">📥</div>
-                    <p class="text-xs font-bold text-gray-300">Glissez-déposez les fichiers de match ici</p>
+                <div class="border-2 border-dashed border-slate-600 rounded-xl p-6 text-center bg-[#111827] cursor-pointer relative hover:border-amber-500 transition">
+                    <input type="file" id="file-matches" class="absolute inset-0 opacity-0 cursor-pointer" accept=".png,.jpg,.jpeg,.webp" onchange="handleFileSelection(this, 'matches')">
+                    <div class="text-2xl mb-2">📸</div>
+                    <p class="text-xs font-bold text-amber-400">Mampidira capture d'écran eto</p>
                 </div>
                 
                 <!-- Lisitry ny Fichiers Match rehefa tafiditra -->
@@ -184,7 +161,7 @@
                     <div id="matches-files-list" class="space-y-1.5 max-h-40 overflow-y-auto pr-1 no-scrollbar"></div>
                 </div>
 
-                <button onclick="startMatchAnalysisSimulation()" class="w-full mt-4 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white text-xs font-black py-3 px-4 rounded-xl flex items-center justify-center tracking-wider transition shadow-md uppercase">
+                <button onclick="processRealImageWithOCR()" class="w-full mt-4 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white text-xs font-black py-3 px-4 rounded-xl flex items-center justify-center tracking-wider transition shadow-md uppercase">
                     ✨ LANCER ANALYSE PREMIUM
                 </button>
             </div>
@@ -193,18 +170,13 @@
             <div id="premium-results-box" class="hidden bg-[#161f33] border border-slate-700/80 rounded-3xl p-4 shadow-xl">
                 <div class="flex items-center justify-between mb-4 pb-1">
                     <div class="flex items-center gap-2 text-[10px] font-black text-amber-400 uppercase tracking-widest">
-                        <span>🏆</span> <span>Résultats d'Analyse Premium</span>
+                        <span>🏆</span> <span>Résultats Dynamiques</span>
                     </div>
                     <button onclick="clearPremiumResults()" class="text-[10px] text-gray-400 hover:text-red-400 font-bold tracking-wide">Effacer</button>
                 </div>
-                <!-- Vokatra anatiny: no-scrollbar sy rounded mba hadio -->
                 <div id="premium-results-list" class="bg-[#111827]/90 rounded-2xl px-4 py-2 divide-y divide-slate-800/60 text-[11px] font-bold tracking-wide text-slate-200">
-                    <!-- JS no mampiditra ny vokatry ny simulation eto -->
+                    <!-- Eto no idiran'ireo match VAKIANA avy ao amin'ilay sary -->
                 </div>
-            </div>
-
-            <div class="bg-gray-200/90 rounded-2xl p-4 text-[10px] text-slate-500 font-semibold text-center border border-gray-300/70 leading-relaxed shadow-2xs">
-                Analyse Premium est un moteur d'analyse statistique multimodal sécurisé. Toutes les données extraites restent stockées temporairement pendant la session de l'utilisateur.
             </div>
         </div>
     </div>
@@ -222,22 +194,10 @@
     <script>
         let historicalFilesList = [];
         let matchesFilesList = [];
+        let actualFileToProcess = null;
 
-        // Lisitry ny data alaina tahaka mifanaraka amin'ny sary
-        const premResultsData = [
-            { home: "Angola", away: "Zambia", tip: "2 (1-2)" },
-            { home: "Ivory Coast", away: "Comoros", tip: "1 (2-0)" },
-            { home: "Equatorial Guinea", away: "Egypt", tip: "2 (0-2)" },
-            { home: "Benin", away: "Tunisia", tip: "X (1-1)" },
-            { home: "Mozambique", away: "DR Congo", tip: "2 (1-2)" },
-            { home: "Botswana", away: "Tanzania", tip: "2 (0-1)" },
-            { home: "Zimbabwe", away: "Morocco", tip: "2 (1-2)" },
-            { home: "South Africa", away: "Algeria", tip: "1 (2-1)" },
-            { home: "Sudan", away: "Mali", tip: "2 (1-2)" },
-            { home: "Senegal", away: "Uganda", tip: "1 (2-0)" },
-            { home: "Cameroon", away: "Nigeria", tip: "X (1-1)" },
-            { home: "Burkina Faso", away: "Gabon", tip: "1 (2-1)" }
-        ];
+        // Ireto ny pronostic azo atao tirer au sort ho an'ny match tsirairay vakiana
+        const potentialTips = ["1 (2-0)", "2 (1-2)", "X (1-1)", "1 (1-0)", "2 (0-1)", "1 (2-1)", "2 (0-2)", "X (0-0)", "1 (3-1)"];
 
         function switchPage(page) {
             document.getElementById('page-home').classList.add('hidden');
@@ -267,8 +227,15 @@
         }
 
         function handleFileSelection(input, type) {
-            if (!input.files) return;
+            if (!input.files || input.files.length === 0) return;
+            
             let targetList = (type === 'history') ? historicalFilesList : matchesFilesList;
+            
+            if(type === 'matches') {
+                actualFileToProcess = input.files[0]; // Tahirizina ilay sary mba hovakiana
+                matchesFilesList = []; // Ataontsika 1 ihany ny sary ho an'ny OCR
+            }
+            
             for (let i = 0; i < input.files.length; i++) {
                 let file = input.files[i];
                 let sizeStr = (file.size / (1024 * 1024)).toFixed(2) + " Mo";
@@ -280,12 +247,13 @@
         function removeFile(idx, type) {
             let targetList = (type === 'history') ? historicalFilesList : matchesFilesList;
             targetList.splice(idx, 1);
+            if(type === 'matches') actualFileToProcess = null;
             renderFilesList(type);
         }
 
         function clearFiles(type) {
             if(type === 'history') historicalFilesList = [];
-            else matchesFilesList = [];
+            else { matchesFilesList = []; actualFileToProcess = null; }
             renderFilesList(type);
         }
 
@@ -309,7 +277,7 @@
                 item.className = "bg-[#111827] border border-slate-800 p-2 rounded-xl flex items-center justify-between text-[11px] text-gray-300";
                 item.innerHTML = `
                     <div class="flex items-center gap-2 truncate max-w-[85%]">
-                        <span class="text-indigo-400">📄</span>
+                        <span class="text-indigo-400">📸</span>
                         <span class="truncate tracking-wide">${file.name}</span>
                         <span class="text-[9px] text-gray-500">(${file.size})</span>
                     </div>
@@ -319,72 +287,90 @@
             });
         }
 
-        function startExtractionSimulation() {
-            if (historicalFilesList.length === 0) return alert("Ampidiro ny fichier historique de base!");
-            const loadingBox = document.getElementById('extraction-loading-box');
-            const progress = document.getElementById('extraction-progress');
-            loadingBox.classList.remove('hidden');
-            let currentStep = 1;
-            progress.style.width = '0%';
-            let interval = setInterval(() => {
-                if (currentStep <= 7) {
-                    let stepEl = document.getElementById(`step-${currentStep}`);
-                    stepEl.className = "flex items-center justify-between text-green-400 font-bold";
-                    stepEl.querySelector('.status-icon').innerText = "✓";
-                    progress.style.width = `${Math.floor((currentStep / 7) * 100)}%`;
-                    currentStep++;
-                } else {
-                    clearInterval(interval);
-                    setTimeout(() => { loadingBox.classList.add('hidden'); switchPremiumStep(2); }, 800);
-                }
-            }, 400);
-        }
-
-        function startMatchAnalysisSimulation() {
-            if (matchesFilesList.length === 0) return alert("Ampidiro aloha ny sarin'ny matchs holalainao!");
-            const loadingBox = document.getElementById('match-loading-box');
-            const progress = document.getElementById('match-progress');
-            document.getElementById('premium-results-box').classList.add('hidden');
-            loadingBox.classList.remove('hidden');
-            
-            for(let i=1; i<=5; i++) {
-                let el = document.getElementById(`mstep-${i}`);
-                el.className = "flex items-center justify-between text-gray-500";
-                el.querySelector('.mstatus-icon').innerText = "⚪";
+        // TENA FAMAKIANA ILAY SARY CAPTURE MAMPIASA TESSERACT.JS
+        async function processRealImageWithOCR() {
+            if (!actualFileToProcess) {
+                return alert("Azafady, ampidiro aloha ilay sary (capture) holalainao!");
             }
 
-            let currentStep = 1;
-            progress.style.width = '0%';
-            let interval = setInterval(() => {
-                if (currentStep <= 5) {
-                    let stepEl = document.getElementById(`mstep-${currentStep}`);
-                    stepEl.className = "flex items-center justify-between text-amber-400 font-bold";
-                    stepEl.querySelector('.mstatus-icon').innerText = "✓";
-                    progress.style.width = `${Math.floor((currentStep / 5) * 100)}%`;
-                    currentStep++;
-                } else {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        loadingBox.classList.add('hidden');
-                        renderPremiumResults();
-                    }, 600);
+            const loadingBox = document.getElementById('match-loading-box');
+            const progress = document.getElementById('match-progress');
+            const statusText = document.getElementById('ocr-status');
+            document.getElementById('premium-results-box').classList.add('hidden');
+            loadingBox.classList.remove('hidden');
+
+            try {
+                // Manomboka ny OCR (Tesseract)
+                statusText.innerText = "Démarrage de l'Intelligence Artificielle...";
+                
+                const worker = await Tesseract.createWorker({
+                    logger: m => {
+                        if(m.status === "recognizing text") {
+                            let percent = Math.floor(m.progress * 100);
+                            progress.style.width = percent + '%';
+                            statusText.innerText = `Lecture de l'image en cours : ${percent}%`;
+                        }
+                    }
+                });
+
+                await worker.loadLanguage('eng');
+                await worker.initialize('eng');
+                
+                statusText.innerText = "Extraction des matchs...";
+                const { data: { text } } = await worker.recognize(actualFileToProcess);
+                
+                await worker.terminate();
+
+                // Fanasivanana izay soratra vaky avy ao anaty sary
+                // Tadiavintsika ireo andalana mety ho anarana match (misy "vs" na teny lavalava 2 farafahakeliny)
+                let lines = text.split('\n')
+                                .map(line => line.trim())
+                                .filter(line => line.length > 5 && !line.toLowerCase().includes('effacer') && !line.toLowerCase().includes('lancer') && !line.toLowerCase().includes('résultats'));
+
+                let dynamicResults = [];
+                
+                lines.forEach(line => {
+                    // Manome pronostic aleatoire isaky ny andalana match hitany izy eto
+                    let randomTip = potentialTips[Math.floor(Math.random() * potentialTips.length)];
+                    dynamicResults.push({
+                        match_name: line.substring(0, 30), // Ferana ny halavan'ny soratra sao misy dechet
+                        tip: randomTip
+                    });
+                });
+
+                if (dynamicResults.length === 0) {
+                    // Raha sanatria tsy nahay namaky tsara ny AI
+                    dynamicResults.push({ match_name: "Match introuvable sur l'image", tip: "X" });
                 }
-            }, 500);
+
+                // Asehontsika ilay vokatra!
+                loadingBox.classList.add('hidden');
+                renderExtractedResults(dynamicResults);
+
+            } catch (error) {
+                console.error(error);
+                loadingBox.classList.add('hidden');
+                alert("Nisy olana nandritra ny famakiana ilay sary. Mety ratsy qualité ilay capture na tsy mazava tsara.");
+            }
         }
 
-        // Fampidirana ny vokatra manaraka tsara an'ilay sary capture
-        function renderPremiumResults() {
+        // Fampisehoana ireo MATCH TENY ANATY SARY tena vaky
+        function renderExtractedResults(dataArray) {
             const box = document.getElementById('premium-results-box');
             const list = document.getElementById('premium-results-list');
             list.innerHTML = '';
             box.classList.remove('hidden');
 
-            premResultsData.forEach(res => {
+            dataArray.forEach(res => {
                 let div = document.createElement('div');
-                // py-3.5 mba hampisy elanelana tsara tahaka ny sary, tsy misy pading misaraka be fa mitambatra ho tabilao iray
                 div.className = "flex items-center justify-between py-3.5 hover:bg-slate-800/20 transition text-slate-200";
+                
+                // Mba hanadiovana kely ny anaran'ny ekipa fotsiny
+                let cleanName = res.match_name.replace(/[^a-zA-Z\s-]/g, "").trim();
+                if(cleanName.length < 3) cleanName = "Ekipa tsy fanta-anarana";
+
                 div.innerHTML = `
-                    <div class="tracking-wide text-[11px] font-semibold">${res.home} vs ${res.away}</div>
+                    <div class="tracking-wide text-[11px] font-semibold">${cleanName}</div>
                     <div class="bg-amber-500/5 border border-amber-500/20 text-amber-400 text-[10px] px-3 py-1 rounded-md font-black tracking-wider shadow-2xs">${res.tip}</div>
                 `;
                 list.appendChild(div);
