@@ -189,20 +189,21 @@
                 </button>
             </div>
 
-            <!-- TABILAO VALINY: RÉSULTATS D'ANALYSE PREMIUM -->
-            <div id="premium-results-box" class="hidden bg-[#161f33] border border-slate-700 rounded-2xl p-4 shadow-lg">
-                <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-800">
-                    <div class="flex items-center gap-1.5 text-xs font-black text-amber-400 uppercase tracking-wider">
+            <!-- TABILAO VALINY: RÉSULTATS D'ANALYSE PREMIUM (Nampifanarahana tamin'ny sary capture) -->
+            <div id="premium-results-box" class="hidden bg-[#161f33] border border-slate-700/80 rounded-3xl p-4 shadow-xl">
+                <div class="flex items-center justify-between mb-4 pb-1">
+                    <div class="flex items-center gap-2 text-[10px] font-black text-amber-400 uppercase tracking-widest">
                         <span>🏆</span> <span>Résultats d'Analyse Premium</span>
                     </div>
-                    <button onclick="clearPremiumResults()" class="text-[10px] text-gray-400 hover:text-red-400 font-bold">Effacer</button>
+                    <button onclick="clearPremiumResults()" class="text-[10px] text-gray-400 hover:text-red-400 font-bold tracking-wide">Effacer</button>
                 </div>
-                <div id="premium-results-list" class="space-y-1 bg-[#111827] rounded-xl p-2 divide-y divide-slate-800/40 text-xs font-bold text-gray-200">
+                <!-- Vokatra anatiny: no-scrollbar sy rounded mba hadio -->
+                <div id="premium-results-list" class="bg-[#111827]/90 rounded-2xl px-4 py-2 divide-y divide-slate-800/60 text-[11px] font-bold tracking-wide text-slate-200">
                     <!-- JS no mampiditra ny vokatry ny simulation eto -->
                 </div>
             </div>
 
-            <div class="bg-gray-200 rounded-xl p-4 text-[11px] text-gray-500 text-center border border-gray-300">
+            <div class="bg-gray-200/90 rounded-2xl p-4 text-[10px] text-slate-500 font-semibold text-center border border-gray-300/70 leading-relaxed shadow-2xs">
                 Analyse Premium est un moteur d'analyse statistique multimodal sécurisé. Toutes les données extraites restent stockées temporairement pendant la session de l'utilisateur.
             </div>
         </div>
@@ -222,6 +223,7 @@
         let historicalFilesList = [];
         let matchesFilesList = [];
 
+        // Lisitry ny data alaina tahaka mifanaraka amin'ny sary
         const premResultsData = [
             { home: "Angola", away: "Zambia", tip: "2 (1-2)" },
             { home: "Ivory Coast", away: "Comoros", tip: "1 (2-0)" },
@@ -370,6 +372,7 @@
             }, 500);
         }
 
+        // Fampidirana ny vokatra manaraka tsara an'ilay sary capture
         function renderPremiumResults() {
             const box = document.getElementById('premium-results-box');
             const list = document.getElementById('premium-results-list');
@@ -378,10 +381,11 @@
 
             premResultsData.forEach(res => {
                 let div = document.createElement('div');
-                div.className = "flex items-center justify-between p-2.5 hover:bg-slate-800/30 transition text-gray-300";
+                // py-3.5 mba hampisy elanelana tsara tahaka ny sary, tsy misy pading misaraka be fa mitambatra ho tabilao iray
+                div.className = "flex items-center justify-between py-3.5 hover:bg-slate-800/20 transition text-slate-200";
                 div.innerHTML = `
                     <div class="tracking-wide text-[11px] font-semibold">${res.home} vs ${res.away}</div>
-                    <div class="bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] px-2.5 py-1 rounded font-black tracking-wider">${res.tip}</div>
+                    <div class="bg-amber-500/5 border border-amber-500/20 text-amber-400 text-[10px] px-3 py-1 rounded-md font-black tracking-wider shadow-2xs">${res.tip}</div>
                 `;
                 list.appendChild(div);
             });
@@ -396,4 +400,4 @@
         switchPremiumStep(2);
     </script>
 </body>
-                    </html>
+</html>
