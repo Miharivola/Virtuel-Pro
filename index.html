@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pronostic Vital</title>
-    <!-- Tailwind CSS stable tsara -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -170,7 +169,6 @@
 
     <!-- ================= PAGE 2: PREDICTION (COUPE D'AFRIQUE TABLE) ================= -->
     <div id="page-prediction" class="hidden">
-        <!-- Fitaovana Fifantenana Ligy -->
         <nav class="bg-white p-2 flex items-center gap-2 overflow-x-auto border-b border-gray-200 no-scrollbar">
             <button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 whitespace-nowrap">🟢 Toutes les Ligues</button>
             <button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-green-600 text-white whitespace-nowrap">🏆 Coupe d'Afrique</button>
@@ -179,30 +177,27 @@
         </nav>
 
         <main class="p-3 max-w-md mx-auto">
-            <!-- Boaty Lehibe an'ny Ligy -->
             <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-200 mb-3">
                 <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-2">
                         <span class="text-xl">🏆</span>
                         <h2 class="text-md font-bold text-gray-800 tracking-wide">COUPE D'AFRIQUE</h2>
                     </div>
-                    <span class="text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded">12 MATCHS</span>
+                    <!-- Navoatran'ny ho 20 MATCHS indray eto -->
+                    <span class="text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded" id="match-count-badge">20 MATCHS</span>
                 </div>
 
-                <!-- Tabs: RÉSULTATS, MATCHS, CLASSEMENT -->
                 <div class="grid grid-cols-3 gap-1 border-b border-gray-200 pb-2 mb-3 text-center text-xs font-bold">
                     <button onclick="changeSection('RÉSULTATS')" id="sec-RÉSULTATS" class="py-1 text-gray-400">RÉSULTATS</button>
                     <button onclick="changeSection('MATCHS')" id="sec-MATCHS" class="py-1 text-green-600 border-b-2 border-green-600">MATCHS</button>
                     <button onclick="changeSection('CLASSEMENT')" id="sec-CLASSEMENT" class="py-1 text-gray-400">CLASSEMENT</button>
                 </div>
 
-                <!-- Tsingerina 2 minitra miaraka amin'ny famantaranandro -->
                 <div class="flex items-center gap-1.5 overflow-x-auto text-[11px] font-bold text-gray-600 no-scrollbar" id="time-slots">
                     <!-- JS -->
                 </div>
             </div>
 
-            <!-- Fizarana MATCHS sy RÉSULTATS -->
             <div id="subtabs-container" class="block">
                 <div class="flex items-center gap-1.5 overflow-x-auto pb-3 no-scrollbar text-[11px] font-bold">
                     <button onclick="changeTab('1X2')" id="btn-1X2" class="px-3 py-1.5 rounded bg-green-600 text-white shadow-sm">1X2</button>
@@ -213,12 +208,10 @@
                 </div>
             </div>
 
-            <!-- Header tabilao -->
             <div class="bg-white p-3 rounded-t-xl border border-gray-200 border-b-0" id="table-header">
                 <!-- JS -->
             </div>
 
-            <!-- Votoatin'ny tabilao -->
             <div class="bg-white rounded-b-xl border border-gray-200 divide-y divide-gray-100 shadow-sm" id="main-content-container">
                 <!-- JS -->
             </div>
@@ -240,7 +233,6 @@
     <!-- POPUP DETAILED STATS (MODAL) -->
     <div id="stats-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
         <div class="bg-[#1a233a] text-white w-full max-w-sm rounded-2xl overflow-hidden shadow-2xl border border-gray-700">
-            <!-- Modal Header -->
             <div class="bg-[#121826] p-3 flex items-center justify-between border-b border-gray-800">
                 <div class="flex flex-col">
                     <span class="text-[9px] font-bold text-green-400 tracking-wider">ANALYSE PRÉDICTIVE ET SIMULATION IA</span>
@@ -249,7 +241,6 @@
                 <button onclick="closeModal()" class="text-gray-400 hover:text-white font-bold text-lg px-2">✕</button>
             </div>
 
-            <!-- Team Flags & Matchup -->
             <div class="p-4 flex items-center justify-between bg-[#161f33]">
                 <div class="flex flex-col items-center flex-1">
                     <span id="modal-home-flag" class="text-4xl mb-1">🇧🇯</span>
@@ -265,7 +256,6 @@
             </div>
 
             <div class="p-4 space-y-4 text-xs">
-                <!-- Probas -->
                 <div>
                     <div class="text-[9px] font-bold text-gray-400 uppercase tracking-wider mb-1.5 text-center">Probabilités de Victoire (1X2)</div>
                     <div class="grid grid-cols-3 gap-1 text-center font-black text-[11px]">
@@ -274,7 +264,6 @@
                         <div class="bg-green-600 p-1.5 rounded-r text-white shadow-sm">2 (<span id="modal-p2">36</span>%)</div>
                     </div>
                 </div>
-                <!-- Score & Confidence -->
                 <div class="bg-[#121826] p-3 rounded-xl border border-gray-800 flex items-center justify-between">
                     <div>
                         <div class="text-[8px] font-bold text-gray-400 uppercase tracking-widest">Score Prédit</div>
@@ -296,16 +285,20 @@
         let historicalResults = [];
         let leagueStandings = [];
 
+        // Natao 20 mazava tsara ny ekipa eto tsy misy nesorina
         const teams = [
             { name: "BENIN", flag: "🇧🇯" }, { name: "OUGANDA", flag: "🇺🇬" },
             { name: "CÔTE D'IVOIRE", flag: "🇨🇮" }, { name: "GUINÉE ÉQ.", flag: "🇬🇶" },
             { name: "GABON", flag: "🇬🇦" }, { name: "ANGOLA", flag: "🇦🇴" },
             { name: "MALI", flag: "🇲🇱" }, { name: "GHANA", flag: "🇬🇭" },
             { name: "MAROC", flag: "🇲🇦" }, { name: "BURKINA FASO", flag: "🇧🇫" },
-            { name: "CAMEROUN", flag: "🇨🇲" }, { name: "NIGERIA", flag: "🇳🇬" }
+            { name: "CAMEROUN", flag: "🇨🇲" }, { name: "NIGERIA", flag: "🇳🇬" },
+            { name: "SÉNÉGAL", flag: "🇸🇳" }, { name: "ZAMBIE", flag: "🇿🇲" },
+            { name: "TUNISIE", flag: "🇹🇳" }, { name: "ALGÉRIE", flag: "🇩🇿" },
+            { name: "ÉGYPTE", flag: "🇪🇬" }, { name: "AFRIQUE DU SUD", flag: "🇿🇦" },
+            { name: "RDC", flag: "🇨🇩" }, { name: "MOZAMBIQUE", flag: "🇲🇿" }
         ];
 
-        // Page Switcher Logic
         function switchPage(page) {
             if (page === 'home') {
                 document.getElementById('page-home').classList.remove('hidden');
@@ -329,7 +322,8 @@
         function generateMatchData(timeStr) {
             let data = [];
             let shuffled = [...teams].sort(() => 0.5 - Math.random());
-            for (let i = 0; i < 6; i++) {
+            // 10 lalao ho an'ny ekipa 20
+            for (let i = 0; i < 10; i++) {
                 let home = shuffled[i * 2];
                 let away = shuffled[i * 2 + 1];
                 let scoreHome = Math.floor(Math.random() * 3);
@@ -372,7 +366,7 @@
 
         function archiveCurrentMatchesToResults() {
             if (currentMatchesData.length > 0) {
-                historicalResults = [...currentMatchesData, ...historicalResults].slice(0, 20);
+                historicalResults = [...currentMatchesData, ...historicalResults].slice(0, 30);
             }
         }
 
@@ -511,4 +505,4 @@
         }, 1000);
     </script>
 </body>
-</html>
+                                                               </html>
