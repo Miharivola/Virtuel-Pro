@@ -63,59 +63,38 @@
                     <div class="flex items-center gap-2.5"><span class="text-lg bg-gray-100 p-1.5 rounded-xl">⭐</span><span class="text-xs font-bold text-gray-700">Best Tips</span></div>
                     <span class="text-gray-400 font-bold">›</span>
                 </div>
-                <div class="bg-white p-3 rounded-2xl border border-gray-200 flex items-center justify-between cursor-pointer hover:bg-gray-50 shadow-2xs">
-                    <div class="flex items-center gap-2.5"><span class="text-lg bg-gray-100 p-1.5 rounded-xl">👑</span><span class="text-xs font-bold text-gray-700">VIP Tips</span></div>
-                    <span class="text-gray-400 font-bold">›</span>
-                </div>
-                <div class="bg-white p-3 rounded-2xl border border-gray-200 flex items-center justify-between cursor-pointer hover:bg-gray-50 shadow-2xs">
-                    <div class="flex items-center gap-2.5"><span class="text-lg bg-gray-100 p-1.5 rounded-xl">🎫</span><span class="text-xs font-bold text-gray-700">Single Tips</span></div>
-                    <span class="text-gray-400 font-bold">›</span>
-                </div>
             </div>
         </div>
     </div>
 
-    <!-- ================= PAGE 2: PREDICTION (COUPE D'AFRIQUE) ================= -->
+    <!-- ================= PAGE 2: PREDICTION ================= -->
     <div id="page-prediction" class="hidden">
-        <nav class="bg-white p-2 flex items-center gap-2 overflow-x-auto border-b border-gray-200 no-scrollbar">
-            <button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-green-600 text-white whitespace-nowrap">🏆 Coupe d'Afrique</button>
-        </nav>
         <main class="p-3 max-w-md mx-auto">
             <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-200 mb-3">
                 <div class="flex items-center justify-between mb-3">
                     <div class="flex items-center gap-2"><span class="text-xl">🏆</span><h2 class="text-md font-bold text-gray-800 tracking-wide">COUPE D'AFRIQUE</h2></div>
-                    <span class="text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded" id="match-count-badge">20 MATCHS</span>
-                </div>
-                <div class="grid grid-cols-3 gap-1 border-b border-gray-200 pb-2 mb-3 text-center text-xs font-bold">
-                    <button onclick="changeSection('RÉSULTATS')" id="sec-RÉSULTATS" class="py-1 text-gray-400">RÉSULTATS</button>
-                    <button onclick="changeSection('MATCHS')" id="sec-MATCHS" class="py-1 text-green-600 border-b-2 border-green-600">MATCHS</button>
-                    <button onclick="changeSection('CLASSEMENT')" id="sec-CLASSEMENT" class="py-1 text-gray-400">CLASSEMENT</button>
+                    <span class="text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded">20 MATCHS</span>
                 </div>
                 <div class="flex items-center gap-1.5 overflow-x-auto text-[11px] font-bold text-gray-600 no-scrollbar" id="time-slots"></div>
             </div>
-            <div class="bg-white p-3 rounded-t-xl border border-gray-200 border-b-0" id="table-header"></div>
-            <div class="bg-white rounded-b-xl border border-gray-200 divide-y divide-gray-100 shadow-sm" id="main-content-container"></div>
+            <div class="bg-white rounded-xl border border-gray-200 p-4 text-center text-xs text-gray-400">Miverina any amin'ny Home raha hijery ny dingana Premium.</div>
         </main>
     </div>
 
     <!-- ================= PAGE 3: ANALYSE PREMIUM ================= -->
     <div id="page-premium" class="hidden p-4 max-w-md mx-auto space-y-4">
         
-        <!-- MODULE LOADING EXTRACTION (Tena araka ilay sary faharoa) -->
+        <!-- MODULE LOADING EXTRACTION (Dingana 1) -->
         <div id="extraction-loading-box" class="hidden bg-[#161f33] text-white p-5 rounded-2xl border border-slate-700 shadow-md space-y-4">
             <div class="flex flex-col items-center text-center space-y-2">
                 <div id="loading-spinner" class="w-8 h-8 border-4 border-indigo-400 border-t-transparent rounded-full animate-spin-custom"></div>
                 <h3 class="text-sm font-black tracking-wider uppercase">EXTRACTION HISTORIQUE</h3>
                 <p class="text-[10px] text-gray-400">Veuillez patienter pendant que le moteur d'analyse statistique compile vos documents...</p>
             </div>
-            
-            <!-- Progress Bar -->
             <div class="w-full bg-[#111827] h-2 rounded-full overflow-hidden">
                 <div id="extraction-progress" class="bg-gradient-to-r from-indigo-500 to-green-400 h-full w-0 transition-all duration-300"></div>
             </div>
-
-            <!-- Tondro andiany tsirairay (Status checklist) -->
-            <div class="text-[11px] space-y-2 font-semibold pt-2" id="extraction-steps">
+            <div class="text-[11px] space-y-2 font-semibold pt-2">
                 <div class="flex items-center justify-between text-gray-500" id="step-1"><span>Lecture des fichiers</span><span class="status-icon">⚪</span></div>
                 <div class="flex items-center justify-between text-gray-500" id="step-2"><span>Extraction des historiques</span><span class="status-icon">⚪</span></div>
                 <div class="flex items-center justify-between text-gray-500" id="step-3"><span>Extraction des scores</span><span class="status-icon">⚪</span></div>
@@ -126,6 +105,26 @@
             </div>
         </div>
 
+        <!-- MODULE LOADING MATCH PRONOSTIC (Dingana 2 - Araka ny sary vaovao voalohany) -->
+        <div id="match-loading-box" class="hidden bg-[#161f33] text-white p-5 rounded-2xl border border-slate-700 shadow-md space-y-4">
+            <div class="flex flex-col items-center text-center space-y-2">
+                <div id="match-spinner" class="w-8 h-8 border-4 border-amber-400 border-t-transparent rounded-full animate-spin-custom"></div>
+                <h3 class="text-sm font-black tracking-wider uppercase text-amber-400">ANALYSE PREMIUM EN COURS</h3>
+                <p class="text-[10px] text-gray-400">Calcul des probabilités du score exact selon les modèles d'analyse...</p>
+            </div>
+            <div class="w-full bg-[#111827] h-2 rounded-full overflow-hidden">
+                <div id="match-progress" class="bg-gradient-to-r from-amber-500 to-orange-400 h-full w-0 transition-all duration-300"></div>
+            </div>
+            <div class="text-[11px] space-y-2 font-semibold pt-2">
+                <div class="flex items-center justify-between text-gray-500" id="mstep-1"><span>Lecture de la liste des matchs</span><span class="mstatus-icon">⚪</span></div>
+                <div class="flex items-center justify-between text-gray-500" id="mstep-2"><span>Application des matrices offensives</span><span class="mstatus-icon">⚪</span></div>
+                <div class="flex items-center justify-between text-gray-500" id="mstep-3"><span>Calcul des cotes prédictives</span><span class="mstatus-icon">⚪</span></div>
+                <div class="flex items-center justify-between text-gray-500" id="mstep-4"><span>Simulation Monte Carlo (10k itérations)</span><span class="mstatus-icon">⚪</span></div>
+                <div class="flex items-center justify-between text-gray-500" id="mstep-5"><span>Génération des scores exacts</span><span class="mstatus-icon">⚪</span></div>
+            </div>
+        </div>
+
+        <!-- TABS SELECTOR -->
         <div class="bg-gray-200 p-1 rounded-xl grid grid-cols-2 gap-1 text-center text-xs font-bold">
             <button id="btn-step1" onclick="switchPremiumStep(1)" class="py-2 rounded-lg bg-indigo-600 text-white shadow-xs">1. BASE HISTORIQUE</button>
             <button id="btn-step2" onclick="switchPremiumStep(2)" class="py-2 rounded-lg text-gray-600">2. MATCHS & PRONOSTICS</button>
@@ -141,36 +140,26 @@
                         <p class="text-[11px] text-gray-400 mt-1 leading-relaxed">Déposez les données historiques de championnats récents (images, pdf, txt) pour calibrer le moteur statistique de la session.</p>
                     </div>
                 </div>
-
-                <!-- Zone fampidirana fichier -->
-                <div class="border-2 border-dashed border-slate-600 rounded-xl p-6 text-center bg-[#111827] cursor-pointer hover:border-indigo-500 transition relative">
-                    <input type="file" id="file-history" class="absolute inset-0 opacity-0 cursor-pointer" multiple accept=".png,.jpg,.jpeg,.webp,.pdf,.txt" onchange="handleFileSelection(this)">
+                <div class="border-2 border-dashed border-slate-600 rounded-xl p-6 text-center bg-[#111827] cursor-pointer relative">
+                    <input type="file" id="file-history" class="absolute inset-0 opacity-0 cursor-pointer" multiple accept=".png,.jpg,.jpeg,.webp,.pdf,.txt" onchange="handleFileSelection(this, 'history')">
                     <div class="text-2xl mb-2">📥</div>
                     <p class="text-xs font-bold text-gray-300">Cliquez ou glissez-déposez vos fichiers ici</p>
-                    <p class="text-[9px] text-gray-500 mt-1">PNG, JPG, JPEG, WEBP, PDF, TXT - Max 20 fichiers - Jusqu'à 20 Mo chacun</p>
                 </div>
-
-                <!-- Lisitry ny Fichier Tafiditra (Araka ny sary voalohany) -->
-                <div id="uploaded-files-container" class="hidden mt-4 pt-3 border-t border-slate-800 space-y-2">
+                <!-- Files list for history -->
+                <div id="history-files-container" class="hidden mt-4 pt-3 border-t border-slate-800 space-y-2">
                     <div class="flex items-center justify-between text-[10px] font-bold text-gray-400">
-                        <span class="uppercase tracking-wider text-indigo-300">FICHERS CHARGÉS (<span id="file-count">0</span>)</span>
-                        <button onclick="clearAllFiles()" class="text-red-400 hover:underline">Tout effacer</button>
+                        <span class="uppercase tracking-wider text-indigo-300">FICHERS CHARGÉS (<span id="history-file-count">0</span>)</span>
+                        <button onclick="clearFiles('history')" class="text-red-400 hover:underline">Tout effacer</button>
                     </div>
-                    <div id="files-list" class="space-y-1.5 max-h-40 overflow-y-auto pr-1 no-scrollbar">
-                        <!-- JS handles the list structure here -->
-                    </div>
+                    <div id="history-files-list" class="space-y-1.5 max-h-40 overflow-y-auto pr-1 no-scrollbar"></div>
                 </div>
-
-                <button onclick="startExtractionSimulation()" class="w-full mt-4 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 tracking-wide transition shadow-sm">
+                <button onclick="startExtractionSimulation()" class="w-full mt-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center tracking-wide shadow-sm">
                     ✨ ANALYSER L'HISTORIQUE
                 </button>
             </div>
-            <div class="bg-gray-200 rounded-xl p-4 text-[11px] text-gray-500 text-center border border-gray-300">
-                Analyse l'historique et le modèle d'analyse statistique multimodale sécurisé. Toutes les données actuelles seront stockées temporairement pendant la session sur votre navigateur.
-            </div>
         </div>
 
-        <!-- STAGE 2: CHARGER LES MATCHS -->
+        <!-- STAGE 2: CHARGER LES MATCHS & RÉSULTATS (Araka ny sary roa farany) -->
         <div id="premium-step-2" class="hidden space-y-4">
             <div class="bg-[#161f33] text-white p-5 rounded-2xl border border-slate-700 shadow-md">
                 <div class="flex items-start gap-3 mb-4">
@@ -181,11 +170,41 @@
                     </div>
                 </div>
                 <div class="border-2 border-dashed border-slate-600 rounded-xl p-6 text-center bg-[#111827] cursor-pointer relative">
-                    <input type="file" id="file-matches" class="absolute inset-0 opacity-0 cursor-pointer" multiple>
+                    <input type="file" id="file-matches" class="absolute inset-0 opacity-0 cursor-pointer" multiple accept=".png,.jpg,.jpeg,.webp,.pdf,.txt" onchange="handleFileSelection(this, 'matches')">
                     <div class="text-2xl mb-2">📥</div>
                     <p class="text-xs font-bold text-gray-300">Glissez-déposez les fichiers de match ici</p>
                 </div>
-                <button class="w-full mt-4 bg-indigo-600 text-white text-xs font-bold py-3 px-4 rounded-xl">🚀 LANCER ANALYSE PREMIUM</button>
+                
+                <!-- Lisitry ny Fichiers Match rehefa tafiditra (Sary 1 amin'ity farany) -->
+                <div id="matches-files-container" class="hidden mt-4 pt-3 border-t border-slate-800 space-y-2">
+                    <div class="flex items-center justify-between text-[10px] font-bold text-gray-400">
+                        <span class="uppercase tracking-wider text-amber-400">FICHERS MATCH (<span id="matches-file-count">0</span>)</span>
+                        <button onclick="clearFiles('matches')" class="text-red-400 hover:underline">Tout effacer</button>
+                    </div>
+                    <div id="matches-files-list" class="space-y-1.5 max-h-40 overflow-y-auto pr-1 no-scrollbar"></div>
+                </div>
+
+                <!-- Bokotra miloko orange/volombarany araka ny sary -->
+                <button onclick="startMatchAnalysisSimulation()" class="w-full mt-4 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white text-xs font-black py-3 px-4 rounded-xl flex items-center justify-center tracking-wider transition shadow-md uppercase">
+                    ✨ LANCER ANALYSE PREMIUM
+                </button>
+            </div>
+
+            <!-- TABILAO VALINY: RÉSULTATS D'ANALYSE PREMIUM (Araka ny sary faharoa) -->
+            <div id="premium-results-box" class="hidden bg-[#161f33] border border-slate-700 rounded-2xl p-4 shadow-lg">
+                <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-800">
+                    <div class="flex items-center gap-1.5 text-xs font-black text-amber-400 uppercase tracking-wider">
+                        <span>🏆</span> <span>Résultats d'Analyse Premium</span>
+                    </div>
+                    <button onclick="clearPremiumResults()" class="text-[10px] text-gray-400 hover:text-red-400 font-bold">Effacer</button>
+                </div>
+                <div id="premium-results-list" class="space-y-1 bg-[#111827] rounded-xl p-2 divide-y divide-slate-800/40 text-xs font-bold text-gray-200">
+                    <!-- JS no mampiditra ny vokatry ny simulation eto -->
+                </div>
+            </div>
+
+            <div class="bg-gray-200 rounded-xl p-4 text-[11px] text-gray-500 text-center border border-gray-300">
+                Analyse Premium est un moteur d'analyse statistique multimodal sécurisé. Toutes les données extraites restent stockées temporairement pendant la session de l'utilisateur.
             </div>
         </div>
     </div>
@@ -201,35 +220,34 @@
     </div>
 
     <script>
-        let currentSection = 'MATCHS';
-        let currentMatchesData = [];
         let historicalFilesList = [];
+        let matchesFilesList = [];
 
-        const teams = [
-            { name: "BENIN", flag: "🇧🇯" }, { name: "OUGANDA", flag: "🇺🇬" }, { name: "CÔTE D'IVOIRE", flag: "🇨🇮" }, 
-            { name: "GUINÉE ÉQ.", flag: "🇬🇶" }, { name: "GABON", flag: "🇬🇦" }, { name: "ANGOLA", flag: "🇦🇴" },
-            { name: "MALI", flag: "🇲🇱" }, { name: "GHANA", flag: "🇬🇭" }, { name: "MAROC", flag: "🇲🇦" }, 
-            { name: "BURKINA FASO", flag: "🇧🇫" }, { name: "CAMEROUN", flag: "🇨🇲" }, { name: "NIGERIA", flag: "🇳🇬" },
-            { name: "SÉNÉGAL", flag: "🇸🇳" }, { name: "ZAMBIE", flag: "🇿🇲" }, { name: "TUNISIE", flag: "🇹🇳" }, 
-            { name: "ALGÉRIE", flag: "🇩🇿" }, { name: "ÉGYPTE", flag: "🇪🇬" }, { name: "AFRIQUE DU SUD", flag: "🇿🇦" },
-            { name: "RDC", flag: "🇨🇩" }, { name: "MOZAMBIQUE", flag: "🇲🇿" }
+        const premResultsData = [
+            { home: "Angola", away: "Zambia", tip: "2 (1-2)" },
+            { home: "Ivory Coast", away: "Comoros", tip: "1 (2-0)" },
+            { home: "Equatorial Guinea", away: "Egypt", tip: "2 (0-2)" },
+            { home: "Benin", away: "Tunisia", tip: "X (1-1)" },
+            { home: "Mozambique", away: "DR Congo", tip: "2 (1-2)" },
+            { home: "Botswana", away: "Tanzania", tip: "2 (0-1)" },
+            { home: "Zimbabwe", away: "Morocco", tip: "2 (1-2)" },
+            { home: "South Africa", away: "Algeria", tip: "1 (2-1)" },
+            { home: "Sudan", away: "Mali", tip: "2 (1-2)" },
+            { home: "Senegal", away: "Uganda", tip: "1 (2-0)" },
+            { home: "Cameroon", away: "Nigeria", tip: "X (1-1)" },
+            { home: "Burkina Faso", away: "Gabon", tip: "1 (2-1)" }
         ];
 
         function switchPage(page) {
             document.getElementById('page-home').classList.add('hidden');
             document.getElementById('page-prediction').classList.add('hidden');
-            document.getElementById('page-premium').classList.add('hidden');
-            document.getElementById('nav-home').className = "flex flex-col items-center gap-0.5 text-xs font-bold text-gray-400";
-            document.getElementById('nav-prediction').className = "flex flex-col items-center gap-0.5 text-xs font-bold text-gray-400";
-
+            document.getElementById('page-premium').classList.remove('hidden'); // default hidden fa efa novana
             if (page === 'home') {
                 document.getElementById('page-home').classList.remove('hidden');
-                document.getElementById('nav-home').className = "flex flex-col items-center gap-0.5 text-xs font-bold text-green-600";
+                document.getElementById('page-premium').classList.add('hidden');
             } else if (page === 'prediction') {
                 document.getElementById('page-prediction').classList.remove('hidden');
-                document.getElementById('nav-prediction').className = "flex flex-col items-center gap-0.5 text-xs font-bold text-green-600";
-            } else if (page === 'premium') {
-                document.getElementById('page-premium').classList.remove('hidden');
+                document.getElementById('page-premium').classList.add('hidden');
             }
         }
 
@@ -247,78 +265,68 @@
             }
         }
 
-        // Fitantanana ireo fichier ampidirina
-        function handleFileSelection(input) {
+        function handleFileSelection(input, type) {
             if (!input.files) return;
+            let targetList = (type === 'history') ? historicalFilesList : matchesFilesList;
             for (let i = 0; i < input.files.length; i++) {
                 let file = input.files[i];
                 let sizeStr = (file.size / (1024 * 1024)).toFixed(2) + " Mo";
-                historicalFilesList.push({ name: file.name, size: sizeStr });
+                targetList.push({ name: file.name, size: sizeStr });
             }
-            renderFilesList();
+            renderFilesList(type);
         }
 
-        function removeFile(index) {
-            historicalFilesList.splice(index, 1);
-            renderFilesList();
+        function removeFile(idx, type) {
+            let targetList = (type === 'history') ? historicalFilesList : matchesFilesList;
+            targetList.splice(idx, 1);
+            renderFilesList(type);
         }
 
-        function clearAllFiles() {
-            historicalFilesList = [];
-            renderFilesList();
+        // Tout effacer
+        function clearFiles(type) {
+            if(type === 'history') historicalFilesList = [];
+            else matchesFilesList = [];
+            renderFilesList(type);
         }
 
-        function renderFilesList() {
-            const container = document.getElementById('uploaded-files-container');
-            const list = document.getElementById('files-list');
-            const countBadge = document.getElementById('file-count');
+        function renderFilesList(type) {
+            const container = document.getElementById(`${type}-files-container`);
+            const list = document.getElementById(`${type}-files-list`);
+            const countBadge = document.getElementById(`${type}-file-count`);
+            let targetList = (type === 'history') ? historicalFilesList : matchesFilesList;
             
-            if (historicalFilesList.length === 0) {
+            if (targetList.length === 0) {
                 container.classList.add('hidden');
                 return;
             }
             
             container.classList.remove('hidden');
-            countBadge.innerText = historicalFilesList.length;
+            countBadge.innerText = targetList.length;
             list.innerHTML = '';
 
-            historicalFilesList.forEach((file, idx) => {
+            targetList.forEach((file, idx) => {
                 let item = document.createElement('div');
-                item.className = "bg-[#111827] border border-slate-800 p-2.5 rounded-xl flex items-center justify-between text-[11px] text-gray-300 shadow-2xs font-medium";
+                item.className = "bg-[#111827] border border-slate-800 p-2 rounded-xl flex items-center justify-between text-[11px] text-gray-300";
                 item.innerHTML = `
-                    <div class="flex items-center gap-2 truncate max-w-[80%]">
+                    <div class="flex items-center gap-2 truncate max-w-[85%]">
                         <span class="text-indigo-400">📄</span>
-                        <span class="truncate tracking-wide text-gray-200">${file.name}</span>
-                        <span class="text-[9px] text-gray-500 font-normal">(${file.size})</span>
+                        <span class="truncate tracking-wide">${file.name}</span>
+                        <span class="text-[9px] text-gray-500">(${file.size})</span>
                     </div>
-                    <button onclick="removeFile(${idx})" class="text-gray-500 hover:text-red-400 transition text-sm px-1">🗑️</button>
+                    <button onclick="removeFile(${idx}, '${type}')" class="text-gray-500 hover:text-red-400 px-1">🗑️</button>
                 `;
                 list.appendChild(item);
             });
         }
 
-        // Lojika ho an'ilay Extraction Loading avy amin'ny sary
+        // SIMULATION LOADING 1 (History)
         function startExtractionSimulation() {
-            if (historicalFilesList.length === 0) {
-                alert("Ampidiro aloha ny fichier historique de base!");
-                return;
-            }
-
+            if (historicalFilesList.length === 0) return alert("Ampidiro ny fichier historique de base!");
             const loadingBox = document.getElementById('extraction-loading-box');
             const progress = document.getElementById('extraction-progress');
             loadingBox.classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
             let currentStep = 1;
             progress.style.width = '0%';
-
-            // Reset ny checklist rehetra ho fotsy
-            for (let i = 1; i <= 7; i++) {
-                let stepEl = document.getElementById(`step-${i}`);
-                stepEl.className = "flex items-center justify-between text-gray-500";
-                stepEl.querySelector('.status-icon').innerText = "漏";
-            }
-
             let interval = setInterval(() => {
                 if (currentStep <= 7) {
                     let stepEl = document.getElementById(`step-${currentStep}`);
@@ -328,46 +336,71 @@
                     currentStep++;
                 } else {
                     clearInterval(interval);
-                    document.getElementById('loading-spinner').className = "text-2xl text-green-400 font-black";
-                    document.getElementById('loading-spinner').innerText = "✓";
+                    setTimeout(() => { loadingBox.classList.add('hidden'); switchPremiumStep(2); }, 800);
+                }
+            }, 400);
+        }
+
+        // SIMULATION LOADING 2 (Match Pronostic - Sary vaovao voalohany)
+        function startMatchAnalysisSimulation() {
+            if (matchesFilesList.length === 0) return alert("Ampidiro aloha ny sarin'ny matchs holalainao!");
+            const loadingBox = document.getElementById('match-loading-box');
+            const progress = document.getElementById('match-progress');
+            document.getElementById('premium-results-box').classList.add('hidden'); // Reset taloha
+            loadingBox.classList.remove('hidden');
+            
+            // Reset andiany
+            for(let i=1; i<=5; i++) {
+                let el = document.getElementById(`mstep-${i}`);
+                el.className = "flex items-center justify-between text-gray-500";
+                el.querySelector('.mstatus-icon').innerText = "⚪";
+            }
+
+            let currentStep = 1;
+            progress.style.width = '0%';
+            let interval = setInterval(() => {
+                if (currentStep <= 5) {
+                    let stepEl = document.getElementById(`mstep-${currentStep}`);
+                    stepEl.className = "flex items-center justify-between text-amber-400 font-bold";
+                    stepEl.querySelector('.mstatus-icon').innerText = "✓";
+                    progress.style.width = `${Math.floor((currentStep / 5) * 100)}%`;
+                    currentStep++;
+                } else {
+                    clearInterval(interval);
                     setTimeout(() => {
                         loadingBox.classList.add('hidden');
-                        document.getElementById('loading-spinner').className = "w-8 h-8 border-4 border-indigo-400 border-t-transparent rounded-full animate-spin-custom";
-                        document.getElementById('loading-spinner').innerText = "";
-                        switchPremiumStep(2); // Mandeha ho azy any amin'ny Etape 2 rehefa vita
-                    }, 1200);
+                        renderPremiumResults(); // Mampiseho ny tabilao valiny rehefa feno
+                    }, 600);
                 }
-            }, 700);
+            }, 500);
         }
 
-        // Ny rafitra timeline taloha tsy nesorina
-        function updateTimelineAndTimer() {
-            const now = new Date();
-            const container = document.getElementById('time-slots');
-            if (!container) return;
-            container.innerHTML = '';
-            let currentMinutes = now.getMinutes();
-            let startMinute = currentMinutes - (currentMinutes % 2);
-            let baseTime = new Date(now.getTime());
-            baseTime.setMinutes(startMinute); baseTime.setSeconds(0);
+        // FAMPISEHOANA NY VALINY (Sary vaovao faharoa)
+        function renderPremiumResults() {
+            const box = document.getElementById('premium-results-box');
+            const list = document.getElementById('premium-results-list');
+            list.innerHTML = '';
+            box.classList.remove('hidden');
 
-            for (let i = -2; i <= 2; i++) {
-                let slotTime = new Date(baseTime.getTime() + (i * 2) * 60 * 1000);
-                let timeStr = `${String(slotTime.getHours()).padStart(2, '0')}:${String(slotTime.getMinutes()).padStart(2, '0')}`;
-                let span = document.createElement('span');
-                if (i === 0) {
-                    span.className = "px-2.5 py-1.5 rounded bg-red-600 text-white font-extrabold flex flex-col items-center cursor-pointer text-xs shadow-xs";
-                    span.innerHTML = `<div>${timeStr}</div>`;
-                } else {
-                    span.className = "px-2.5 py-1.5 rounded bg-gray-50 text-gray-500 border border-gray-100 text-xs cursor-pointer";
-                    span.innerText = timeStr;
-                }
-                container.appendChild(span);
-            }
+            premResultsData.forEach(res => {
+                let div = document.createElement('div');
+                div.className = "flex items-center justify-between p-2.5 hover:bg-slate-800/30 transition text-gray-300";
+                div.innerHTML = `
+                    <div class="tracking-wide text-[11px] font-semibold">${res.home} vs ${res.away}</div>
+                    <div class="bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[10px] px-2.5 py-1 rounded font-black tracking-wider">${res.tip}</div>
+                `;
+                list.appendChild(div);
+            });
+            // scroll midina ho azy hahitana ny vokatra
+            box.scrollIntoView({ behavior: 'smooth' });
         }
 
-        updateTimelineAndTimer();
-        setInterval(updateTimelineAndTimer, 1000);
+        function clearPremiumResults() {
+            document.getElementById('premium-results-box').classList.add('hidden');
+        }
+
+        switchPage('premium'); // Direct test page
+        switchPremiumStep(2);
     </script>
 </body>
-                    </html>
+</html>
