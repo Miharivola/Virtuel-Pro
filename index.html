@@ -19,6 +19,7 @@
             <h1 class="text-xl font-bold text-gray-800">Pronostic Vital</h1>
         </div>
         <div class="flex items-center gap-3 text-lg">
+            <span class="cursor-pointer" onclick="switchPage('home')">🏠</span>
             <span class="cursor-pointer">ℹ️</span>
             <span class="cursor-pointer">🔔</span>
             <span class="cursor-pointer">⭐</span>
@@ -37,7 +38,8 @@
             <span class="text-amber-500 font-bold">›</span>
         </div>
 
-        <div class="bg-slate-900 text-white rounded-2xl p-4 flex items-center justify-between cursor-pointer shadow-md">
+        <!-- Mampifandray amin'ny pejy Analyse Premium -->
+        <div onclick="switchPage('premium')" class="bg-slate-900 text-white rounded-2xl p-4 flex items-center justify-between cursor-pointer shadow-md hover:bg-slate-800 transition">
             <div class="flex items-center gap-3">
                 <span class="text-xl text-indigo-400">📊</span>
                 <div class="flex flex-col">
@@ -54,7 +56,6 @@
                 <span>🔥</span> <span>Tips</span>
             </div>
             <div class="grid grid-cols-2 gap-3">
-                <!-- Free Tips -->
                 <div onclick="switchPage('prediction')" class="bg-white p-3 rounded-2xl border border-gray-200 flex items-center justify-between cursor-pointer hover:bg-gray-50 shadow-2xs">
                     <div class="flex items-center gap-2.5">
                         <span class="text-lg bg-gray-100 p-1.5 rounded-xl">📅</span>
@@ -62,7 +63,6 @@
                     </div>
                     <span class="text-gray-400 font-bold">›</span>
                 </div>
-                <!-- Best Tips -->
                 <div class="bg-white p-3 rounded-2xl border border-gray-200 flex items-center justify-between cursor-pointer hover:bg-gray-50 shadow-2xs">
                     <div class="flex items-center gap-2.5">
                         <span class="text-lg bg-gray-100 p-1.5 rounded-xl">⭐</span>
@@ -70,7 +70,6 @@
                     </div>
                     <span class="text-gray-400 font-bold">›</span>
                 </div>
-                <!-- VIP Tips -->
                 <div class="bg-white p-3 rounded-2xl border border-gray-200 flex items-center justify-between cursor-pointer hover:bg-gray-50 shadow-2xs">
                     <div class="flex items-center gap-2.5">
                         <span class="text-lg bg-gray-100 p-1.5 rounded-xl">👑</span>
@@ -78,7 +77,6 @@
                     </div>
                     <span class="text-gray-400 font-bold">›</span>
                 </div>
-                <!-- Single Tips -->
                 <div class="bg-white p-3 rounded-2xl border border-gray-200 flex items-center justify-between cursor-pointer hover:bg-gray-50 shadow-2xs">
                     <div class="flex items-center gap-2.5">
                         <span class="text-lg bg-gray-100 p-1.5 rounded-xl">🎫</span>
@@ -86,7 +84,6 @@
                     </div>
                     <span class="text-gray-400 font-bold">›</span>
                 </div>
-                <!-- HT/FT -->
                 <div class="bg-white p-3 rounded-2xl border border-gray-200 flex items-center justify-between cursor-pointer hover:bg-gray-50 shadow-2xs">
                     <div class="flex items-center gap-2.5">
                         <span class="text-lg bg-gray-100 p-1.5 rounded-xl">⏱️</span>
@@ -94,7 +91,6 @@
                     </div>
                     <span class="text-gray-400 font-bold">›</span>
                 </div>
-                <!-- Over-Under -->
                 <div class="bg-white p-3 rounded-2xl border border-gray-200 flex items-center justify-between cursor-pointer hover:bg-gray-50 shadow-2xs">
                     <div class="flex items-center gap-2.5">
                         <span class="text-lg bg-gray-100 p-1.5 rounded-xl">📈</span>
@@ -103,7 +99,6 @@
                     <span class="text-gray-400 font-bold">›</span>
                 </div>
             </div>
-            <!-- BTTS Full Width bottom -->
             <div class="bg-white p-3 rounded-2xl border border-gray-200 flex items-center justify-between cursor-pointer mt-3 hover:bg-gray-50 shadow-2xs">
                 <div class="flex items-center gap-2.5">
                     <span class="text-lg bg-gray-100 p-1.5 rounded-xl">🔄</span>
@@ -135,36 +130,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Section: SETTINGS -->
-        <div>
-            <div class="flex items-center gap-1.5 text-xs font-bold text-gray-500 mb-2 uppercase tracking-wider">
-                <span>⚙️</span> <span>Settings</span>
-            </div>
-            <div class="bg-white rounded-2xl border border-gray-200 divide-y divide-gray-100 overflow-hidden shadow-2xs">
-                <div class="p-3.5 flex items-center justify-between cursor-pointer hover:bg-gray-50 text-xs font-medium text-gray-700">
-                    <span class="flex items-center gap-3">📩 Suggestions / Demandes</span>
-                    <span class="text-gray-400 font-bold">›</span>
-                </div>
-                <div class="p-3.5 flex items-center justify-between cursor-pointer hover:bg-gray-50 text-xs font-medium text-gray-700">
-                    <span class="flex items-center gap-3">📜 Conditions d'Utilisation</span>
-                    <span class="text-gray-400 font-bold">›</span>
-                </div>
-                <div class="p-3.5 flex items-center justify-between cursor-pointer hover:bg-gray-50 text-xs font-medium text-gray-700">
-                    <span class="flex items-center gap-3">🔒 Politique de Confidentialité</span>
-                    <span class="text-gray-400 font-bold">›</span>
-                </div>
-                <div class="p-3.5 flex items-center justify-between cursor-pointer hover:bg-gray-50 text-xs font-medium text-gray-700">
-                    <span class="flex items-center gap-3">🔄 Reset onboarding</span>
-                    <span class="text-gray-400 font-bold">›</span>
-                </div>
-                <div class="p-3.5 flex items-center justify-between cursor-pointer hover:bg-gray-50 text-xs font-medium text-red-600 font-bold">
-                    <span class="flex items-center gap-3">🚪 Se déconnecter</span>
-                    <span class="text-red-400 font-bold">›</span>
-                </div>
-            </div>
-        </div>
-
     </div>
 
     <!-- ================= PAGE 2: PREDICTION (COUPE D'AFRIQUE TABLE) ================= -->
@@ -173,7 +138,6 @@
             <button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 whitespace-nowrap">🟢 Toutes les Ligues</button>
             <button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-green-600 text-white whitespace-nowrap">🏆 Coupe d'Afrique</button>
             <button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 whitespace-nowrap">🇪🇺 Ligue des Champions</button>
-            <button class="px-4 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 whitespace-nowrap">🏴 Premier League</button>
         </nav>
 
         <main class="p-3 max-w-md mx-auto">
@@ -183,7 +147,6 @@
                         <span class="text-xl">🏆</span>
                         <h2 class="text-md font-bold text-gray-800 tracking-wide">COUPE D'AFRIQUE</h2>
                     </div>
-                    <!-- Navoatran'ny ho 20 MATCHS indray eto -->
                     <span class="text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded" id="match-count-badge">20 MATCHS</span>
                 </div>
 
@@ -211,11 +174,77 @@
             <div class="bg-white p-3 rounded-t-xl border border-gray-200 border-b-0" id="table-header">
                 <!-- JS -->
             </div>
-
             <div class="bg-white rounded-b-xl border border-gray-200 divide-y divide-gray-100 shadow-sm" id="main-content-container">
                 <!-- JS -->
             </div>
         </main>
+    </div>
+
+    <!-- ================= PAGE 3: ANALYSE PREMIUM (NEW) ================= -->
+    <div id="page-premium" class="hidden p-4 max-w-md mx-auto space-y-4">
+        <!-- Selector ho an'ny Etape roa samy hafa -->
+        <div class="bg-gray-200 p-1 rounded-xl grid grid-cols-2 gap-1 text-center text-xs font-bold">
+            <button id="btn-step1" onclick="switchPremiumStep(1)" class="py-2 rounded-lg bg-indigo-600 text-white shadow-xs">1. BASE HISTORIQUE</button>
+            <button id="btn-step2" onclick="switchPremiumStep(2)" class="py-2 rounded-lg text-gray-600">2. MATCHS & PRONOSTICS</button>
+        </div>
+
+        <!-- STAGE 1: CHARGER LA BASE HISTORIQUE -->
+        <div id="premium-step-1" class="space-y-4">
+            <div class="bg-[#161f33] text-white p-5 rounded-2xl border border-slate-700 shadow-md">
+                <div class="flex items-start gap-3 mb-4">
+                    <span class="text-xl text-indigo-400 mt-0.5">⏱️</span>
+                    <div>
+                        <h3 class="text-sm font-black tracking-wide uppercase text-gray-200">CHARGER LA BASE HISTORIQUE</h3>
+                        <p class="text-[11px] text-gray-400 mt-1 leading-relaxed">Déposez les données historiques de championnats récents (images, pdf, txt) pour calibrer le moteur statistique de la session.</p>
+                    </div>
+                </div>
+
+                <!-- Drag & Drop Zone -->
+                <div class="border-2 border-dashed border-slate-600 rounded-xl p-6 text-center bg-[#111827] cursor-pointer hover:border-indigo-500 transition relative">
+                    <input type="file" id="file-history" class="absolute inset-0 opacity-0 cursor-pointer" multiple accept=".png,.jpg,.jpeg,.webp,.pdf,.txt">
+                    <div class="text-2xl mb-2">📥</div>
+                    <p class="text-xs font-bold text-gray-300">Cliquez ou glissez-déposez vos fichiers ici</p>
+                    <p class="text-[9px] text-gray-500 mt-1">PNG, JPG, JPEG, WEBP, PDF, TXT - Max 20 fichiers - Jusqu'à 20 Mo chacun</p>
+                    <div id="history-file-list" class="mt-2 text-[10px] text-green-400 font-medium"></div>
+                </div>
+
+                <button onclick="triggerAnalysis(1)" class="w-full mt-4 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 tracking-wide transition shadow-sm">
+                    ✨ ANALYSER L'HISTORIQUE
+                </button>
+            </div>
+            <div class="bg-gray-200 rounded-xl p-4 text-[11px] text-gray-500 text-center border border-gray-300">
+                Analyse l'historique et le modèle d'analyse statistique multimodale sécurisé. Toutes les données actuelles seront stockées temporairement pendant la session sur votre navigateur.
+            </div>
+        </div>
+
+        <!-- STAGE 2: CHARGER LES MATCHS -->
+        <div id="premium-step-2" class="hidden space-y-4">
+            <div class="bg-[#161f33] text-white p-5 rounded-2xl border border-slate-700 shadow-md">
+                <div class="flex items-start gap-3 mb-4">
+                    <span class="text-xl text-indigo-400 mt-0.5">🌌</span>
+                    <div>
+                        <h3 class="text-sm font-black tracking-wide uppercase text-gray-200">CHARGER LES MATCHS</h3>
+                        <p class="text-[11px] text-gray-400 mt-1 leading-relaxed">Déposez les matchs du jour à pronostiquer. Le moteur calculera automatiquement les scores exacts.</p>
+                    </div>
+                </div>
+
+                <!-- Drag & Drop Zone -->
+                <div class="border-2 border-dashed border-slate-600 rounded-xl p-6 text-center bg-[#111827] cursor-pointer hover:border-indigo-500 transition relative">
+                    <input type="file" id="file-matches" class="absolute inset-0 opacity-0 cursor-pointer" multiple accept=".png,.jpg,.jpeg,.webp,.pdf,.txt">
+                    <div class="text-2xl mb-2">📥</div>
+                    <p class="text-xs font-bold text-gray-300">Glissez-déposez les fichiers de match ici</p>
+                    <p class="text-[9px] text-gray-500 mt-1">PNG, JPG, JPEG, WEBP, PDF, TXT - Max 20 fichiers - Jusqu'à 20 Mo chacun</p>
+                    <div id="matches-file-list" class="mt-2 text-[10px] text-green-400 font-medium"></div>
+                </div>
+
+                <button onclick="triggerAnalysis(2)" class="w-full mt-4 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 tracking-wide transition shadow-sm">
+                    🚀 LANCER ANALYSE PREMIUM
+                </button>
+            </div>
+            <div class="bg-gray-200 rounded-xl p-4 text-[11px] text-gray-500 text-center border border-gray-300">
+                Analyse l'ensemble du module d'analyse statistique de pointe sécurisé. Toutes les données actuelles seront stockées temporairement pendant la session sur l'ordinateur.
+            </div>
+        </div>
     </div>
 
     <!-- ================= BOTTOM NAVIGATION BAR ================= -->
@@ -240,21 +269,12 @@
                 </div>
                 <button onclick="closeModal()" class="text-gray-400 hover:text-white font-bold text-lg px-2">✕</button>
             </div>
-
+            <!-- Ao anatin'ny modal -->
             <div class="p-4 flex items-center justify-between bg-[#161f33]">
-                <div class="flex flex-col items-center flex-1">
-                    <span id="modal-home-flag" class="text-4xl mb-1">🇧🇯</span>
-                    <span id="modal-home-name" class="text-xs font-black text-center tracking-wide truncate w-24">BENIN</span>
-                </div>
-                <div class="flex flex-col items-center px-2">
-                    <span class="text-[9px] font-bold text-white bg-green-600 bg-opacity-30 border border-green-500 border-opacity-50 px-2 py-0.5 rounded-full">VS</span>
-                </div>
-                <div class="flex flex-col items-center flex-1">
-                    <span id="modal-away-flag" class="text-4xl mb-1">🇺🇬</span>
-                    <span id="modal-away-name" class="text-xs font-black text-center tracking-wide truncate w-24">OUGANDA</span>
-                </div>
+                <div class="flex flex-col items-center flex-1"><span id="modal-home-flag" class="text-4xl mb-1">🇧🇯</span><span id="modal-home-name" class="text-xs font-black text-center tracking-wide truncate w-24">BENIN</span></div>
+                <div class="flex flex-col items-center px-2"><span class="text-[9px] font-bold text-white bg-green-600 bg-opacity-30 border border-green-500 border-opacity-50 px-2 py-0.5 rounded-full">VS</span></div>
+                <div class="flex flex-col items-center flex-1"><span id="modal-away-flag" class="text-4xl mb-1">🇺🇬</span><span id="modal-away-name" class="text-xs font-black text-center tracking-wide truncate w-24">OUGANDA</span></div>
             </div>
-
             <div class="p-4 space-y-4 text-xs">
                 <div>
                     <div class="text-[9px] font-bold text-gray-400 uppercase tracking-wider mb-1.5 text-center">Probabilités de Victoire (1X2)</div>
@@ -265,14 +285,8 @@
                     </div>
                 </div>
                 <div class="bg-[#121826] p-3 rounded-xl border border-gray-800 flex items-center justify-between">
-                    <div>
-                        <div class="text-[8px] font-bold text-gray-400 uppercase tracking-widest">Score Prédit</div>
-                        <div class="text-xl font-black text-white tracking-tighter mt-0.5" id="modal-predicted-score">1 - 1</div>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-[8px] font-bold text-gray-400 uppercase tracking-widest">Confiance IA</div>
-                        <div class="text-lg font-black text-green-400" id="modal-confidence">37%</div>
-                    </div>
+                    <div><div class="text-[8px] font-bold text-gray-400 uppercase tracking-widest">Score Prédit</div><div class="text-xl font-black text-white tracking-tighter mt-0.5" id="modal-predicted-score">1 - 1</div></div>
+                    <div class="text-right"><div class="text-[8px] font-bold text-gray-400 uppercase tracking-widest">Confiance IA</div><div class="text-lg font-black text-green-400" id="modal-confidence">37%</div></div>
                 </div>
             </div>
         </div>
@@ -285,7 +299,6 @@
         let historicalResults = [];
         let leagueStandings = [];
 
-        // Natao 20 mazava tsara ny ekipa eto tsy misy nesorina
         const teams = [
             { name: "BENIN", flag: "🇧🇯" }, { name: "OUGANDA", flag: "🇺🇬" },
             { name: "CÔTE D'IVOIRE", flag: "🇨🇮" }, { name: "GUINÉE ÉQ.", flag: "🇬🇶" },
@@ -300,17 +313,50 @@
         ];
 
         function switchPage(page) {
+            document.getElementById('page-home').classList.add('hidden');
+            document.getElementById('page-prediction').classList.add('hidden');
+            document.getElementById('page-premium').classList.add('hidden');
+            
+            document.getElementById('nav-home').className = "flex flex-col items-center gap-0.5 text-xs font-bold text-gray-400";
+            document.getElementById('nav-prediction').className = "flex flex-col items-center gap-0.5 text-xs font-bold text-gray-400";
+
             if (page === 'home') {
                 document.getElementById('page-home').classList.remove('hidden');
-                document.getElementById('page-prediction').classList.add('hidden');
                 document.getElementById('nav-home').className = "flex flex-col items-center gap-0.5 text-xs font-bold text-green-600";
-                document.getElementById('nav-prediction').className = "flex flex-col items-center gap-0.5 text-xs font-bold text-gray-400";
-            } else {
-                document.getElementById('page-home').classList.add('hidden');
+            } else if (page === 'prediction') {
                 document.getElementById('page-prediction').classList.remove('hidden');
-                document.getElementById('nav-home').className = "flex flex-col items-center gap-0.5 text-xs font-bold text-gray-400";
                 document.getElementById('nav-prediction').className = "flex flex-col items-center gap-0.5 text-xs font-bold text-green-600";
+            } else if (page === 'premium') {
+                document.getElementById('page-premium').classList.remove('hidden');
             }
+        }
+
+        function switchPremiumStep(step) {
+            if (step === 1) {
+                document.getElementById('premium-step-1').classList.remove('hidden');
+                document.getElementById('premium-step-2').classList.add('hidden');
+                document.getElementById('btn-step1').className = "py-2 rounded-lg bg-indigo-600 text-white shadow-xs";
+                document.getElementById('btn-step2').className = "py-2 rounded-lg text-gray-600";
+            } else {
+                document.getElementById('premium-step-1').classList.add('hidden');
+                document.getElementById('premium-step-2').classList.remove('hidden');
+                document.getElementById('btn-step1').className = "py-2 rounded-lg text-gray-600";
+                document.getElementById('btn-step2').className = "py-2 rounded-lg bg-indigo-600 text-white shadow-xs";
+            }
+        }
+
+        // File monitoring listeners
+        document.getElementById('file-history').addEventListener('change', (e) => {
+            let files = Array.from(e.target.files).map(f => f.name).join(', ');
+            document.getElementById('history-file-list').innerText = files ? "Fichiers sélectionnés: " + files : "";
+        });
+        document.getElementById('file-matches').addEventListener('change', (e) => {
+            let files = Array.from(e.target.files).map(f => f.name).join(', ');
+            document.getElementById('matches-file-list').innerText = files ? "Fichiers sélectionnés: " + files : "";
+        });
+
+        function triggerAnalysis(step) {
+            alert(step === 1 ? "Analyse de la Base Historique lancée avec succès !" : "Simulation des pronostics Premium lancée !");
         }
 
         function initStandings() {
@@ -322,7 +368,6 @@
         function generateMatchData(timeStr) {
             let data = [];
             let shuffled = [...teams].sort(() => 0.5 - Math.random());
-            // 10 lalao ho an'ny ekipa 20
             for (let i = 0; i < 10; i++) {
                 let home = shuffled[i * 2];
                 let away = shuffled[i * 2 + 1];
@@ -485,7 +530,7 @@
             }
         }
 
-        // Init
+        // Initialization
         const d = new Date();
         let sMin = d.getMinutes() - (d.getMinutes() % 2);
         initStandings();
@@ -505,4 +550,4 @@
         }, 1000);
     </script>
 </body>
-                                                               </html>
+</html>
