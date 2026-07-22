@@ -8,8 +8,6 @@
     <style>
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .animate-spin-custom { animation: spin 1s linear infinite; }
     </style>
 </head>
 <body class="bg-[#f4f6f8] min-h-screen font-sans text-gray-800 select-none pb-24">
@@ -104,25 +102,14 @@
                 </div>
             </div>
         </div>
-
-        <!-- SECTION: SETTINGS -->
-        <div class="bg-white rounded-2xl border border-gray-200 divide-y divide-gray-100 text-xs font-bold text-gray-700 shadow-2xs">
-            <div class="p-3 flex items-center justify-between cursor-pointer"><span>📩 Suggestions/Demandes</span><span class="text-gray-400">›</span></div>
-            <div class="p-3 flex items-center justify-between cursor-pointer"><span>📜 Conditions d'utilisation</span><span class="text-gray-400">›</span></div>
-            <div class="p-3 flex items-center justify-between cursor-pointer"><span>🔒 Politique de confidentialité</span><span class="text-gray-400">›</span></div>
-            <div class="p-3 flex items-center justify-between cursor-pointer"><span>🔄 Reset onboarding</span><span class="text-gray-400">›</span></div>
-            <div class="p-3 flex items-center justify-between text-red-500 cursor-pointer"><span>🚪 Se déconnecter</span><span>›</span></div>
-        </div>
     </div>
-
 
     <!-- ================= PAGE 2: PRONOSTICS (MAIN INTERFACE) ================= -->
     <div id="page-prediction" class="hidden p-2 max-w-md mx-auto space-y-3">
         
-        <!-- Laharana ambony momba ny fanazavana -->
         <div class="bg-white p-3 rounded-xl border border-gray-200 text-center shadow-2xs">
             <h4 class="text-xs font-black text-gray-800 uppercase tracking-wide">STRUCTURE POUR TOUTES LES COMPÉTITIONS</h4>
-            <p class="text-[10px] text-gray-500 mt-1">Le même design et la même structure sont utilisés pour toutes les compétitions. La seule différence est le nom de la compétition.</p>
+            <p class="text-[10px] text-gray-500 mt-1">Le même design et la même structure sont utilisés pour toutes les compétitions.</p>
         </div>
 
         <!-- HORIZONTAL LIGUES SELECTOR -->
@@ -130,7 +117,6 @@
             <button id="l-all" onclick="selectLeague('all')" class="bg-emerald-700 text-white px-3 py-1.5 rounded-full shadow-2xs whitespace-nowrap">⚽ Toutes les Ligues</button>
             <button id="l-caf" onclick="selectLeague('caf')" class="bg-white text-gray-700 border border-gray-200 px-3 py-1.5 rounded-full whitespace-nowrap">🏆 Coupe d'Afrique</button>
             <button id="l-cl" onclick="selectLeague('cl')" class="bg-white text-gray-700 border border-gray-200 px-3 py-1.5 rounded-full whitespace-nowrap">🇪🇺 Ligue des Champions</button>
-            <button id="l-pl" onclick="selectLeague('pl')" class="bg-white text-gray-700 border border-gray-200 px-3 py-1.5 rounded-full whitespace-nowrap">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</button>
         </div>
 
         <!-- MAIN CONTAINER TABLE LIKE FACEBOOK REELS -->
@@ -140,23 +126,21 @@
                 <div class="flex items-center gap-2 text-xs font-black uppercase tracking-wider">
                     <span>🏆</span> <span id="current-league-title">Coupe d'Afrique</span>
                 </div>
-                <span class="text-[9px] font-bold bg-emerald-900/60 px-2 py-0.5 rounded">12 MATCHS</span>
+                <span class="text-[9px] font-bold bg-emerald-900/60 px-2 py-0.5 rounded">20 ÉQUIPES (10 MATCHS)</span>
             </div>
 
             <!-- Tab Navigation: RÉSULTATS | MATCHS | CLASSEMENT -->
             <div class="grid grid-cols-3 text-center border-b border-gray-200 text-[10px] font-bold bg-gray-50 text-gray-500">
-                <div class="py-2.5 cursor-pointer">RÉSULTATS</div>
-                <div class="py-2.5 cursor-pointer text-emerald-700 border-b-2 border-emerald-700 bg-white">MATCHS</div>
-                <div class="py-2.5 cursor-pointer">CLASSEMENT</div>
+                <div id="tab-resultats" onclick="switchSubTab('resultats')" class="py-2.5 cursor-pointer">RÉSULTATS</div>
+                <div id="tab-matchs" onclick="switchSubTab('matchs')" class="py-2.5 cursor-pointer text-emerald-700 border-b-2 border-emerald-700 bg-white">MATCHS</div>
+                <div id="tab-classement" onclick="switchSubTab('classement')" class="py-2.5 cursor-pointer">CLASSEMENT</div>
             </div>
 
-            <!-- MATCH HOURS SELECTOR (Dynamic 2mn rounds) -->
-            <div class="flex items-center justify-between gap-1 p-2 bg-gray-50 overflow-x-auto no-scrollbar border-b border-gray-100 text-[10px] font-bold text-gray-600" id="match-rounds-bar">
-                <!-- Hofenoina amin'ny js -->
-            </div>
+            <!-- MATCH HOURS SELECTOR -->
+            <div class="flex items-center justify-between gap-1 p-2 bg-gray-50 overflow-x-auto no-scrollbar border-b border-gray-100 text-[10px] font-bold text-gray-600" id="match-rounds-bar"></div>
 
-            <!-- FILTERS SIVANA (1X2, Double Chance, Over/Under, etc) -->
-            <div class="flex gap-1.5 overflow-x-auto no-scrollbar p-2 bg-white text-[9px] font-black text-gray-500 border-b border-gray-100">
+            <!-- FILTERS AREA (Ho an'ny MATCHS sy RÉSULTATS ihany) -->
+            <div id="prediction-filters" class="flex gap-1.5 overflow-x-auto no-scrollbar p-2 bg-white text-[9px] font-black text-gray-500 border-b border-gray-100">
                 <button onclick="changeFilter('1x2', this)" class="filter-btn bg-emerald-700 text-white px-2.5 py-1 rounded-md">1X2</button>
                 <button onclick="changeFilter('double', this)" class="filter-btn bg-gray-100 px-2.5 py-1 rounded-md">DOUBLE CHANCE</button>
                 <button onclick="changeFilter('ou', this)" class="filter-btn bg-gray-100 px-2.5 py-1 rounded-md">OVER/UNDER</button>
@@ -164,25 +148,38 @@
                 <button onclick="changeFilter('correct', this)" class="filter-btn bg-gray-100 px-2.5 py-1 rounded-md">CORRECT SCORE</button>
             </div>
 
-            <!-- TABLE HEADERS -->
-            <div class="grid grid-cols-12 p-2 bg-gray-50/50 text-[8px] font-black text-gray-400 uppercase text-center border-b border-gray-100">
-                <div class="col-span-4 text-left">Matchs du jour</div>
-                <div class="col-span-6 grid grid-cols-3" id="dynamic-table-header">
-                    <span>1</span><span>X</span><span>2</span>
+            <!-- MAIN CONTENT AREA -->
+            <div id="subtab-content-matches">
+                <div class="grid grid-cols-12 p-2 bg-gray-50/50 text-[8px] font-black text-gray-400 uppercase text-center border-b border-gray-100">
+                    <div class="col-span-4 text-left">Matchs du jour</div>
+                    <div class="col-span-6 grid grid-cols-3" id="dynamic-table-header"><span>1</span><span>X</span><span>2</span></div>
+                    <div class="col-span-2 text-right">Score Prédit</div>
                 </div>
-                <div class="col-span-2 text-right">Score Prédit</div>
+                <div class="divide-y divide-gray-100" id="matches-list-container"></div>
             </div>
 
-            <!-- LIST OF MATCHES GAMES -->
-            <div class="divide-y divide-gray-100" id="matches-list-container">
-                <!-- Hofenoina avy amin'ny JS ny lalao rehetra -->
+            <div id="subtab-content-classement" class="hidden p-2">
+                <table class="w-full text-left text-[10px] border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100 text-gray-600 font-bold border-b border-gray-200">
+                            <th class="p-1.5">Pos</th>
+                            <th class="p-1.5">Équipe</th>
+                            <th class="p-1.5 text-center">J</th>
+                            <th class="p-1.5 text-center">G</th>
+                            <th class="p-1.5 text-center">N</th>
+                            <th class="p-1.5 text-center">P</th>
+                            <th class="p-1.5 text-center font-bold text-emerald-700">Pts</th>
+                        </tr>
+                    </thead>
+                    <tbody id="classement-tbody" class="divide-y divide-gray-100 font-medium"></tbody>
+                </table>
             </div>
+
         </div>
     </div>
 
-    <!-- ================= PAGE 3: ANALYSE PREMIUM ================= -->
+    <!-- ================= PAGE 3: ANALYSE PREMIUM (Misy capture/sary miasa tsara) ================= -->
     <div id="page-premium" class="hidden p-4 max-w-md mx-auto space-y-4">
-        <!-- TABS SELECTOR FOR PREMIUM -->
         <div class="bg-gray-200 p-1 rounded-xl grid grid-cols-2 gap-1 text-center text-xs font-bold">
             <button id="btn-step1" onclick="switchPremiumStep(1)" class="py-2 rounded-lg bg-indigo-600 text-white shadow-xs">1. BASE HISTORIQUE</button>
             <button id="btn-step2" onclick="switchPremiumStep(2)" class="py-2 rounded-lg text-gray-600">2. MATCHS & PRONOSTICS</button>
@@ -192,8 +189,10 @@
         <div id="premium-step-1" class="bg-[#161f33] text-white p-4 rounded-2xl border border-slate-700 space-y-3">
             <h3 class="text-xs font-black tracking-wide uppercase">CHARGER LA BASE HISTORIQUE</h3>
             <p class="text-[10px] text-gray-400">Glissez-déposez vos fichiers pour calibrer l'intelligence artificielle.</p>
-            <div class="border-2 border-dashed border-slate-600 rounded-xl p-6 text-center bg-[#111827] text-xs font-bold text-gray-400">
-                Glissez vos fichiers historiques (.txt, .pdf, images)
+            
+            <div id="dropzone-1" onclick="triggerInput('file-1')" class="border-2 border-dashed border-slate-600 rounded-xl p-6 text-center bg-[#111827] text-xs font-bold text-gray-400 cursor-pointer hover:border-indigo-500 transition">
+                <span id="txt-1">Glissez ou cliquez pour ajouter des fichiers (.txt, .pdf, images)</span>
+                <input type="file" id="file-1" class="hidden" accept="image/*,text/plain,application/pdf" onchange="handleFileSelect(this, 'txt-1')">
             </div>
             <button class="w-full py-2.5 bg-emerald-600 rounded-xl text-xs font-bold uppercase tracking-wide">Analyser la base</button>
         </div>
@@ -201,80 +200,51 @@
         <!-- STEP 2: UPLOAD DAILY MATCHES -->
         <div id="premium-step-2" class="hidden bg-[#161f33] text-white p-4 rounded-2xl border border-slate-700 space-y-3">
             <h3 class="text-xs font-black tracking-wide uppercase">CHARGER LES MATCHS DU JOUR</h3>
-            <div class="border-2 border-dashed border-slate-600 rounded-xl p-6 text-center bg-[#111827] text-xs font-bold text-gray-400">
-                Glissez le screenshot des matchs à prédire
+            
+            <div id="dropzone-2" onclick="triggerInput('file-2')" class="border-2 border-dashed border-slate-600 rounded-xl p-6 text-center bg-[#111827] text-xs font-bold text-gray-400 cursor-pointer hover:border-amber-500 transition">
+                <span id="txt-2">Glissez ou cliquez pour insérer le screenshot / capture</span>
+                <input type="file" id="file-2" class="hidden" accept="image/*" onchange="handleFileSelect(this, 'txt-2')">
             </div>
             <button class="w-full py-2.5 bg-amber-500 text-slate-900 rounded-xl text-xs font-black uppercase tracking-wide">Calculer les Pronostics Exacts</button>
         </div>
     </div>
 
-    <!-- ================= MODAL DIALOG: AI DETAILED STATISTICS ================= -->
+    <!-- ================= MODAL DIALOG: AI DETAILS ================= -->
     <div id="stats-modal" class="hidden fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
         <div class="bg-[#161f33] text-white w-full max-w-xs rounded-2xl border border-slate-700 overflow-hidden shadow-2xl relative">
-            
-            <!-- Modal Header -->
             <div class="p-3 border-b border-slate-800 bg-[#1e293b] flex items-center justify-between">
                 <div>
-                    <h3 class="text-[10px] font-black tracking-wider text-indigo-400 uppercase">Analyse Prédictive IA Simulation</h3>
-                    <h2 class="text-xs font-black uppercase mt-0.5" id="modal-league-title">COUPE D'AFRIQUE</h2>
+                    <h3 class="text-[10px] font-black tracking-wider text-indigo-400 uppercase">Analyse Prédictive IA</h3>
+                    <h2 class="text-xs font-black uppercase mt-0.5">COUPE D'AFRIQUE</h2>
                 </div>
                 <button onclick="closeStatsModal()" class="text-gray-400 hover:text-white font-bold text-sm bg-slate-800/60 w-6 h-6 rounded-full flex items-center justify-center">✕</button>
             </div>
-
-            <!-- Modal Content (Sary faha-7) -->
             <div class="p-4 space-y-4">
-                <!-- Teams header -->
                 <div class="flex items-center justify-between text-center">
                     <div class="w-5/12 flex flex-col items-center">
                         <span class="text-2xl" id="modal-home-flag">🇿🇼</span>
-                        <span class="text-[10px] font-black uppercase mt-1 tracking-wide truncate w-full" id="modal-home-name">Zimbabwe</span>
-                        <span class="text-[8px] text-gray-400 font-medium">Domicile</span>
+                        <span class="text-[10px] font-black uppercase mt-1 truncate w-full" id="modal-home-name">Zimbabwe</span>
                     </div>
-                    <div class="w-2/12 font-black text-xs text-indigo-400 bg-indigo-950/50 px-1.5 py-0.5 rounded border border-indigo-900/40">VS</div>
+                    <div class="w-2/12 font-black text-xs text-indigo-400">VS</div>
                     <div class="w-5/12 flex flex-col items-center">
                         <span class="text-2xl" id="modal-away-flag">🇸🇳</span>
-                        <span class="text-[10px] font-black uppercase mt-1 tracking-wide truncate w-full" id="modal-away-name">Sénégal</span>
-                        <span class="text-[8px] text-gray-400 font-medium">Extérieur</span>
+                        <span class="text-[10px] font-black uppercase mt-1 truncate w-full" id="modal-away-name">Sénégal</span>
                     </div>
                 </div>
-
-                <!-- Probabilités bars -->
                 <div class="space-y-1.5">
-                    <div class="flex items-center justify-between text-[8px] font-black uppercase text-gray-400">
-                        <span>Probabilités de victoire (1X2)</span>
-                        <span class="text-emerald-400 font-bold" id="modal-precision-pct">Précision: 94%</span>
-                    </div>
-                    <!-- Three way progress bar -->
                     <div class="w-full h-4 rounded-md overflow-hidden flex text-[9px] font-black text-center text-white">
-                        <div id="modal-prob-1" class="bg-emerald-600 flex items-center justify-center transition-all">1 (55%)</div>
-                        <div id="modal-prob-x" class="bg-amber-600 flex items-center justify-center transition-all">X (26%)</div>
-                        <div id="modal-prob-2" class="bg-red-600 flex items-center justify-center transition-all">2 (19%)</div>
+                        <div class="bg-emerald-600 flex items-center justify-center w-[55%]">1 (55%)</div>
+                        <div class="bg-amber-600 flex items-center justify-center w-[25%]">X (25%)</div>
+                        <div class="bg-red-600 flex items-center justify-center w-[20%]">2 (20%)</div>
                     </div>
-                    <p class="text-[8px] text-gray-400 text-center italic mt-1">Notre modèle IA estime l'issue en faveur de l'ÉQUIPE DOMICILE.</p>
                 </div>
-
-                <!-- Confidence indicator -->
-                <div class="bg-slate-900/60 p-2 rounded-xl border border-slate-800 flex items-center justify-between text-[10px] font-bold">
+                <div class="bg-slate-900/60 p-2 rounded-xl border border-slate-800 flex items-center justify-between text-[10px]">
                     <span class="text-gray-400">CONFIANCE IA</span>
-                    <span class="text-emerald-400 font-black text-sm" id="modal-confidence-value">37%</span>
+                    <span class="text-emerald-400 font-black" id="modal-confidence-value">37%</span>
                 </div>
-
-                <!-- Stats details lists -->
-                <div class="space-y-2 text-[10px] border-t border-slate-800/60 pt-3">
-                    <div class="flex justify-between font-bold text-gray-400"><span class="uppercase">Statistiques de match prévues</span><span class="text-white">SPORTS</span></div>
-                    <div class="flex justify-between text-gray-300"><span>Buts attendus (xG)</span><span class="font-mono font-bold" id="modal-xg-val">1.92 - 0.74</span></div>
-                    <div class="flex justify-between text-gray-300"><span>Tirs cadrés</span><span class="font-mono font-bold">7 - 3</span></div>
-                    <div class="flex justify-between text-gray-300"><span>Météo & Arbitre</span><span class="text-gray-400 truncate max-w-[60%]" id="modal-weather-val">Ensoleillé, 28°C | B. Gassama</span></div>
-                </div>
-            </div>
-
-            <!-- Bottom Note -->
-            <div class="p-2 bg-slate-950/40 text-[7px] text-center text-gray-500 border-t border-slate-900/40">
-                Les predictions et cotes ont des bases statistiques et peuvent changer. Jouez de manière responsable.
             </div>
         </div>
     </div>
-
 
     <!-- ================= NAVIGATION BAR AMBONY AVY HATRANY ================= -->
     <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-2 flex justify-around items-center z-50 shadow-lg max-w-md mx-auto">
@@ -286,30 +256,53 @@
         </button>
     </div>
 
-
-    <!-- ================= JAVASCRIPT LOGIC DYNAMIC AND FULL ================= -->
     <script>
         let currentFilter = '1x2';
         let activeRoundTime = '16:00';
+        let activeSubTab = 'matchs';
 
-        // Bank data momba ny firenena sy ny sainam-pirenena
+        // Data Ekipa 20 milalao lalao 10 isaky ny Round
         const matchesData = [
-            { home: "Ouganda", away: "Égypte", hFlag: "🇺🇬", aFlag: "🇪🇬", score: "1-1", pct: "37%", hG: 1, aG: 1, c1: "2.10", cX: "3.20", c2: "2.90", ov: "1.67", un: "1.97", bYes: "1.88", bNo: "1.81", d1X: "1.30", d12: "1.35", dX2: "1.45", cs1: "1-1", cs2: "1-0", cs1Odds: "6.00", cs2Odds: "7.50", xG: "1.42 - 1.10", w: "Nuageux, 24°C" },
-            { home: "Mozambique", away: "Gabon", hFlag: "🇲🇿", aFlag: "🇬🇦", score: "0-0", pct: "23%", hG: 1, aG: 1, c1: "2.30", cX: "3.10", c2: "3.20", ov: "1.47", un: "1.73", bYes: "1.68", bNo: "1.98", d1X: "1.28", d12: "1.33", dX2: "1.50", cs1: "0-0", cs2: "1-1", cs1Odds: "5.50", cs2Odds: "6.20", xG: "0.85 - 0.90", w: "Pluvieux, 21°C" },
-            { home: "Tunisie", away: "Guinée Équatoriale", hFlag: "🇹🇳", aFlag: "🇬🇶", score: "1-1", pct: "28%", hG: 2, aG: 0, c1: "1.95", cX: "3.40", c2: "3.95", ov: "1.80", un: "1.53", bYes: "1.95", bNo: "1.66", d1X: "1.20", d12: "1.28", dX2: "1.75", cs1: "2-0", cs2: "1-0", cs1Odds: "8.00", cs2Odds: "5.80", xG: "2.10 - 0.65", w: "Ensoleillé, 30°C" },
-            { home: "Algérie", away: "Zambie", hFlag: "🇩🇿", aFlag: "🇿🇲", score: "1-0", pct: "25%", hG: 1, aG: 0, c1: "1.65", cX: "3.60", c2: "5.10", ov: "1.95", un: "1.45", bYes: "2.05", bNo: "1.55", d1X: "1.12", d12: "1.22", dX2: "2.10", cs1: "1-0", cs2: "2-0", cs1Odds: "5.20", cs2Odds: "6.80", xG: "1.75 - 0.50", w: "Clair, 22°C" },
-            { home: "Botswana", away: "RD Congo", hFlag: "🇧🇼", aFlag: "🇨🇩", score: "1-1", pct: "30%", hG: 2, aG: 2, c1: "3.40", cX: "3.10", c2: "2.20", ov: "1.65", un: "2.00", bYes: "1.90", bNo: "1.70", d1X: "1.60", d12: "1.33", dX2: "1.25", cs1: "2-2", cs2: "1-2", cs1Odds: "12.0", cs2Odds: "8.50", xG: "1.20 - 1.95", w: "Venteux, 18°C" },
-            { home: "Zimbabwe", away: "Nigeria", hFlag: "🇿🇼", aFlag: "🇳🇬", score: "0-0", pct: "22%", hG: 0, aG: 0, c1: "4.50", cX: "3.30", c2: "1.80", ov: "1.55", un: "2.15", bYes: "2.10", bNo: "1.50", d1X: "1.90", d12: "1.28", dX2: "1.15", cs1: "0-0", cs2: "0-1", cs1Odds: "7.00", cs2Odds: "5.00", xG: "0.60 - 1.65", w: "Humide, 26°C" },
-            { home: "Côte d'Ivoire", away: "Comores", hFlag: "🇨🇮", aFlag: "🇰🇲", score: "1-1", pct: "32%", hG: 3, aG: 1, c1: "1.40", cX: "4.20", c2: "7.50", ov: "2.10", un: "1.40", bYes: "2.30", bNo: "1.45", d1X: "1.05", d12: "1.18", dX2: "2.70", cs1: "2-0", cs2: "3-1", cs1Odds: "5.50", cs2Odds: "11.0", xG: "2.50 - 0.40", w: "Beau temps, 29°C" },
-            { home: "Burkina Faso", away: "Mali", hFlag: "🇧🇫", aFlag: "🇲🇱", score: "0-1", pct: "24%", hG: 0, aG: 1, c1: "2.80", cX: "3.00", c2: "2.60", ov: "1.50", un: "2.20", bYes: "1.95", bNo: "1.66", d1X: "1.42", d12: "1.33", dX2: "1.38", cs1: "0-1", cs2: "1-1", cs1Odds: "6.50", cs2Odds: "5.80", xG: "0.95 - 1.25", w: "Couvert, 23°C" }
+            { home: "Ouganda", away: "Égypte", hFlag: "🇺🇬", aFlag: "🇪🇬", score: "1-1", pct: "37%", c1: "2.10", cX: "3.20", c2: "2.90", ov: "1.67", un: "1.97", bYes: "1.88", bNo: "1.81", d1X: "1.30", d12: "1.35", dX2: "1.45", cs1: "1-1", cs2: "1-0", cs1Odds: "6.00", cs2Odds: "7.50", played: true, hG: 1, aG: 1 },
+            { home: "Mozambique", away: "Gabon", hFlag: "🇲🇿", aFlag: "🇬🇦", score: "0-0", pct: "23%", c1: "2.30", cX: "3.10", c2: "3.20", ov: "1.47", un: "1.73", bYes: "1.68", bNo: "1.98", d1X: "1.28", d12: "1.33", dX2: "1.50", cs1: "0-0", cs2: "1-1", cs1Odds: "5.50", cs2Odds: "6.20", played: true, hG: 0, aG: 0 },
+            { home: "Tunisie", away: "Guinée Éq.", hFlag: "🇹🇳", aFlag: "🇬🇶", score: "2-0", pct: "28%", c1: "1.95", cX: "3.40", c2: "3.95", ov: "1.80", un: "1.53", bYes: "1.95", bNo: "1.66", d1X: "1.20", d12: "1.28", dX2: "1.75", cs1: "2-0", cs2: "1-0", cs1Odds: "8.00", cs2Odds: "5.80", played: true, hG: 2, aG: 0 },
+            { home: "Algérie", away: "Zambie", hFlag: "🇩🇿", aFlag: "🇿🇲", score: "1-0", pct: "25%", c1: "1.65", cX: "3.60", c2: "5.10", ov: "1.95", un: "1.45", bYes: "2.05", bNo: "1.55", d1X: "1.12", d12: "1.22", dX2: "2.10", cs1: "1-0", cs2: "2-0", cs1Odds: "5.20", cs2Odds: "6.80", played: false, hG: 1, aG: 0 },
+            { home: "Botswana", away: "RD Congo", hFlag: "🇧🇼", aFlag: "🇨🇩", score: "2-2", pct: "30%", c1: "3.40", cX: "3.10", c2: "2.20", ov: "1.65", un: "2.00", bYes: "1.90", bNo: "1.70", d1X: "1.60", d12: "1.33", dX2: "1.25", cs1: "2-2", cs2: "1-2", cs1Odds: "12.0", cs2Odds: "8.50", played: false, hG: 2, aG: 2 },
+            { home: "Zimbabwe", away: "Nigeria", hFlag: "🇿🇼", aFlag: "🇳🇬", score: "0-1", pct: "22%", c1: "4.50", cX: "3.30", c2: "1.80", ov: "1.55", un: "2.15", bYes: "2.10", bNo: "1.50", d1X: "1.90", d12: "1.28", dX2: "1.15", cs1: "0-0", cs2: "0-1", cs1Odds: "7.00", cs2Odds: "5.00", played: false, hG: 0, aG: 1 },
+            { home: "Côte d'Ivoire", away: "Comores", hFlag: "🇨🇮", aFlag: "🇰🇲", score: "3-1", pct: "32%", c1: "1.40", cX: "4.20", c2: "7.50", ov: "2.10", un: "1.40", bYes: "2.30", bNo: "1.45", d1X: "1.05", d12: "1.18", dX2: "2.70", cs1: "2-0", cs2: "3-1", cs1Odds: "5.50", cs2Odds: "11.0", played: false, hG: 3, aG: 1 },
+            { home: "Burkina Faso", away: "Mali", hFlag: "🇧🇫", aFlag: "🇲🇱", score: "0-1", pct: "24%", c1: "2.80", cX: "3.00", c2: "2.60", ov: "1.50", un: "2.20", bYes: "1.95", bNo: "1.66", d1X: "1.42", d12: "1.33", dX2: "1.38", cs1: "0-1", cs2: "1-1", cs1Odds: "6.50", cs2Odds: "5.80", played: false, hG: 0, aG: 1 },
+            { home: "Afrique du Sud", away: "Angola", hFlag: "🇿🇦", aFlag: "🇦🇴", score: "2-1", pct: "29%", c1: "2.15", cX: "3.10", c2: "3.35", ov: "1.70", un: "1.90", bYes: "1.85", bNo: "1.85", d1X: "1.28", d12: "1.32", dX2: "1.62", cs1: "2-1", cs2: "1-1", cs1Odds: "7.00", cs2Odds: "6.00", played: false, hG: 2, aG: 1 },
+            { home: "Maroc", away: "Cameroun", hFlag: "🇲🇦", aFlag: "🇨🇲", score: "2-0", pct: "41%", c1: "1.70", cX: "3.50", c2: "4.80", ov: "1.85", un: "1.80", bYes: "1.90", bNo: "1.75", d1X: "1.15", d12: "1.25", dX2: "2.00", cs1: "2-0", cs2: "1-0", cs1Odds: "5.80", cs2Odds: "5.50", played: false, hG: 2, aG: 0 }
         ];
 
-        // Lojika ho an'ny fifindran'ny pejy telo fototra
+        // Filaharana Ekipa 20 ho an'ny Classement
+        const classementData = [
+            { pos: 1, name: "Maroc", j: 14, g: 9, n: 3, p: 2, pts: 30 },
+            { pos: 2, name: "Côte d'Ivoire", j: 14, g: 8, n: 4, p: 2, pts: 28 },
+            { pos: 3, name: "Algérie", j: 14, g: 8, n: 3, p: 3, pts: 27 },
+            { pos: 4, name: "Tunisie", j: 14, g: 7, n: 5, p: 2, pts: 26 },
+            { pos: 5, name: "Égypte", j: 14, g: 7, n: 4, p: 3, pts: 25 },
+            { pos: 6, name: "Nigeria", j: 14, g: 6, n: 5, p: 3, pts: 23 },
+            { pos: 7, name: "Mali", j: 14, g: 6, n: 4, p: 4, pts: 22 },
+            { pos: 8, name: "Cameroun", j: 14, g: 5, n: 6, p: 3, pts: 21 },
+            { pos: 9, name: "RD Congo", j: 14, g: 5, n: 5, p: 4, pts: 20 },
+            { pos: 10, name: "Afrique du Sud", j: 14, g: 5, n: 4, p: 5, pts: 19 },
+            { pos: 11, name: "Burkina Faso", j: 14, g: 4, n: 6, p: 4, pts: 18 },
+            { pos: 12, name: "Gabon", j: 14, g: 4, n: 5, p: 5, pts: 17 },
+            { pos: 13, name: "Guinée Éq.", j: 14, g: 4, n: 4, p: 6, pts: 16 },
+            { pos: 14, name: "Ouganda", j: 14, g: 3, n: 6, p: 5, pts: 15 },
+            { pos: 15, name: "Angola", j: 14, g: 3, n: 5, p: 6, pts: 14 },
+            { pos: 16, name: "Zambie", j: 14, g: 3, n: 4, p: 7, pts: 13 },
+            { pos: 17, name: "Mozambique", j: 14, g: 2, n: 6, p: 6, pts: 12 },
+            { pos: 18, name: "Botswana", j: 14, g: 2, n: 5, p: 7, pts: 11 },
+            { pos: 19, name: "Zimbabwe", j: 14, g: 1, n: 5, p: 8, pts: 8 },
+            { pos: 20, name: "Comores", j: 14, g: 1, n: 3, p: 10, pts: 6 }
+        ];
+
         function switchPage(page) {
             document.getElementById('page-home').classList.add('hidden');
             document.getElementById('page-prediction').classList.add('hidden');
             document.getElementById('page-premium').classList.add('hidden');
-
             document.getElementById('nav-home').className = "flex flex-col items-center gap-0.5 text-xs font-bold text-gray-400";
             document.getElementById('nav-prediction').className = "flex flex-col items-center gap-0.5 text-xs font-bold text-gray-400";
 
@@ -320,9 +313,154 @@
                 document.getElementById('page-prediction').classList.remove('hidden');
                 document.getElementById('nav-prediction').className = "flex flex-col items-center gap-0.5 text-xs font-bold text-green-600";
                 renderRoundsBar();
-                renderMatchesTable();
+                switchSubTab(activeSubTab);
             } else if (page === 'premium') {
                 document.getElementById('page-premium').classList.remove('hidden');
+            }
+        }
+
+        // Fitantanana ny Tab telo: Résultats, Matchs, Classement
+        function switchSubTab(tab) {
+            activeSubTab = tab;
+            document.getElementById('tab-resultats').className = "py-2.5 cursor-pointer text-gray-500";
+            document.getElementById('tab-matchs').className = "py-2.5 cursor-pointer text-gray-500";
+            document.getElementById('tab-classement').className = "py-2.5 cursor-pointer text-gray-500";
+            
+            document.getElementById(`tab-${tab}`).className = "py-2.5 cursor-pointer text-emerald-700 border-b-2 border-emerald-700 bg-white";
+
+            if (tab === 'classement') {
+                document.getElementById('subtab-content-matches').classList.add('hidden');
+                document.getElementById('prediction-filters').classList.add('hidden');
+                document.getElementById('subtab-content-classement').classList.remove('hidden');
+                renderClassementTable();
+            } else {
+                document.getElementById('subtab-content-matches').classList.remove('hidden');
+                document.getElementById('prediction-filters').classList.remove('hidden');
+                document.getElementById('subtab-content-classement').classList.add('hidden');
+                renderMatchesTable(tab === 'resultats');
+            }
+        }
+
+        function renderRoundsBar() {
+            const bar = document.getElementById('match-rounds-bar');
+            bar.innerHTML = '';
+            const times = ["15:52", "15:54", "15:56", "15:58", "16:00", "16:02", "16:04", "16:06"];
+            times.forEach(t => {
+                let btn = document.createElement('button');
+                btn.className = (t === activeRoundTime) ? "bg-red-600 text-white px-2.5 py-1 rounded-md shadow-xs" : "bg-white border border-gray-200 px-2.5 py-1 rounded-md text-gray-500";
+                btn.innerText = t;
+                btn.onclick = () => { activeRoundTime = t; renderRoundsBar(); switchSubTab(activeSubTab); };
+                bar.appendChild(btn);
+            });
+        }
+
+        function changeFilter(filterType, element) {
+            currentFilter = filterType;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.className = "filter-btn bg-gray-100 text-gray-500 px-2.5 py-1 rounded-md");
+            element.className = "filter-btn bg-emerald-700 text-white px-2.5 py-1 rounded-md";
+
+            const head = document.getElementById('dynamic-table-header');
+            if (filterType === '1x2') head.innerHTML = '<span>1</span><span>X</span><span>2</span>';
+            else if (filterType === 'double') head.innerHTML = '<span>1X</span><span>12</span><span>X2</span>';
+            else if (filterType === 'ou') head.innerHTML = '<span>OVER 2.5</span><span>UNDER 2.5</span><span></span>';
+            else if (filterType === 'btts') head.innerHTML = '<span>OUI</span><span>NON</span><span></span>';
+            else if (filterType === 'correct') head.innerHTML = '<span>PREDI</span><span>ALT</span><span></span>';
+
+            switchSubTab(activeSubTab);
+        }
+
+        function renderMatchesTable(isResultatTab = false) {
+            const container = document.getElementById('matches-list-container');
+            container.innerHTML = '';
+
+            matchesData.forEach(m => {
+                // Sivana fotsiny ho an'ny fampisehoana ny efa tapitra na ny mbola ho avy
+                if (isResultatTab && !m.played) return; 
+
+                let row = document.createElement('div');
+                row.className = "grid grid-cols-12 p-2.5 items-center text-center text-[10px] font-bold border-b border-gray-100 hover:bg-slate-50 cursor-pointer";
+                row.onclick = () => openStatsModal(m);
+
+                let liveText = isResultatTab ? `<span class="text-gray-400 font-bold">Terminé</span>` : `<span class="text-red-500 font-bold animate-pulse">● LIVE 90'</span>`;
+
+                let teamHtml = `
+                    <div class="col-span-4 text-left space-y-0.5 truncate pr-1">
+                        <div class="flex items-center gap-1 truncate"><span>${m.hFlag}</span> <span class="truncate text-gray-700">${m.home}</span> <span class="text-emerald-600 font-extrabold ml-auto">${m.hG}</span></div>
+                        <div class="flex items-center gap-1 truncate"><span>${m.aFlag}</span> <span class="truncate text-gray-700">${m.away}</span> <span class="text-emerald-600 font-extrabold ml-auto">${m.aG}</span></div>
+                        <div class="text-[7px] text-gray-400 font-medium">🕒 ${activeRoundTime} • ${liveText}</div>
+                    </div>
+                `;
+
+                let oddsHtml = '';
+                if (currentFilter === '1x2') {
+                    oddsHtml = `<div class="col-span-6 grid grid-cols-3 gap-1 px-1 text-[9px]">
+                        <div class="bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-400"> ${m.c1} 🔒</div>
+                        <div class="bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-400"> ${m.cX} 🔒</div>
+                        <div class="bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-400"> ${m.c2} 🔒</div>
+                    </div>`;
+                } else if (currentFilter === 'double') {
+                    oddsHtml = `<div class="col-span-6 grid grid-cols-3 gap-1 px-1 text-[9px]">
+                        <div class="bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-400">${m.d1X} 🔒</div>
+                        <div class="bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-400">${m.d12} 🔒</div>
+                        <div class="bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-400">${m.dX2} 🔒</div>
+                    </div>`;
+                } else if (currentFilter === 'ou') {
+                    oddsHtml = `<div class="col-span-6 grid grid-cols-2 gap-1 px-1 text-[9px]">
+                        <div class="bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-500">${m.ov}</div>
+                        <div class="bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-500">${m.un}</div>
+                    </div>`;
+                } else if (currentFilter === 'btts') {
+                    oddsHtml = `<div class="col-span-6 grid grid-cols-2 gap-1 px-1 text-[9px]">
+                        <div class="bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-500">${m.bYes}</div>
+                        <div class="bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-500">${m.bNo}</div>
+                    </div>`;
+                } else if (currentFilter === 'correct') {
+                    oddsHtml = `<div class="col-span-6 grid grid-cols-2 gap-1 px-1 text-[9px]">
+                        <div class="bg-gray-50 border border-gray-200 py-1 rounded-md text-gray-500">${m.cs1} <span class="text-[7px] text-gray-400 block">${m.cs1Odds}</span></div>
+                        <div class="bg-gray-50 border border-gray-200 py-1 rounded-md text-gray-500">${m.cs2} <span class="text-[7px] text-gray-400 block">${m.cs2Odds}</span></div>
+                    </div>`;
+                }
+
+                let predictionHtml = `
+                    <div class="col-span-2 text-right flex flex-col items-end justify-center">
+                        <span class="bg-gray-100 text-gray-700 border border-gray-200 px-1.5 py-1 rounded font-mono font-extrabold">${m.score}</span>
+                        <span class="text-[7px] text-gray-400 mt-0.5">(${m.pct})</span>
+                    </div>
+                `;
+
+                row.innerHTML = teamHtml + oddsHtml + predictionHtml;
+                container.appendChild(row);
+            });
+        }
+
+        function renderClassementTable() {
+            const tbody = document.getElementById('classement-tbody');
+            tbody.innerHTML = '';
+            classementData.forEach(c => {
+                let r = document.createElement('tr');
+                r.className = "border-b border-gray-100 hover:bg-gray-50";
+                r.innerHTML = `
+                    <td class="p-2 text-gray-400 font-bold">${c.pos}</td>
+                    <td class="p-2 text-gray-800 font-bold">${c.name}</td>
+                    <td class="p-2 text-center text-gray-500">${c.j}</td>
+                    <td class="p-2 text-center text-gray-500">${c.g}</td>
+                    <td class="p-2 text-center text-gray-500">${c.n}</td>
+                    <td class="p-2 text-center text-gray-500">${c.p}</td>
+                    <td class="p-2 text-center font-black text-emerald-700 bg-emerald-50/50">${c.pts}</td>
+                `;
+                tbody.appendChild(r);
+            });
+        }
+
+        // Lojika ho an'ny fampidirana sary/capture
+        function triggerInput(id) {
+            document.getElementById(id).click();
+        }
+
+        function handleFileSelect(input, textId) {
+            if (input.files && input.files[0]) {
+                document.getElementById(textId).innerText = "✅ Sary / Capture nampidirina: " + input.files[0].name;
+                document.getElementById(textId).className = "text-emerald-400 font-bold";
             }
         }
 
@@ -340,149 +478,12 @@
             }
         }
 
-        // Fampisehoana ny ligue voafidy ambony
-        function selectLeague(id) {
-            const btnIds = ['all', 'caf', 'cl', 'pl'];
-            btnIds.forEach(b => {
-                document.getElementById(`l-${b}`).className = "bg-white text-gray-700 border border-gray-200 px-3 py-1.5 rounded-full whitespace-nowrap";
-            });
-            document.getElementById(`l-${id}`).className = "bg-emerald-700 text-white px-3 py-1.5 rounded-full shadow-2xs whitespace-nowrap";
-            
-            const titles = { all: "Toutes les Ligues", caf: "Coupe d'Afrique", cl: "Ligue des Champions", pl: "Premier League" };
-            document.getElementById('current-league-title').innerText = titles[id];
-        }
-
-        // Famoronana ny Matchday Rounds isaky ny 2 minitra (Sary faha-1)
-        function renderRoundsBar() {
-            const bar = document.getElementById('match-rounds-bar');
-            bar.innerHTML = '';
-            const times = ["15:50", "15:52", "15:54", "15:56", "15:58", "16:00", "16:02", "16:04", "16:06", "16:08", "16:10"];
-            
-            times.forEach(t => {
-                let btn = document.createElement('button');
-                if (t === activeRoundTime) {
-                    btn.className = "bg-red-600 text-white px-2.5 py-1 rounded-md shadow-xs transition-all";
-                } else {
-                    btn.className = "bg-white border border-gray-200 px-2.5 py-1 rounded-md text-gray-500 hover:bg-gray-100";
-                }
-                btn.innerText = t;
-                btn.onclick = () => {
-                    activeRoundTime = t;
-                    renderRoundsBar();
-                    renderMatchesTable();
-                };
-                bar.appendChild(btn);
-            });
-        }
-
-        // Fanovana ny sivana sivana
-        function changeFilter(filterType, element) {
-            currentFilter = filterType;
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.className = "filter-btn bg-gray-100 text-gray-500 px-2.5 py-1 rounded-md font-black";
-            });
-            element.className = "filter-btn bg-emerald-700 text-white px-2.5 py-1 rounded-md font-black";
-
-            // Fanovana ny lohatenin'ny tsanganana afovoany
-            const head = document.getElementById('dynamic-table-header');
-            if (filterType === '1x2') head.innerHTML = '<span>1</span><span>X</span><span>2</span>';
-            else if (filterType === 'double') head.innerHTML = '<span>1X</span><span>12</span><span>X2</span>';
-            else if (filterType === 'ou') head.innerHTML = '<span>OVER 2.5</span><span>UNDER 2.5</span><span></span>';
-            else if (filterType === 'btts') head.innerHTML = '<span>OUI</span><span>NON</span><span></span>';
-            else if (filterType === 'correct') head.innerHTML = '<span>PREDI</span><span>ALT</span><span></span>';
-
-            renderMatchesTable();
-        }
-
-        // Famenoana ny tabilao lalao manontolo miaraka amin'ny lock icons sy ny odds rehetra (Sary 1, 2, 3, 4, 5)
-        function renderMatchesTable() {
-            const container = document.getElementById('matches-list-container');
-            container.innerHTML = '';
-
-            matchesData.forEach((m, index) => {
-                let row = document.createElement('div');
-                row.className = "grid grid-cols-12 p-2.5 items-center text-center text-[10px] font-bold border-b border-gray-100 hover:bg-slate-50 transition cursor-pointer";
-                row.onclick = () => openStatsModal(m);
-
-                // Ekipa 1 sy 2 miaraka amin'ny saina sy soratra kely live 90'
-                let teamHtml = `
-                    <div class="col-span-4 text-left space-y-0.5 truncate pr-1">
-                        <div class="flex items-center gap-1 truncate"><span class="text-xs">${m.hFlag}</span> <span class="truncate text-gray-700">${m.home}</span> <span class="text-[9px] text-emerald-600 font-extrabold ml-auto">${m.hG}</span></div>
-                        <div class="flex items-center gap-1 truncate"><span class="text-xs">${m.aFlag}</span> <span class="truncate text-gray-700">${m.away}</span> <span class="text-[9px] text-emerald-600 font-extrabold ml-auto">${m.aG}</span></div>
-                        <div class="text-[7px] text-gray-400 font-medium flex items-center gap-1">🕒 ${activeRoundTime} • <span class="text-red-500 font-bold animate-pulse">● LIVE 90'</span></div>
-                    </div>
-                `;
-
-                // Dinamika momba ny sivana voafidy eo afovoany
-                let oddsHtml = '';
-                if (currentFilter === '1x2') {
-                    oddsHtml = `
-                        <div class="col-span-6 grid grid-cols-3 gap-1 px-1 text-[9px]">
-                            <div class="bg-gray-50 border border-gray-200 py-2 rounded-md flex flex-col items-center justify-center text-gray-400 font-semibold gap-0.5">${m.c1} <span class="text-[7px]">🔒</span></div>
-                            <div class="bg-gray-50 border border-gray-200 py-2 rounded-md flex flex-col items-center justify-center text-gray-400 font-semibold gap-0.5">${m.cX} <span class="text-[7px]">🔒</span></div>
-                            <div class="bg-gray-50 border border-gray-200 py-2 rounded-md flex flex-col items-center justify-center text-gray-400 font-semibold gap-0.5">${m.c2} <span class="text-[7px]">🔒</span></div>
-                        </div>
-                    `;
-                } else if (currentFilter === 'double') {
-                    oddsHtml = `
-                        <div class="col-span-6 grid grid-cols-3 gap-1 px-1 text-[9px]">
-                            <div class="bg-gray-50 border border-gray-200 py-2 rounded-md flex flex-col items-center justify-center text-gray-400 font-semibold gap-0.5">${m.d1X} <span class="text-[7px]">🔒</span></div>
-                            <div class="bg-gray-50 border border-gray-200 py-2 rounded-md flex flex-col items-center justify-center text-gray-400 font-semibold gap-0.5">${m.d12} <span class="text-[7px]">🔒</span></div>
-                            <div class="bg-gray-50 border border-gray-200 py-2 rounded-md flex flex-col items-center justify-center text-gray-400 font-semibold gap-0.5">${m.dX2} <span class="text-[7px]">🔒</span></div>
-                        </div>
-                    `;
-                } else if (currentFilter === 'ou') {
-                    oddsHtml = `
-                        <div class="col-span-6 grid grid-cols-12 gap-1 px-1 text-[9px]">
-                            <div class="col-span-6 bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-500 font-mono font-bold">${m.ov}</div>
-                            <div class="col-span-6 bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-500 font-mono font-bold">${m.un}</div>
-                        </div>
-                    `;
-                } else if (currentFilter === 'btts') {
-                    oddsHtml = `
-                        <div class="col-span-6 grid grid-cols-12 gap-1 px-1 text-[9px]">
-                            <div class="col-span-6 bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-500 font-mono font-bold">${m.bYes}</div>
-                            <div class="col-span-6 bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-500 font-mono font-bold">${m.bNo}</div>
-                        </div>
-                    `;
-                } else if (currentFilter === 'correct') {
-                    oddsHtml = `
-                        <div class="col-span-6 grid grid-cols-12 gap-1 px-1 text-[9px]">
-                            <div class="col-span-6 bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-500 font-mono font-bold">${m.cs1} <span class="text-[7px] text-gray-400 block font-sans">${m.cs1Odds}</span></div>
-                            <div class="col-span-6 bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-500 font-mono font-bold">${m.cs2} <span class="text-[7px] text-gray-400 block font-sans">${m.cs2Odds}</span></div>
-                        </div>
-                    `;
-                }
-
-                // Vokatra farany amin'ny score prediction
-                let predictionHtml = `
-                    <div class="col-span-2 text-right flex flex-col items-end justify-center">
-                        <span class="bg-gray-100 text-gray-700 border border-gray-200 px-1.5 py-1 rounded text-[9px] font-mono font-extrabold shadow-3xs">${m.score}</span>
-                        <span class="text-[7px] text-gray-400 mt-0.5 block font-medium">(${m.pct})</span>
-                    </div>
-                `;
-
-                row.innerHTML = teamHtml + oddsHtml + predictionHtml;
-                container.appendChild(row);
-            });
-        }
-
-        // Lojika amin'ny fanokafana ny popup momba ny simulation AI (Sary faha-7)
         function openStatsModal(match) {
             document.getElementById('modal-home-flag').innerText = match.hFlag;
             document.getElementById('modal-home-name').innerText = match.home;
             document.getElementById('modal-away-flag').innerText = match.aFlag;
             document.getElementById('modal-away-name').innerText = match.away;
-            
-            // Generate pseudo random distributions for illustration
-            document.getElementById('modal-prob-1').innerText = `1 (55%)`;
-            document.getElementById('modal-prob-x').innerText = `X (26%)`;
-            document.getElementById('modal-prob-2').innerText = `2 (19%)`;
-            
-            document.getElementById('modal-xg-val').innerText = match.xG;
-            document.getElementById('modal-weather-val').innerText = match.w;
             document.getElementById('modal-confidence-value').innerText = match.pct;
-
             document.getElementById('stats-modal').classList.remove('hidden');
         }
 
@@ -490,8 +491,7 @@
             document.getElementById('stats-modal').classList.add('hidden');
         }
 
-        // Mampiseho avy hatrany ny pejy fandraisana (Accueil)
         switchPage('home');
     </script>
 </body>
-    </html>
+</html>
