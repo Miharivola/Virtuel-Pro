@@ -232,8 +232,9 @@
             </div>
         </div>
 
-        <!-- ================= LAFINY 2: MATCHS & PRONOSTICS ================= -->
+        <!-- ================= LAFINY 2: MATCHS & PRONOSTICS (SARY 1 & SARY 2) ================= -->
         <div id="premium-step-2" class="hidden space-y-4">
+            <!-- Loading Box mandeha mandritra ny analyse -->
             <div id="extraction-status-2" class="hidden bg-[#161f33] text-white p-4 rounded-2xl border border-slate-700 text-center relative overflow-hidden">
                 <div class="flex items-center justify-center gap-2 mb-2">
                     <span class="text-lg text-indigo-400 animate-pulse">✨</span>
@@ -248,38 +249,64 @@
                 </div>
             </div>
 
-            <div class="bg-[#161f33] text-white p-4 rounded-2xl border border-slate-700 space-y-4">
-                <div class="flex items-start gap-2.5">
-                    <span class="text-lg text-indigo-400 mt-0.5">🎲</span>
-                    <div>
-                        <h3 class="text-xs font-black tracking-wide uppercase">CHARGER LES MATCHS</h3>
-                        <p class="text-[9px] text-gray-400 mt-0.5 leading-relaxed">Déposez les matchs du jour à pronostiquer. Le moteur calculera automatiquement les scores exacts.</p>
+            <!-- UI SARY VOALOHANY: FAKANA MATCHS / CAPTURE -->
+            <div class="bg-[#161f33] text-white p-5 rounded-2xl border border-slate-700 space-y-4 shadow-xl">
+                <div class="flex flex-col items-center text-center space-y-3">
+                    <div class="p-2.5 bg-indigo-500/10 rounded-full text-indigo-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                        </svg>
                     </div>
+                    
+                    <h3 class="text-xs font-black tracking-wide uppercase text-gray-200">CHARGER LES MATCHS</h3>
+                    <p class="text-[9px] text-gray-400">Prenez une capture ou importez le fichier contenant les matchs du jour.</p>
+                    
+                    <!-- Dropzone fakana sary -->
+                    <div onclick="triggerInput('file-2')" class="w-full border border-dashed border-slate-600 rounded-xl p-5 text-center bg-[#111827] text-gray-400 cursor-pointer hover:border-indigo-500 transition space-y-2">
+                        <div class="text-xl text-indigo-400">📤</div>
+                        <div class="text-[10px] font-bold text-gray-300">Glissez-déposez les fichiers de match ici</div>
+                        <input type="file" id="file-2" class="hidden" multiple accept="image/*,text/plain,application/pdf" onchange="handleFileChange(this, 2)">
+                    </div>
+
+                    <!-- Fampisehoana ireo fichier tafiditra -->
+                    <div id="file-list-2" class="hidden w-full space-y-1.5">
+                        <div class="flex justify-between items-center text-[9px] font-black text-gray-400 px-1">
+                            <span id="file-count-2">FICHIERS CHARGÉS (0)</span>
+                            <button onclick="clearFiles(2)" class="text-red-400 hover:underline">Tout effacer</button>
+                        </div>
+                        <div id="files-container-2" class="space-y-1 max-h-32 overflow-y-auto no-scrollbar w-full"></div>
+                    </div>
+
+                    <!-- Bokotra Orange handefasana Analyse Premium -->
+                    <button id="btn-action-2" onclick="startAnalysis(2)" class="w-full py-3 bg-gradient-to-r from-orange-500 to-amber-500 text-slate-900 font-black rounded-xl text-xs uppercase tracking-wide transition shadow-md opacity-60 cursor-not-allowed">
+                        ✨ Lancer Analyse Premium
+                    </button>
+                </div>
+            </div>
+
+            <!-- UI SARY FAHAROA: VOKATRA MIVOKA (RÉSULTATS D'ANALYSE PREMIUM) -->
+            <div id="result-block-premium" class="hidden bg-[#161f33] text-white p-5 border border-slate-700 rounded-2xl shadow-xl space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                    <div class="flex items-center space-x-2 text-amber-400 font-black text-xs uppercase tracking-wider">
+                        <span>🏆</span>
+                        <span>Résultats d'Analyse Premium</span>
+                    </div>
+                    <button onclick="clearPremiumResults()" class="text-xs text-gray-500 hover:text-gray-300 font-bold">Effacer</button>
+                </div>
+
+                <!-- Ny lisitra milamina tsara mifandraika amin'ny sary faha-2 -->
+                <div id="premium-prediction-list" class="space-y-2 max-h-[400px] overflow-y-auto no-scrollbar pr-1">
+                    <!-- Hotsofina eto avy amin'ny JS ny vokatra -->
                 </div>
                 
-                <div onclick="triggerInput('file-2')" class="border border-dashed border-slate-600 rounded-xl p-5 text-center bg-[#111827] text-gray-400 cursor-pointer hover:border-amber-500 transition space-y-2">
-                    <div class="text-xl text-indigo-400">📤</div>
-                    <div class="text-[10px] font-bold text-gray-300">Glissez-déposez les fichiers de match ici</div>
-                    <div class="text-[8px] text-gray-500">PNG, JPG, JPEG, WEBP, PDF, TXT · Max 20 fichiers · Jusqu'à 20 Mo chacun</div>
-                    <input type="file" id="file-2" class="hidden" multiple accept="image/*,text/plain,application/pdf" onchange="handleFileChange(this, 2)">
+                <div class="bg-slate-900/40 p-3 rounded-xl border border-slate-800 text-[9px] text-gray-400 text-center leading-relaxed">
+                    Analyse Premium est un moteur d'analyse statistique multimodal sécurisé. Toutes les données extraites restent stockées temporairement pendant la session de l'utilisateur.
                 </div>
-
-                <div id="file-list-2" class="hidden space-y-1.5">
-                    <div class="flex justify-between items-center text-[9px] font-black text-gray-400 px-1">
-                        <span id="file-count-2">FICHIERS CHARGÉS (0)</span>
-                        <button onclick="clearFiles(2)" class="text-red-400 hover:underline">Tout effacer</button>
-                    </div>
-                    <div id="files-container-2" class="space-y-1 max-h-32 overflow-y-auto no-scrollbar"></div>
-                </div>
-
-                <button id="btn-action-2" onclick="startAnalysis(2)" class="w-full py-2.5 bg-slate-800 text-gray-400 border border-slate-700 rounded-xl text-xs font-black uppercase tracking-wide transition shadow-md">
-                    Lancer Analyse Premium
-                </button>
             </div>
         </div>
     </div>
 
-    <!-- MODAL DIALOG -->
+    <!-- MODAL DIALOG DIALOG -->
     <div id="stats-modal" class="hidden fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
         <div class="bg-[#161f33] text-white w-full max-w-xs rounded-2xl border border-slate-700 overflow-hidden shadow-2xl relative">
             <div class="p-3 border-b border-slate-800 bg-[#1e293b] flex items-center justify-between">
@@ -331,25 +358,86 @@
         let activeRoundTime = '';
         let activeSubTab = 'matchs';
         let liveMinute = 0;
+        let lastRoundTime = '';
 
-        const matchesData = [
-            { home: "Ouganda", away: "Égypte", hFlag: "🇺🇬", aFlag: "🇪🇬", score: "1-1", pct: "37%", c1: "2.10", cX: "3.20", c2: "2.90", ov: "1.67", un: "1.97", bYes: "1.88", bNo: "1.81", d1X: "1.30", d12: "1.35", dX2: "1.45", cs1: "1-1", cs2: "1-0", cs1Odds: "6.00", cs2Odds: "7.50", hG: 1, aG: 1 },
-            { home: "Mozambique", away: "Gabon", hFlag: "🇲🇿", aFlag: "🇬🇦", score: "0-0", pct: "23%", c1: "2.30", cX: "3.10", c2: "3.20", ov: "1.47", un: "1.73", bYes: "1.68", bNo: "1.98", d1X: "1.28", d12: "1.33", dX2: "1.50", cs1: "0-0", cs2: "1-1", cs1Odds: "5.50", cs2Odds: "6.20", hG: 0, aG: 0 },
-            { home: "Tunisie", away: "Guinée Éq.", hFlag: "🇹🇳", aFlag: "🇬🇶", score: "2-0", pct: "28%", c1: "1.95", cX: "3.40", c2: "3.95", ov: "1.80", un: "1.53", bYes: "1.95", bNo: "1.66", d1X: "1.20", d12: "1.28", dX2: "1.75", cs1: "2-0", cs2: "1-0", cs1Odds: "8.00", cs2Odds: "5.80", hG: 2, aG: 0 },
-            { home: "Algérie", away: "Zambie", hFlag: "🇩🇿", aFlag: "🇿🇲", score: "1-0", pct: "25%", c1: "1.65", cX: "3.60", c2: "5.10", ov: "1.95", un: "1.45", bYes: "2.05", bNo: "1.55", d1X: "1.12", d12: "1.22", dX2: "2.10", cs1: "1-0", cs2: "2-0", cs1Odds: "5.20", cs2Odds: "6.80", hG: 1, aG: 0 },
-            { home: "Botswana", away: "RD Congo", hFlag: "🇧🇼", aFlag: "🇨🇩", score: "2-2", pct: "30%", c1: "3.40", cX: "3.10", c2: "2.20", ov: "1.65", un: "2.00", bYes: "1.90", bNo: "1.70", d1X: "1.60", d12: "1.33", dX2: "1.25", cs1: "2-2", cs2: "1-2", cs1Odds: "12.0", cs2Odds: "8.50", hG: 2, aG: 2 },
-            { home: "Zimbabwe", away: "Nigeria", hFlag: "🇿🇼", aFlag: "🇳🇬", score: "0-1", pct: "22%", c1: "4.50", cX: "3.30", c2: "1.80", ov: "1.55", un: "2.15", bYes: "2.10", bNo: "1.50", d1X: "1.90", d12: "1.28", dX2: "1.15", cs1: "0-0", cs2: "0-1", cs1Odds: "7.00", cs2Odds: "5.00", hG: 0, aG: 1 },
-            { home: "Côte d'Ivoire", away: "Comores", hFlag: "🇨🇮", aFlag: "🇰🇲", score: "3-1", pct: "32%", c1: "1.40", cX: "4.20", c2: "7.50", ov: "2.10", un: "1.40", bYes: "2.30", bNo: "1.45", d1X: "1.05", d12: "1.18", dX2: "2.70", cs1: "2-0", cs2: "3-1", cs1Odds: "5.50", cs2Odds: "11.0", hG: 3, aG: 1 },
-            { home: "Burkina Faso", away: "Mali", hFlag: "🇧🇫", aFlag: "🇲🇱", score: "0-1", pct: "24%", c1: "2.80", cX: "3.00", c2: "2.60", ov: "1.50", un: "2.20", bYes: "1.95", bNo: "1.66", d1X: "1.42", d12: "1.33", dX2: "1.38", cs1: "0-1", cs2: "1-1", cs1Odds: "6.50", cs2Odds: "5.80", hG: 0, aG: 1 },
-            { home: "Afrique du Sud", away: "Angola", hFlag: "🇿🇦", aFlag: "🇦🇴", score: "2-1", pct: "29%", c1: "2.15", cX: "3.10", c2: "3.35", ov: "1.70", un: "1.90", bYes: "1.85", bNo: "1.85", d1X: "1.28", d12: "1.32", dX2: "1.62", cs1: "2-1", cs2: "1-1", cs1Odds: "7.00", cs2Odds: "6.00", hG: 2, aG: 1 },
-            { home: "Maroc", away: "Cameroun", hFlag: "🇲🇦", aFlag: "🇨🇲", score: "2-0", pct: "41%", c1: "1.70", cX: "3.50", c2: "4.80", ov: "1.85", un: "1.80", bYes: "1.90", bNo: "1.75", d1X: "1.15", d12: "1.25", dX2: "2.00", cs1: "2-0", cs2: "1-0", cs1Odds: "5.80", cs2Odds: "5.50", hG: 2, aG: 0 }
+        const initialTeams = [
+            { name: "Ouganda", flag: "🇺🇬" }, { name: "Égypte", flag: "🇪🇬" },
+            { name: "Mozambique", flag: "🇲🇿" }, { name: "Gabon", flag: "🇬🇦" },
+            { name: "Tunisie", flag: "🇹🇳" }, { name: "Guinée Éq.", flag: "🇬🇶" },
+            { name: "Algérie", flag: "🇩🇿" }, { name: "Zambie", flag: "🇿🇲" },
+            { name: "Botswana", flag: "🇧🇼" }, { name: "RD Congo", flag: "🇨🇩" },
+            { name: "Zimbabwe", flag: "🇿🇼" }, { name: "Nigeria", flag: "🇳🇬" },
+            { name: "Côte d'Ivoire", flag: "🇨🇮" }, { name: "Comores", flag: "🇰🇲" },
+            { name: "Burkina Faso", flag: "🇧🇫" }, { name: "Mali", flag: "🇲🇱" },
+            { name: "Afrique du Sud", flag: "🇿🇦" }, { name: "Angola", flag: "🇦🇴" },
+            { name: "Maroc", flag: "🇲🇦" }, { name: "Cameroun", flag: "🇨🇲" }
         ];
 
-        const classementData = [
-            { pos: 1, name: "Maroc", j: 14, g: 9, n: 3, p: 2, pts: 30 }, { pos: 2, name: "Côte d'Ivoire", j: 14, g: 8, n: 4, p: 2, pts: 28 }, { pos: 3, name: "Algérie", j: 14, g: 8, n: 3, p: 3, pts: 27 }, { pos: 4, name: "Tunisie", j: 14, g: 7, n: 5, p: 2, pts: 26 }, { pos: 5, name: "Égypte", j: 14, g: 7, n: 4, p: 3, pts: 25 }, { pos: 6, name: "Nigeria", j: 14, g: 6, n: 5, p: 3, pts: 23 }, { pos: 7, name: "Mali", j: 14, g: 6, n: 4, p: 4, pts: 22 }, { pos: 8, name: "Cameroun", j: 14, g: 5, n: 6, p: 3, pts: 21 }, { pos: 9, name: "RD Congo", j: 14, g: 5, n: 5, p: 4, pts: 20 }, { pos: 10, name: "Afrique du Sud", j: 14, g: 5, n: 4, p: 5, pts: 19 }, { pos: 11, name: "Burkina Faso", j: 14, g: 4, n: 6, p: 4, pts: 18 }, { pos: 12, name: "Gabon", j: 14, g: 4, n: 5, p: 5, pts: 17 }, { pos: 13, name: "Guinée Éq.", j: 14, g: 4, n: 4, p: 6, pts: 16 }, { pos: 14, name: "Ouganda", j: 14, g: 3, n: 6, p: 5, pts: 15 }, { pos: 15, name: "Angola", j: 14, g: 3, n: 5, p: 6, pts: 14 }, { pos: 16, name: "Zambie", j: 14, g: 3, n: 4, p: 7, pts: 13 }, { pos: 17, name: "Mozambique", j: 14, g: 2, n: 6, p: 6, pts: 12 }, { pos: 18, name: "Botswana", j: 14, g: 2, n: 5, p: 7, pts: 11 }, { pos: 19, name: "Zimbabwe", j: 14, g: 1, n: 5, p: 8, pts: 8 }, { pos: 20, name: "Comores", j: 14, g: 1, n: 3, p: 10, pts: 6 }
-        ];
+        let currentRoundMatches = [];
+        let currentClassement = [];
+        let loadedFiles1 = [];
+        let loadedFiles2 = [];
 
-        // LOJIKA MIKASIKA NY FOTOANA SY NY LIVE
+        function generateDataFromTime(timeString) {
+            let seed = 0;
+            for (let i = 0; i < timeString.length; i++) {
+                seed += timeString.charCodeAt(i) * (i + 1);
+            }
+
+            let teams = [...initialTeams];
+            for (let i = teams.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.abs(Math.sin(seed + i) * 10000) % (i + 1));
+                let temp = teams[i];
+                teams[i] = teams[j];
+                teams[j] = temp;
+            }
+
+            let generatedMatches = [];
+            for (let i = 0; i < 10; i++) {
+                let home = teams[i * 2];
+                let away = teams[i * 2 + 1];
+                
+                let hG = Math.floor(Math.abs(Math.cos(seed + i * 3) * 1000) % 4);
+                let aG = Math.floor(Math.abs(Math.sin(seed + i * 7) * 1000) % 4);
+                
+                let c1 = (1.4 + (Math.abs(Math.sin(seed + i)) * 3.5)).toFixed(2);
+                let c2 = (1.4 + (Math.abs(Math.cos(seed + i)) * 5.5)).toFixed(2);
+                let cX = (2.8 + (Math.abs(Math.sin(seed * 2 + i)) * 1.5)).toFixed(2);
+                
+                generatedMatches.push({
+                    home: home.name, away: away.name,
+                    hFlag: home.flag, aFlag: away.flag,
+                    score: `${hG}-${aG}`, hG: hG, aG: aG,
+                    pct: `${Math.floor(20 + (Math.abs(Math.sin(seed + i)) * 35))}%`,
+                    c1: c1, cX: cX, c2: c2,
+                    ov: (1.4 + (Math.abs(Math.cos(seed)) * 1.1)).toFixed(2),
+                    un: (1.5 + (Math.abs(Math.sin(seed)) * 0.9)).toFixed(2),
+                    bYes: (1.6 + (Math.abs(Math.sin(seed + 1)) * 0.5)).toFixed(2),
+                    bNo: (1.5 + (Math.abs(Math.cos(seed + 2)) * 0.6)).toFixed(2),
+                    d1X: (1.05 + (Math.abs(Math.sin(seed)) * 0.5)).toFixed(2),
+                    d12: (1.15 + (Math.abs(Math.cos(seed)) * 0.3)).toFixed(2),
+                    dX2: (1.1 + (Math.abs(Math.sin(seed * 3)) * 0.7)).toFixed(2),
+                    cs1: `${hG}-${aG}`, cs2: hG > aG ? `${hG-1 tracking-wide >= 0 ? hG-1 : 0}-${aG}` : `${hG}-${aG-1 >= 0 ? aG-1 : 0}`,
+                    cs1Odds: (5.0 + (Math.abs(Math.sin(seed)) * 8)).toFixed(2),
+                    cs2Odds: (6.0 + (Math.abs(Math.cos(seed)) * 9)).toFixed(2)
+                });
+            }
+
+            let generatedClassement = initialTeams.map((t, idx) => {
+                let ptsSeed = Math.floor(Math.abs(Math.sin(seed + idx) * 1000) % 25);
+                return {
+                    name: t.name, flag: t.flag, j: 14,
+                    g: Math.floor(ptsSeed / 3),
+                    n: Math.floor((25 - ptsSeed) % 5),
+                    p: Math.floor((14 - (Math.floor(ptsSeed / 3) + Math.floor((25 - ptsSeed) % 5))) % 14),
+                    pts: 10 + ptsSeed
+                };
+            });
+            generatedClassement.sort((a, b) => b.pts - a.pts);
+            
+            return { matches: generatedMatches, classement: generatedClassement };
+        }
+
         function getGeneratedTimes() {
             let current = new Date();
             let min = current.getMinutes();
@@ -375,11 +463,16 @@
             let times = getGeneratedTimes();
             let currentRound = times[4]; 
 
-            if (!activeRoundTime) {
-                activeRoundTime = currentRound;
+            if (!activeRoundTime) activeRoundTime = currentRound;
+
+            if (activeRoundTime !== lastRoundTime) {
+                let freshData = generateDataFromTime(activeRoundTime);
+                currentRoundMatches = freshData.matches;
+                currentClassement = freshData.classement;
+                lastRoundTime = activeRoundTime;
             }
 
-            if (document.getElementById('page-prediction').classList.contains('hidden') === false) {
+            if (!document.getElementById('page-prediction').classList.contains('hidden')) {
                 renderRoundsBar();
                 switchSubTab(activeSubTab);
             }
@@ -437,7 +530,14 @@
             times.forEach(t => {
                 let btn = document.createElement('button');
                 btn.className = (t === activeRoundTime) ? "bg-red-600 text-white px-2.5 py-1 rounded-md shadow-xs" : "bg-white border border-gray-200 px-2.5 py-1 rounded-md text-gray-500";
-                btn.innerText = t; btn.onclick = () => { activeRoundTime = t; renderRoundsBar(); switchSubTab(activeSubTab); };
+                btn.innerText = t; btn.onclick = () => { 
+                    activeRoundTime = t; 
+                    let freshData = generateDataFromTime(t);
+                    currentRoundMatches = freshData.matches;
+                    currentClassement = freshData.classement;
+                    renderRoundsBar(); 
+                    switchSubTab(activeSubTab); 
+                };
                 bar.appendChild(btn);
             });
         }
@@ -463,21 +563,17 @@
             let isPast = times.indexOf(activeRoundTime) < times.indexOf(currentRound);
             let isFuture = times.indexOf(activeRoundTime) > times.indexOf(currentRound);
 
-            matchesData.forEach(m => {
+            currentRoundMatches.forEach(m => {
                 let row = document.createElement('div');
                 row.className = "grid grid-cols-12 p-2.5 items-center text-center text-[10px] font-bold border-b border-gray-100 hover:bg-slate-50 cursor-pointer";
                 row.onclick = () => openStatsModal(m);
                 
                 let liveText = '';
-                if (isPast || isResultatTab) {
-                    liveText = `<span class="text-gray-400 font-bold">Terminé</span>`;
-                } else if (isFuture) {
-                    liveText = `<span class="text-indigo-500 font-bold">À venir</span>`;
-                } else {
-                    liveText = `<span class="text-red-500 font-bold animate-pulse">● LIVE ${liveMinute}'</span>`;
-                }
+                if (isPast || isResultatTab) liveText = `<span class="text-gray-400 font-bold">Terminé</span>`;
+                else if (isFuture) liveText = `<span class="text-indigo-500 font-bold">À venir</span>`;
+                else liveText = `<span class="text-red-500 font-bold animate-pulse">● LIVE ${liveMinute}'</span>`;
 
-                let teamHtml = `<div class="col-span-4 text-left space-y-0.5 truncate pr-1"><div class="flex items-center gap-1 truncate"><span>${m.hFlag}</span> <span class="truncate text-gray-700">${m.home}</span> <span class="text-emerald-600 font-extrabold ml-auto">${(isFuture) ? '-' : m.hG}</span></div><div class="flex items-center gap-1 truncate"><span>${m.aFlag}</span> <span class="truncate text-gray-700">${m.away}</span> <span class="text-emerald-600 font-extrabold ml-auto">${(isFuture) ? '-' : m.aG}</span></div><div class="text-[7px] text-gray-400 font-medium">🕒 ${activeRoundTime} • ${liveText}</div></div>`;
+                let teamHtml = `<div class="col-span-4 text-left space-y-0.5 truncate pr-1"><div class="flex items-center gap-1 truncate"><span>${m.hFlag}</span> <span class="truncate text-gray-700">${m.home}</span> <span class="text-emerald-600 font-extrabold ml-auto">${(isFuture && !isResultatTab) ? '-' : m.hG}</span></div><div class="flex items-center gap-1 truncate"><span>${m.aFlag}</span> <span class="truncate text-gray-700">${m.away}</span> <span class="text-emerald-600 font-extrabold ml-auto">${(isFuture && !isResultatTab) ? '-' : m.aG}</span></div><div class="text-[7px] text-gray-400 font-medium">🕒 ${activeRoundTime} • ${liveText}</div></div>`;
                 let oddsHtml = '';
                 if (currentFilter === '1x2') oddsHtml = `<div class="col-span-6 grid grid-cols-3 gap-1 px-1 text-[9px]"><div class="bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-400">${m.c1} 🔒</div><div class="bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-400">${m.cX} 🔒</div><div class="bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-400">${m.c2} 🔒</div></div>`;
                 else if (currentFilter === 'double') oddsHtml = `<div class="col-span-6 grid grid-cols-3 gap-1 px-1 text-[9px]"><div class="bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-400">${m.d1X} 🔒</div><div class="bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-400">${m.d12} 🔒</div><div class="bg-gray-50 border border-gray-200 py-2 rounded-md text-gray-400">${m.dX2} 🔒</div></div>`;
@@ -491,9 +587,9 @@
 
         function renderClassementTable() {
             const tbody = document.getElementById('classement-tbody'); tbody.innerHTML = '';
-            classementData.forEach(c => {
+            currentClassement.forEach((c, index) => {
                 let r = document.createElement('tr'); r.className = "border-b border-gray-100 hover:bg-gray-50";
-                r.innerHTML = `<td class="p-2 text-gray-400 font-bold">${c.pos}</td><td class="p-2 text-gray-800 font-bold">${c.name}</td><td class="p-2 text-center text-gray-500">${c.j}</td><td class="p-2 text-center text-gray-500">${c.g}</td><td class="p-2 text-center text-gray-500">${c.n}</td><td class="p-2 text-center text-gray-500">${c.p}</td><td class="p-2 text-center font-black text-emerald-700 bg-emerald-50/50">${c.pts}</td>`;
+                r.innerHTML = `<td class="p-2 text-gray-400 font-bold">${index + 1}</td><td class="p-2 text-gray-800 font-bold">${c.flag} ${c.name}</td><td class="p-2 text-center text-gray-500">${c.j}</td><td class="p-2 text-center text-gray-500">${c.g}</td><td class="p-2 text-center text-gray-500">${c.n}</td><td class="p-2 text-center text-gray-500">${c.p}</td><td class="p-2 text-center font-black text-emerald-700 bg-emerald-50/50">${c.pts}</td>`;
                 tbody.appendChild(r);
             });
         }
@@ -507,9 +603,7 @@
         }
         function closeStatsModal() { document.getElementById('stats-modal').classList.add('hidden'); }
 
-        let loadedFiles1 = [];
-        let loadedFiles2 = [];
-
+        // LOGIQUE HITANTARANA IZAO MANONTOLO AN'NY FILE UPLOAD (SARY 1 & SARY 2)
         function handleFileChange(input, step) {
             if (!input.files.length) return;
             const container = document.getElementById(`files-container-${step}`);
@@ -524,10 +618,11 @@
                 btn.className = "w-full py-2.5 bg-gradient-to-r from-emerald-500 to-indigo-500 text-white rounded-xl text-xs font-black uppercase tracking-wide transition shadow-md cursor-pointer";
             } else {
                 for (let file of input.files) loadedFiles2.push(file);
-                document.getElementById('file-count-2').innerText = `FICHIERS CHARGÉS (${loadedFiles2.length})`;
+                document.getElementById('file-count-2').innerText = `FICHIERS MATCHS (${loadedFiles2.length})`;
                 renderFileList(loadedFiles2, container, 2);
                 listWrapper.classList.remove('hidden');
-                btn.className = "w-full py-2.5 bg-amber-500 text-slate-900 rounded-xl text-xs font-black uppercase tracking-wide transition shadow-md cursor-pointer";
+                // Rehefa misy capture vao andeha ny bokotra orange
+                btn.className = "w-full py-3 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-slate-900 font-black rounded-xl text-xs uppercase tracking-wide transition shadow-lg shadow-orange-500/20 active:scale-[0.99] cursor-pointer";
             }
         }
 
@@ -535,14 +630,14 @@
             container.innerHTML = '';
             filesArray.forEach((file, index) => {
                 let div = document.createElement('div');
-                div.className = "bg-[#1f293d] border border-slate-700 rounded-lg p-2 flex items-center justify-between text-[9px] text-gray-300 font-mono";
+                div.className = "bg-[#1f293d] border border-slate-700 rounded-lg p-2.5 flex items-center justify-between text-[9px] text-gray-300 font-mono w-full";
                 div.innerHTML = `
                     <div class="flex items-center gap-1.5 truncate">
-                        <span>📄</span>
+                        <span class="text-indigo-400">📄</span>
                         <span class="truncate max-w-[180px]">${file.name}</span>
-                        <span class="text-gray-500 text-[8px]">(${(file.size/1024).toFixed(2)} Ko)</span>
+                        <span class="text-gray-500 text-[8px]">(${(file.size/(1024*1024)).toFixed(2)} Mo)</span>
                     </div>
-                    <button onclick="removeSingleFile(${step}, ${index})" class="text-gray-500 hover:text-red-400 font-bold ml-2">🗑️</button>
+                    <button onclick="removeSingleFile(${step}, ${index})" class="text-gray-400 hover:text-red-400 font-bold ml-2">✕</button>
                 `;
                 container.appendChild(div);
             });
@@ -559,10 +654,10 @@
                 renderFileList(loadedFiles1, document.getElementById('files-container-1'), 1);
             } else {
                 loadedFiles2.splice(index, 1);
-                document.getElementById('file-count-2').innerText = `FICHIERS CHARGÉS (${loadedFiles2.length})`;
+                document.getElementById('file-count-2').innerText = `FICHIERS MATCHS (${loadedFiles2.length})`;
                 if(!loadedFiles2.length) {
                     document.getElementById('file-list-2').classList.add('hidden');
-                    document.getElementById('btn-action-2').className = "w-full py-2.5 bg-slate-800 text-gray-400 border border-slate-700 rounded-xl text-xs font-black uppercase tracking-wide transition shadow-md";
+                    document.getElementById('btn-action-2').className = "w-full py-3 bg-slate-800 text-gray-400 border border-slate-700 rounded-xl text-xs font-black uppercase tracking-wide transition shadow-md opacity-60 cursor-not-allowed";
                 }
                 renderFileList(loadedFiles2, document.getElementById('files-container-2'), 2);
             }
@@ -576,10 +671,12 @@
             } else {
                 loadedFiles2 = [];
                 document.getElementById('file-list-2').classList.add('hidden');
-                document.getElementById('btn-action-2').className = "w-full py-2.5 bg-slate-800 text-gray-400 border border-slate-700 rounded-xl text-xs font-black uppercase tracking-wide transition shadow-md";
+                document.getElementById('btn-action-2').className = "w-full py-3 bg-slate-800 text-gray-400 border border-slate-700 rounded-xl text-xs font-black uppercase tracking-wide transition shadow-md opacity-60 cursor-not-allowed";
+                document.getElementById('result-block-premium').classList.add('hidden');
             }
         }
 
+        // MIATSO NY ALGORITHM RÉSULTAT REHEFA AVY NAMPIDITRA MATCHS (SARY 2 POZO)
         function startAnalysis(step) {
             if (step === 1 && !loadedFiles1.length) return;
             if (step === 2 && !loadedFiles2.length) return;
@@ -590,9 +687,61 @@
 
             setTimeout(() => {
                 statusBox.classList.add('hidden');
-                alert(step === 1 ? "✅ Analyse de la base historique terminée avec succès !" : "✅ Calcul des pronostics exacts terminé ! Redirection vers les résultats...");
-                if (step === 2) switchPage('prediction');
+                if (step === 1) {
+                    alert("✅ Analyse de la base historique terminée avec succès !");
+                } else {
+                    // Mampiseho ny valin'ny analyse araka ny pozin'ny sary faha-2
+                    renderPremiumResults();
+                }
             }, 3500);
+        }
+
+        function renderPremiumResults() {
+            const listContainer = document.getElementById('premium-prediction-list');
+            listContainer.innerHTML = '';
+
+            // Angon-drakitra nalaina tahaka avy amin'ny algorithm-nao (izay sary nalefanao ihany no mivoaka)
+            const mockPremiumMatches = [
+                { home: "Angola", away: "Zambia", prono: "2", score: "1-2" },
+                { home: "Ivory Coast", away: "Comoros", prono: "1", score: "2-0" },
+                { home: "Equatorial Guinea", away: "Egypt", prono: "2", score: "0-2" },
+                { home: "Benin", away: "Tunisia", prono: "X", score: "1-1" },
+                { home: "Mozambique", away: "DR Congo", prono: "2", score: "1-2" },
+                { home: "Botswana", away: "Tanzania", prono: "2", score: "0-1" },
+                { home: "Zimbabwe", away: "Morocco", prono: "2", score: "1-2" },
+                { home: "South Africa", away: "Algeria", prono: "1", score: "2-1" },
+                { home: "Sudan", away: "Mali", prono: "2", score: "1-2" },
+                { home: "Senegal", away: "Uganda", prono: "1", score: "2-0" },
+                { home: "Camerooun", away: "Nigeria", prono: "X", score: "1-1" },
+                { home: "Burkina Faso", away: "Gabon", prono: "1", score: "2-1" }
+            ];
+
+            mockPremiumMatches.forEach(m => {
+                let row = document.createElement('div');
+                row.className = "flex items-center justify-between p-3.5 bg-[#131722]/50 border border-slate-800/60 rounded-xl hover:bg-[#131722] transition-colors";
+                
+                row.innerHTML = `
+                    <!-- Ankavia: Ekipa mifanandrina -->
+                    <div class="text-[11px] font-bold text-gray-200 tracking-wide">
+                        ${m.home} <span class="text-gray-500 font-medium mx-1">vs</span> ${m.away}
+                    </div>
+                    
+                    <!-- Ankavanana: Bokotra Pronostic sy score miloko volamena/mavo -->
+                    <div class="flex items-center space-x-1.5 bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-lg text-[11px] font-black text-amber-400 font-mono">
+                        <span>${m.prono}</span>
+                        <span class="text-amber-500/50 font-normal text-[10px]">(${m.score})</span>
+                    </div>
+                `;
+                listContainer.appendChild(row);
+            });
+
+            const resBlock = document.getElementById('result-block-premium');
+            resBlock.classList.remove('hidden');
+            resBlock.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function clearPremiumResults() {
+            document.getElementById('result-block-premium').classList.add('hidden');
         }
 
         function switchPremiumStep(step) {
@@ -608,6 +757,13 @@
                 document.getElementById('btn-step2').className = "py-2.5 rounded-lg bg-indigo-600 text-white shadow-xs uppercase";
             }
         }
+
+        let initialTimesArr = getGeneratedTimes();
+        activeRoundTime = initialTimesArr[4];
+        let setupData = generateDataFromTime(activeRoundTime);
+        currentRoundMatches = setupData.matches;
+        currentClassement = setupData.classement;
+        lastRoundTime = activeRoundTime;
 
         switchPage('home');
     </script>
